@@ -1,0 +1,83 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+* {
+  margin-top: 0;
+}
+p {
+  margin-bottom: 0px;
+}
+
+@font-face {
+  font-family: "DMSans-Bold";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "DMSans-BoldItalic";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "DMSans-Italic";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-Italic.ttf");
+}
+
+@font-face {
+  font-family: "DMSans-Medium";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "DMSans-MediumItalic";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-MediumItalic.ttf");
+}
+
+@font-face {
+  font-family: "DMSans-Regular";
+  src: url("../public/fonts/dm-sans-cdnfonts/DMSans-Regular.ttf");
+}
+@font-face {
+  font-family: "ClashGrotesk-Bold";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Bold.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "ClashGrotesk-Extralight";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Extralight.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "ClashGrotesk-Light";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Light.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "ClashGrotesk-Medium";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Medium.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "ClashGrotesk-Regular";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Regular.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "ClashGrotesk-Semibold";
+  src: url("../public/fonts/clash_display/ClashGrotesk-Semibold.otf")
+    format("opentype");
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
