@@ -1,10 +1,16 @@
 .features_section {
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .first_feature_section {
   height: 100vh;
+  max-height: 800px;
   width: 100%;
+  max-width: 1350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,15 +62,27 @@
   color: black;
   z-index: 10;
   font-weight: 900;
-  width: 100%;
+  width: 90%;
   text-align: center;
-  line-height: 55px;
-  margin-top: 70px;
+  line-height: 40px;
+  margin-top: 10px;
   text-align: left;
   font-stretch: extra-expanded;
+}
+.description_container p:nth-child(1) {
+  color: #008080;
+  font-family: "DMSans-Regular";
+  font-size: 13px;
 }
 .description_container p {
   color: #000000;
   font-family: "DMSans-Regular";
   font-size: 15px;
+}
+.divider {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  height: 2px;
+  background-color: rgba(202, 202, 202, 0.378);
 }

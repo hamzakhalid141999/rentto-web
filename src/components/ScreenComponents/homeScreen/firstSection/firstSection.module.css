@@ -43,9 +43,9 @@
 }
 .green_blob {
   position: absolute;
-  width: 130%;
+  width: 150%;
   bottom: -120%;
-  right: -65%;
+  right: -75%;
 }
 .triangle {
   width: 400px;

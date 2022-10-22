@@ -10,7 +10,27 @@ function Navbar() {
 
   const [backgroundColor, setBackgroundColor] = useState("transparent");
   const [isNavbarVisisbleFromTop, setIsNavbarVisibleFromTop] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(undefined);
+
   let listener = null;
+
+  useEffect(() => {
+    if (darkTheme !== undefined) {
+      if (darkTheme) {
+        // Set value of  darkmode to dark
+        document.documentElement.setAttribute("data-theme", "dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        // Set value of  darkmode to light
+        document.documentElement.removeAttribute("data-theme");
+        window.localStorage.setItem("theme", "light");
+      }
+    }
+  }, [darkTheme]);
+
+  const handleToggle = (value) => {
+    setDarkTheme(value);
+  };
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -44,7 +64,9 @@ function Navbar() {
       }
     >
       <div className={classes.left_panel}>
-        <p className={classes.logo}>rentto</p>
+        <p style={{ color: "#266867" }} className={classes.logo}>
+          rentto
+        </p>
         <div className={classes.left_panel_btns}>
           <p>List a property</p>
           <p>Featured</p>
@@ -54,8 +76,11 @@ function Navbar() {
       <div className={classes.right_panel}>
         <img src={heart_icon.src} className={classes.icon} />
         <img src={mail_icon.src} className={classes.icon} />
-        <p>Login</p>
-        <div className={classes.get_started_btn}>
+        <p onClick={() => handleToggle(true)}>Login</p>
+        <div
+          onClick={() => handleToggle(false)}
+          className={classes.get_started_btn}
+        >
           <p>Get Started</p>
         </div>
       </div>

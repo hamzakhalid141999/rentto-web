@@ -127,6 +127,7 @@
   width: 20px;
   margin-left: 15px;
 }
+
 @media screen and (max-width: 1000px) {
   .right_panel {
     display: none;

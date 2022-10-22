@@ -1,3 +1,59 @@
+:root {
+  --greyDark: #7f7f7f;
+  --greyLight: #c7c7c7;
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+  --text-color: black;
+  --nav-bar-color: white;
+  --greenText: #008080;
+  --whiteText: white;
+  --greyText: #00000040;
+}
+
+[data-theme="dark"] {
+  --background: rgb(30, 30, 30);
+  --foreground: white;
+  --text-color: white;
+  --nav-bar-color: rgb(30, 30, 30);
+  --greenText: #008080;
+  --whiteText: white;
+  --greyText: white;
+}
+
+body,
+html,
+.App,
+#root {
+  color: black;
+  transition: ease-in-out 200ms;
+  background-color: var(--background) !important;
+}
+
+p {
+  color: var(--text-color) !important;
+  transition: ease-in-out 200ms !important;
+}
+
+h1 {
+  color: var(--text-color) !important;
+  transition: ease-in-out 200ms !important;
+}
+h2 {
+  color: var(--text-color) !important;
+  transition: ease-in-out 200ms !important;
+}
+
+.navbar_navbar_body_opaque__1sac9 {
+  background-color: var(--nav-bar-color) !important;
+}
+.propertyCard_card_body__EMNDJ {
+  background-color: var(--nav-bar-color) !important;
+}
+.navbar_logo__507B9 {
+  color: #266867 !important;
+}
+
 html,
 body {
   padding: 0;
