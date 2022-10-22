@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import logo from "../../public/assets/navbar_assets/logo.png";
 import heart_icon from "../../public/assets/navbar_assets/heart_icon.png";
 import mail_icon from "../../public/assets/navbar_assets/mail_icon.png";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 function Navbar() {
   const router = useRouter();
@@ -28,8 +29,8 @@ function Navbar() {
     }
   }, [darkTheme]);
 
-  const handleToggle = (value) => {
-    setDarkTheme(value);
+  const handleToggle = () => {
+    setDarkTheme(!darkTheme);
   };
 
   useEffect(() => {
@@ -74,15 +75,13 @@ function Navbar() {
         </div>
       </div>
       <div className={classes.right_panel}>
-        <img src={heart_icon.src} className={classes.icon} />
-        <img src={mail_icon.src} className={classes.icon} />
-        <p onClick={() => handleToggle(true)}>Login</p>
-        <div
-          onClick={() => handleToggle(false)}
-          className={classes.get_started_btn}
-        >
+        {/* <img src={heart_icon.src} className={classes.icon} />
+        <img src={mail_icon.src} className={classes.icon} /> */}
+        <p>Login</p>
+        <div className={classes.get_started_btn}>
           <p>Get Started</p>
         </div>
+        <DarkModeSwitch checked={darkTheme} onChange={handleToggle} size={30} />
       </div>
     </div>
   );

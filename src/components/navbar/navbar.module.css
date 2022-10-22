@@ -14,7 +14,6 @@
 }
 .navbar_body_opaque {
   background-color: rgb(255, 255, 255);
-  backdrop-filter: blur(10px);
   box-shadow: 0px 0px 30px rgba(127, 127, 127, 0.334);
 }
 .profile_menu {
@@ -86,7 +85,7 @@
   font-size: 15px;
 }
 .left_panel_btns p:nth-child(1) {
-  color: #ff9000;
+  color: var(--orangeText) !important;
   font-family: "DMSans-Regular";
   font-size: 18px;
 }
@@ -119,7 +118,7 @@
   font-family: "DMSans-Regular";
   font-size: 15px;
 }
-.right_panel .icon:nth-child(2) {
+.right_panel .icon:nth-child(3) {
   margin-right: 30px;
   opacity: 0.4;
 }

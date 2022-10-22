@@ -9,6 +9,7 @@
   --greenText: #008080;
   --whiteText: white;
   --greyText: #00000040;
+  --orangeText: #ff9000;
 }
 
 [data-theme="dark"] {
@@ -19,6 +20,7 @@
   --greenText: #008080;
   --whiteText: white;
   --greyText: white;
+  --orangeText: #ff9000;
 }
 
 body,
