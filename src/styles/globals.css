@@ -28,22 +28,22 @@ html,
 .App,
 #root {
   color: black;
-  transition: ease-in-out 200ms;
+  transition: ease-in-out 100ms;
   background-color: var(--background) !important;
 }
 
 p {
   color: var(--text-color) !important;
-  transition: ease-in-out 200ms !important;
+  transition: ease-in-out 100ms !important;
 }
 
 h1 {
   color: var(--text-color) !important;
-  transition: ease-in-out 200ms !important;
+  transition: ease-in-out 100ms !important;
 }
 h2 {
   color: var(--text-color) !important;
-  transition: ease-in-out 200ms !important;
+  transition: ease-in-out 100ms !important;
 }
 
 .navbar_navbar_body_opaque__1sac9 {
