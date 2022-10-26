@@ -9,6 +9,7 @@ import green_triangle from "../../../../public/assets/homescreen/green_triangle.
 import triangle from "../../../../public/assets/homescreen/triangle.png";
 import magnifying_glass from "../../../../public/assets/homescreen/magnifying_glass.png";
 import drop_down_icon from "../../../../public/assets/homescreen/drop_down_icon.png";
+import { Typewriter, useTypewriter, Cursor } from "react-simple-typewriter";
 
 function FirstSection() {
   return (
@@ -18,10 +19,28 @@ function FirstSection() {
       <img src={orange_blob_1.src} className={classes.orange_blob_1} />
       <img src={green_blob.src} className={classes.green_blob} />
       <img src={triangle.src} className={classes.triangle} />
-      <h1>
-        The <span className={classes.orange_text}>Easiest</span> way to rent a{" "}
-        <span className={classes.orange_text}>Property</span>
-      </h1>
+
+      <div className={classes.main_title_heading}>
+        <div className={classes.single_row}>
+          <h1>
+            The <span className={classes.animation_text}></span>
+          </h1>
+          <Typewriter
+            words={["Easiest", "Safe", "Reliable"]}
+            loop
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </div>
+
+        <h1>
+          {" "}
+          way to rent a <span className={classes.orange_text}>Property</span>
+        </h1>
+      </div>
 
       <div className={classes.search_bar_container}>
         <div className={classes.search_bar}>

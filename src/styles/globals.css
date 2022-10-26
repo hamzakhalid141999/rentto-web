@@ -22,7 +22,19 @@
   --greyText: white;
   --orangeText: #ff9000;
 }
+.firstSection_main_title_heading__o83af {
+  font-family: "ClashGrotesk-Semibold";
+  font-size: 95px !important;
+  color: var(--orangeText);
+  z-index: 10;
+  font-stretch: extra-expanded;
+}
 
+@media only screen and (max-width: 786px) {
+  .firstSection_main_title_heading__o83af {
+    font-size: 40px !important;
+  }
+}
 body,
 html,
 .App,

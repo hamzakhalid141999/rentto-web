@@ -18,11 +18,76 @@
   line-height: 90px;
   margin-top: 70px;
   font-stretch: extra-expanded;
+  position: relative;
+}
+
+.animated_text {
+  position: absolute;
+  left: 200px;
+  top: 0px;
+}
+.animated_text {
+  animation-name: fade;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  /* animation-delay: 4.6s; */
+}
+
+.animated_text:nth-child(2) {
+  animation-name: fade;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-delay: 2.3s;
+}
+/* .animated_text:nth-child(3) {
+  animation-name: fade;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+} */
+
+.main_title_heading {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.main_title_heading h1 {
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+}
+.single_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .orange_text {
   color: #ff9000;
 }
+.space {
+  color: transparent !important;
+}
+
 .bg {
   position: absolute;
   width: 100%;
@@ -37,6 +102,7 @@
   top: -500px;
   right: -200px;
   pointer-events: none;
+  animation: blob_animation 22s ease-out infinite;
 }
 .orange_blob_1 {
   position: absolute;
@@ -44,6 +110,22 @@
   top: -500px;
   right: -200px;
   pointer-events: none;
+  animation: blob_animation 22s ease-out infinite;
+}
+
+@keyframes orange_blob_animation {
+  0% {
+    right: -200px;
+    top: -500px;
+  }
+  50% {
+    right: -800px;
+    top: -700px;
+  }
+  100% {
+    right: -200px;
+    top: -500px;
+  }
 }
 
 .triangle {
@@ -52,6 +134,9 @@
   right: -50px;
   bottom: 0px;
   pointer-events: none;
+}
+.triangle:hover {
+  animation: textanimation 0.5s linear infinite;
 }
 .search_bar_container {
   width: 60%;
@@ -71,8 +156,11 @@
   flex-direction: row;
   column-gap: 20px;
   align-items: center;
-
+  transition: ease-in-out 200ms;
   /* justify-content: center; */
+}
+.search_bar:hover {
+  box-shadow: 0px 0px 30px rgba(128, 128, 128, 0.558);
 }
 .drop_down {
   border: none;
@@ -133,16 +221,20 @@
   bottom: -120%;
   right: -75%;
   pointer-events: none;
-
-  animation: animate4 22s linear infinite;
+  animation: blob_animation 22s ease-out infinite;
 }
 @keyframes blob_animation {
   0% {
-    left: -100%;
+    right: -75%;
+    bottom: -120%;
   }
-  50%,
+  50% {
+    right: -10%;
+    bottom: -160%;
+  }
   100% {
-    left: 100%;
+    right: -75%;
+    bottom: -120%;
   }
 }
 
@@ -196,5 +288,20 @@
   }
   .search_icon {
     margin-left: 30px;
+  }
+}
+
+@keyframes textanimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

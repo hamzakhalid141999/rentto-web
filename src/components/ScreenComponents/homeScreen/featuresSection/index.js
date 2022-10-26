@@ -40,6 +40,8 @@ function FeaturesSection() {
         </div>
 
         <div className={classes.first_feature_section}>
+          <img src={left_bg.src} className={classes.left_bg} />
+
           <div className={classes.content_container}>
             <div
               style={{ flexDirection: "row-reverse" }}
@@ -123,7 +125,10 @@ function FeaturesSection() {
             >
               <img src={helpline_img.src} className={classes.no_fee_img} />
               <div className={classes.description_container}>
-                <p>OPTION 2 (RECOMMENDED)</p>
+                <p>
+                  OPTION 2{" "}
+                  <span className={classes.orange_span}>(RECOMMENDED)</span>
+                </p>
                 <h1>Rentto Assistance</h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

@@ -76,6 +76,8 @@
   font-size: 26px;
   font-weight: bolder;
   margin-bottom: 12px;
+  color: var(--foreground) !important;
+  transition: ease-in-out 200ms !important;
 }
 .col p {
   margin-bottom: 12px;
@@ -84,7 +86,7 @@
   width: 340px;
   height: 60px;
   border-radius: 500px;
-  background-color: white;
+  background-color: var(--background) !important;
   border: 2px solid #e1e1e1;
   position: relative;
   display: flex;
@@ -100,6 +102,8 @@
   font-size: 20px;
   border-radius: 500px;
   padding-left: 30px;
+  color: var(--foreground) !important;
+  background-color: var(--background) !important;
 }
 .input_field::placeholder {
   color: #e1e1e1;

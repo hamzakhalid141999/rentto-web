@@ -107,6 +107,11 @@
   justify-content: center;
   align-items: center;
   border-radius: 500px;
+  transition: ease-in-out 200ms;
+}
+.get_started_btn:hover {
+  background-color: #ffad41;
+  cursor: pointer;
 }
 .get_started_btn p {
   color: white !important;
