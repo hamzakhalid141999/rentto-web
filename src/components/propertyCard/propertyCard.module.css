@@ -125,3 +125,8 @@
 .contact_icon {
   width: 20px;
 }
+@media only screen and (max-width: 786px) {
+  .card_body {
+    width: 310px;
+  }
+}

@@ -88,8 +88,6 @@
   position: absolute;
   left: -50px;
   top: 100px;
-  /* -webkit-transform: scaleX(-1); */
-  /* transform: scaleX(-1); */
   transform: rotate(180deg);
   z-index: 5;
 }
@@ -101,4 +99,33 @@
 }
 .logo {
   width: 70px;
+}
+@media only screen and (max-width: 786px) {
+  .triangle {
+    display: none;
+  }
+  .triangle_up {
+    width: 230px;
+  }
+  .properties_content h2 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .properties_content {
+    margin-top: 150px;
+  }
+  .properties_content p {
+    line-height: 20px;
+    margin-top: 20px;
+  }
+  .get_app_btn p {
+    color: var(--foreground) !important;
+    font-family: "DMSans-Regular";
+    font-size: 13px;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+  }
+  .phone_img {
+    max-width: 250px;
+  }
 }

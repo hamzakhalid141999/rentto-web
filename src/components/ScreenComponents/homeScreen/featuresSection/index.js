@@ -8,6 +8,10 @@ import list_property_img_bg from "../../../../public/assets/homescreen/list_prop
 import list_property_img from "../../../../public/assets/homescreen/list_property_img.png";
 import helpline_img from "../../../../public/assets/homescreen/helpline_img.png";
 import contracts_img from "../../../../public/assets/homescreen/contracts_img.png";
+import bg_pattern from "../../../../public/assets/homescreen/bg_pattern.png";
+import left_bg from "../../../../public/assets/homescreen/left_pattern.png";
+import right_bg from "../../../../public/assets/homescreen/right_pattern.png";
+import lower_right_pattern from "../../../../public/assets/homescreen/lower_right_pattern.png";
 
 function FeaturesSection() {
   return (
@@ -83,6 +87,7 @@ function FeaturesSection() {
       <RenttoPropertySection />
       <div className={classes.features_section}>
         <div className={classes.first_feature_section}>
+          <img src={left_bg.src} className={classes.left_bg} />
           <div className={classes.content_container}>
             <h1>
               Thinking of <span className={classes.orange_text}>listing</span>{" "}
@@ -132,6 +137,8 @@ function FeaturesSection() {
         </div>
 
         <div className={classes.first_feature_section}>
+          <img src={lower_right_pattern.src} className={classes.right_bg} />
+
           <div className={classes.content_container}>
             <div className={classes.content_section}>
               <img src={contracts_img.src} className={classes.no_fee_img} />

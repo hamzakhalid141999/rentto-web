@@ -32,6 +32,10 @@ html,
   background-color: var(--background) !important;
 }
 
+image {
+  -webkit-tap-highlight-color: transparent;
+}
+
 p {
   color: var(--text-color) !important;
   transition: ease-in-out 100ms !important;

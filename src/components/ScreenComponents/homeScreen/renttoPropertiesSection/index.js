@@ -11,7 +11,8 @@ function RenttoPropertySection() {
 
       <div className={classes.properties_content}>
         <h2>
-          Rentto <span className={classes.orange_text}>Properties</span>
+          Discover Your Next{" "}
+          <span className={classes.orange_text}>Rental Property</span>
         </h2>
         <div className={classes.properties_container}>
           <PropertyCard />

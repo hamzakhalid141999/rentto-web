@@ -52,3 +52,35 @@
   row-gap: 20px;
   column-gap: 20px;
 }
+@media only screen and (max-width: 1160px) {
+  .properties_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+  }
+}
+@media only screen and (max-width: 786px) {
+  .triangle_up {
+    display: none;
+  }
+  .triangle {
+    display: none;
+  }
+  .properties_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+  }
+  .properties_section {
+    height: fit-content;
+    margin-bottom: 80px;
+    margin-top: 80px;
+  }
+  .properties_content h2 {
+    font-size: 30px;
+    line-height: 35px;
+    width: 90%;
+  }
+}

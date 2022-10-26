@@ -7,6 +7,8 @@ import green_blob from "../../../../public/assets/homescreen/green_blob.png";
 import orange_triangle from "../../../../public/assets/homescreen/orange_triangle.png";
 import green_triangle from "../../../../public/assets/homescreen/green_triangle.png";
 import triangle from "../../../../public/assets/homescreen/triangle.png";
+import magnifying_glass from "../../../../public/assets/homescreen/magnifying_glass.png";
+import drop_down_icon from "../../../../public/assets/homescreen/drop_down_icon.png";
 
 function FirstSection() {
   return (
@@ -22,7 +24,17 @@ function FirstSection() {
       </h1>
 
       <div className={classes.search_bar_container}>
-        <div className={classes.search_bar}></div>
+        <div className={classes.search_bar}>
+          <select className={classes.drop_down}>
+            <option>Home Type</option>
+          </select>
+          <div className={classes.divider} />
+          <img src={magnifying_glass.src} className={classes.search_icon} />
+          <input
+            className={classes.input_field}
+            placeholder="Search Location"
+          />
+        </div>
         <div className={classes.search_btn}>
           <p>SEARCH</p>
         </div>

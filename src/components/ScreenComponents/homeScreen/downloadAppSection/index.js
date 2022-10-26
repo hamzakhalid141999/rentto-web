@@ -15,7 +15,7 @@ function DownloadAppSection() {
         <h2>Try Rentto For Free</h2>
         <p>Rentto Lorem ipsum Dolor Set Est Lorem Ipsum</p>
         <div className={classes.get_app_btn}>
-          <p>Get Rentto App</p>
+          <p className={classes.btn_label}>Get Rentto App</p>
         </div>
       </div>
 

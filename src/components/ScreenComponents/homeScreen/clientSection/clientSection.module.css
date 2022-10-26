@@ -111,3 +111,29 @@
     -webkit-transform: rotate(120deg);
   }
 }
+@media only screen and (max-width: 786px) {
+  .properties_content h2 {
+    font-size: 30px;
+    width: 90%;
+    line-height: 35px;
+  }
+  .mid_img {
+    width: 130%;
+    position: absolute;
+  }
+  .properties_section {
+    padding-top: 60px;
+  }
+  .user2 {
+    display: none;
+  }
+  .user3 {
+    display: none;
+  }
+  .user4 {
+    display: none;
+  }
+  .dot {
+    display: none;
+  }
+}
