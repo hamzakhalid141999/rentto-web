@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./firstSection.module.css";
 import first_section_bg from "../../../../public/assets/homescreen/first_section_bg.png";
 import orange_blob from "../../../../public/assets/homescreen/orange_blob.png";
@@ -10,8 +10,24 @@ import triangle from "../../../../public/assets/homescreen/triangle.png";
 import magnifying_glass from "../../../../public/assets/homescreen/magnifying_glass.png";
 import drop_down_icon from "../../../../public/assets/homescreen/drop_down_icon.png";
 import { Typewriter, useTypewriter, Cursor } from "react-simple-typewriter";
+import $ from "jquery";
 
 function FirstSection() {
+  var terms = ["Easiest", "Reliable", "Safest"];
+
+  useEffect(() => {
+    function rotateTerm() {
+      var ct = $("#rotate").data("term") || 0;
+      $("#rotate")
+        .data("term", ct == terms.length - 1 ? 0 : ct + 1)
+        .text(terms[ct])
+        .fadeIn()
+        .delay(2000)
+        .fadeOut(200, rotateTerm);
+    }
+    $(rotateTerm);
+  }, []);
+
   return (
     <div className={classes.first_section}>
       <img src={first_section_bg.src} className={classes.bg} />
@@ -25,15 +41,9 @@ function FirstSection() {
           <h1>
             The <span className={classes.animation_text}></span>
           </h1>
-          <Typewriter
-            words={["Easiest", "Safe", "Reliable"]}
-            loop
-            cursor
-            cursorStyle="|"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
+          <p>
+            <span style={{ color: "#ff9000" }} id="rotate"></span>
+          </p>
         </div>
 
         <h1>
