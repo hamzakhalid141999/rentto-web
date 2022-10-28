@@ -1,14 +1,24 @@
 import React from "react";
 import classes from "./featuresSection.module.css";
-import no_fee_img from "../../../../public/assets/homescreen/no_fee.png";
-import bypass_agents from "../../../../public/assets/homescreen/bypass_agents.png";
-import genuine_ads from "../../../../public/assets/homescreen/genuine_ads.png";
+
+import hidden_fee_bg from "../../../../public/assets/homescreen/hidden_fee_bg.png";
+import hidden_fee from "../../../../public/assets/homescreen/hidden_fee.png";
+
+import bypass_agents_img from "../../../../public/assets/homescreen/bypass_agents_img.png";
+import bypass_agents_bg from "../../../../public/assets/homescreen/bypass_agents_bg.png";
+
+import genuine_img from "../../../../public/assets/homescreen/genuine_img.png";
+import genuine_bg from "../../../../public/assets/homescreen/genuine_bg.png";
+
+import assistance_img from "../../../../public/assets/homescreen/assistance_img.png";
+import assistance_bg from "../../../../public/assets/homescreen/assistance_bg.png";
+
+import featured_img from "../../../../public/assets/homescreen/featured_img.png";
+import featured_bg from "../../../../public/assets/homescreen/featured_bg.png";
+
 import RenttoPropertySection from "../renttoPropertiesSection";
 import list_property_img_bg from "../../../../public/assets/homescreen/list_property_img_bg.png";
 import list_property_img from "../../../../public/assets/homescreen/list_property_img.png";
-import helpline_img from "../../../../public/assets/homescreen/helpline_img.png";
-import contracts_img from "../../../../public/assets/homescreen/contracts_img.png";
-import bg_pattern from "../../../../public/assets/homescreen/bg_pattern.png";
 import left_bg from "../../../../public/assets/homescreen/left_pattern.png";
 import right_bg from "../../../../public/assets/homescreen/right_pattern.png";
 import lower_right_pattern from "../../../../public/assets/homescreen/lower_right_pattern.png";
@@ -24,7 +34,10 @@ function FeaturesSection() {
               <span className={classes.orange_text}>Rental Property</span>
             </h1>
             <div className={classes.content_section}>
-              <img src={no_fee_img.src} className={classes.no_fee_img} />
+              <div className={classes.card_imgs_container}>
+                <img src={hidden_fee_bg.src} className={classes.card_img_bg} />
+                <img src={hidden_fee.src} className={classes.card_img} />
+              </div>
               <div className={classes.description_container}>
                 <p>OUR POLICY</p>
                 <h1>Zero Commissions</h1>
@@ -47,7 +60,13 @@ function FeaturesSection() {
               style={{ flexDirection: "row-reverse" }}
               className={classes.content_section}
             >
-              <img src={bypass_agents.src} className={classes.no_fee_img} />
+              <div className={classes.card_imgs_container}>
+                <img
+                  src={bypass_agents_bg.src}
+                  className={classes.card_img_bg}
+                />
+                <img src={bypass_agents_img.src} className={classes.card_img} />
+              </div>
               <div className={classes.description_container}>
                 <p>FLEXIBILITY</p>
                 <h1>Direct communication with property owner</h1>
@@ -65,7 +84,10 @@ function FeaturesSection() {
         <div className={classes.first_feature_section}>
           <div className={classes.content_container}>
             <div className={classes.content_section}>
-              <img src={genuine_ads.src} className={classes.no_fee_img} />
+              <div className={classes.card_imgs_container}>
+                <img src={genuine_bg.src} className={classes.card_img_bg} />
+                <img src={genuine_img.src} className={classes.card_img} />
+              </div>
               <div className={classes.description_container}>
                 <p>QUICK AND FAST</p>
                 <h1>Genuine & Authentic Ads</h1>
@@ -123,7 +145,10 @@ function FeaturesSection() {
               style={{ flexDirection: "row-reverse" }}
               className={classes.content_section}
             >
-              <img src={helpline_img.src} className={classes.no_fee_img} />
+              <div className={classes.card_imgs_container}>
+                <img src={assistance_bg.src} className={classes.card_img_bg} />
+                <img src={assistance_img.src} className={classes.card_img} />
+              </div>
               <div className={classes.description_container}>
                 <p>
                   OPTION 2{" "}
@@ -146,7 +171,10 @@ function FeaturesSection() {
 
           <div className={classes.content_container}>
             <div className={classes.content_section}>
-              <img src={contracts_img.src} className={classes.no_fee_img} />
+              <div className={classes.card_imgs_container}>
+                <img src={featured_bg.src} className={classes.card_img_bg} />
+                <img src={featured_img.src} className={classes.card_img} />
+              </div>
               <div className={classes.description_container}>
                 <p>QUICK AND FAST</p>
                 <h1>Featured Property</h1>
