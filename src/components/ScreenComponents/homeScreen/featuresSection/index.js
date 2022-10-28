@@ -33,7 +33,10 @@ function FeaturesSection() {
               Discover Your Next{" "}
               <span className={classes.orange_text}>Rental Property</span>
             </h1>
-            <div className={classes.content_section}>
+            <div
+              style={{ marginTop: "100px" }}
+              className={classes.content_section}
+            >
               <div className={classes.card_imgs_container}>
                 <img src={hidden_fee_bg.src} className={classes.card_img_bg} />
                 <img src={hidden_fee.src} className={classes.card_img} />
@@ -117,7 +120,10 @@ function FeaturesSection() {
               Thinking of <span className={classes.orange_text}>listing</span>{" "}
               your property?
             </h1>
-            <div className={classes.content_section}>
+            <div
+              style={{ marginTop: "100px" }}
+              className={classes.content_section}
+            >
               <div className={classes.card_imgs_container}>
                 <img
                   src={list_property_img_bg.src}

@@ -72,7 +72,9 @@
 .card_imgs_container:hover .card_img_bg {
   transform: rotate(-8deg);
   /* transform: translateY(-8px); */
-  box-shadow: 0px 0px 40px rgba(255, 127, 29, 0.966);
+  filter: drop-shadow(
+    0px 2px 16px #ff8200
+  ); /* box-shadow: 0px 0px 40px rgba(255, 127, 29, 0.966); */
 }
 .card_imgs_container:hover .card_img {
   transform: rotate(8deg);
