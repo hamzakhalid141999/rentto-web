@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./propertyCard.module.css";
 import mail from "../../public/assets/property_card_assets/mail_icon_card.png";
 import heart from "../../public/assets/property_card_assets/heart_icon_card.png";
 import phone from "../../public/assets/property_card_assets/phone_icon_card.png";
 import placeholder from "../../public/assets/property_card_assets/placeholder.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function PropertyCard() {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+    AOS.refresh();
+  }, []);
+
   return (
-    <div className={classes.card_body}>
+    <div data-aos="fade-up" className={classes.card_body}>
       <div className={classes.card_image}>
         <div className={classes.add_life}>
           <div className={classes.add_life_inner}>
