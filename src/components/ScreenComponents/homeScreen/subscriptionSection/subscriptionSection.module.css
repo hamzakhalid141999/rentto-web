@@ -16,9 +16,9 @@
 }
 .green_blob {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 350px;
+  top: -200px;
+  left: -260px;
+  width: 550px;
 }
 .left_panel {
   width: 60%;

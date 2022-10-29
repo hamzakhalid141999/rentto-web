@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./subscriptionSection.module.css";
-import corner_green_blob from "../../../../public/assets/homescreen/corner_green_blob.png";
+import corner_green_blob_2 from "../../../../public/assets/homescreen/corner_green_blob_2.png";
 import InputField from "../../../inputField";
 
 function SubscriptionSection() {
   return (
     <div className={classes.subscription_section}>
-      <img src={corner_green_blob.src} className={classes.green_blob} />
+      <img src={corner_green_blob_2.src} className={classes.green_blob} />
       <div className={classes.content_section}>
         <div className={classes.left_panel}>
           <p>GET CONNECTED</p>
