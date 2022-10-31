@@ -7,6 +7,7 @@ import RenttoPropertySection from "../components/ScreenComponents/homeScreen/ren
 import ClientSection from "../components/ScreenComponents/homeScreen/clientSection";
 import SubscriptionSection from "../components/ScreenComponents/homeScreen/subscriptionSection";
 import DownloadAppSection from "../components/ScreenComponents/homeScreen/downloadAppSection";
+import FAQ from "../components/ScreenComponents/homeScreen/faqSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ClientSection />
       <SubscriptionSection />
       <DownloadAppSection />
+      <FAQ />
     </div>
   );
 }

@@ -10,6 +10,7 @@
   --whiteText: white;
   --greyText: #00000040;
   --orangeText: #ff9000;
+  --lightGreyText: rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="dark"] {
@@ -21,6 +22,7 @@
   --whiteText: white;
   --greyText: white;
   --orangeText: #ff9000;
+  --lightGreyText: white !important;
 }
 .firstSection_main_title_heading__o83af {
   font-family: "ClashGrotesk-Semibold";
@@ -83,6 +85,39 @@ h2 {
   color: #266867 !important;
 }
 
+.styles_faq-row-wrapper__3vA1D
+  .styles_row-body__1NvUo
+  .styles_faq-row__2YF3c
+  .styles_row-title__1YiiY
+  .styles_row-title-text__1MuhU {
+  color: var(--foreground) !important;
+}
+
+.styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c {
+  background-color: var(--background) !important;
+  border: 2px solid white !important;
+  box-shadow: 0px 32.1371px 37.8083px rgba(185, 185, 185, 0.159) !important;
+  height: fit-content !important;
+  padding-top: 31px !important;
+  padding-bottom: 31px !important;
+  /* border-bottom: none !important; */
+  margin-bottom: 20px !important;
+  border-radius: 15px !important;
+  display: flex !important;
+  justify-content: center !important;
+  /* align-items: center !important; */
+  padding-left: 30px !important;
+}
+
+.styles_faq-row-wrapper__3vA1D {
+  background-color: transparent !important;
+}
+.styles_faq-row-wrapper__3vA1D
+  .styles_row-body__1NvUo
+  .styles_faq-row__2YF3c
+  .styles_row-title__1YiiY {
+  color: black !important;
+}
 html,
 body {
   padding: 0;

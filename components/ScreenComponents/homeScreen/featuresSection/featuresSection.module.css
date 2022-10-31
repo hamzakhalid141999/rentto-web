@@ -64,6 +64,19 @@
   right: -80px;
   transition: ease-out 230ms;
 }
+.card_img_2 {
+  width: 100%;
+  position: absolute;
+  bottom: -120px;
+  right: -80px;
+  transition: ease-out 230ms;
+}
+
+.card_imgs_container:hover .card_img_2 {
+  transform: rotate(8deg);
+  /* transform: translateY(-8px); */
+  /* transform: scale(1.13); */
+}
 .card_img_bg {
   width: 90%;
   position: absolute;
@@ -168,10 +181,15 @@
   }
   .content_section {
     flex-direction: column !important;
-    row-gap: 30px;
+    row-gap: 50px;
   }
   .no_fee_img {
     width: 90%;
+  }
+  .card_img_2 {
+    width: 80%;
+    right: 0%;
+    top: 50%;
   }
   .card_imgs_container {
     /* width: 400px; */

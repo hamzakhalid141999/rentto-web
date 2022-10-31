@@ -16,6 +16,8 @@ import assistance_bg from "../../../../public/assets/homescreen/assistance_bg.pn
 import featured_img from "../../../../public/assets/homescreen/featured_img.png";
 import featured_bg from "../../../../public/assets/homescreen/featured_bg.png";
 
+import secure_img from "../../../../public/assets/homescreen/secure_img.png";
+
 import RenttoPropertySection from "../renttoPropertiesSection";
 import list_property_img_bg from "../../../../public/assets/homescreen/list_property_img_bg.png";
 import list_property_img from "../../../../public/assets/homescreen/list_property_img.png";
@@ -81,7 +83,12 @@ function FeaturesSection() {
                   src={bypass_agents_bg.src}
                   className={classes.card_img_bg}
                 />
-                <img src={bypass_agents_img.src} className={classes.card_img} />
+                <img
+                  style={{ top: "-20px" }}
+                  src={bypass_agents_img.src}
+                  className={classes.card_img}
+                />
+                <img src={secure_img.src} className={classes.card_img_2} />
               </div>
               <div
                 data-aos="fade-right"
