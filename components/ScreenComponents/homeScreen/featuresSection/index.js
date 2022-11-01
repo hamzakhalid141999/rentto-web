@@ -24,6 +24,7 @@ import list_property_img from "../../../../public/assets/homescreen/list_propert
 import left_bg from "../../../../public/assets/homescreen/left_pattern.png";
 import right_bg from "../../../../public/assets/homescreen/right_pattern.png";
 import lower_right_pattern from "../../../../public/assets/homescreen/lower_right_pattern.png";
+import placeholder_user from "../../../../public/assets/homescreen/placeholder_user.svg";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -63,7 +64,10 @@ function FeaturesSection() {
                 <p>SAVE MONEY</p>
                 <h1>Zero Commissions</h1>
                 <p>
-                RenttoApp is a zero commission based platform. In the existing system  Property Agents charge hefty commissions for inadequate services. With renttoApp Property Owners and Tenants will save substantial amounts of funds. 
+                  RenttoApp is a zero commission based platform. In the existing
+                  system Property Agents charge hefty commissions for inadequate
+                  services. With renttoApp Property Owners and Tenants will save
+                  substantial amounts of funds.
                 </p>
               </div>
             </div>
@@ -97,11 +101,15 @@ function FeaturesSection() {
                 <p>SAVE THE HASSLE</p>
                 <h1>Direct communication with property owner</h1>
                 <p>
-                Through bypassing Property Agents RenttoApp enables transparency and a hasslefree expereince. By bridging the gap between Property Owners and Tenants a smooth and trouble-free process can be initiated.
-                  <br/>
-                  <br/>
-                Other useful tools such as Rental Agreements and KYC guidlines ensure all pertinent matters relevant to renting can be addressed appropriately.
-
+                  Through bypassing Property Agents RenttoApp enables
+                  transparency and a hasslefree expereince. By bridging the gap
+                  between Property Owners and Tenants a smooth and trouble-free
+                  process can be initiated.
+                  <br />
+                  <br />
+                  Other useful tools such as Rental Agreements and KYC guidlines
+                  ensure all pertinent matters relevant to renting can be
+                  addressed appropriately.
                 </p>
               </div>
             </div>
@@ -125,15 +133,31 @@ function FeaturesSection() {
                 <p>SAVE TIME</p>
                 <h1>Genuine & Authentic Ads</h1>
                 <p>
-                  RenttoApp ensures that all click-baits and fictitious property listings are filtered out before being uploaded on our platforms. Our Algorithams make sure that all listings on RenttoApp are genuine and authentic. Furthermore,  the quality of an Ad is determined by our algoritham and an approriate Ad life is accordingly ascertained.   
-                  <br/>
-                  <br/>
-                  This allows renters to shortlist suitable properties before physically visiting them hence saving valuable time.
+                  RenttoApp ensures that all click-baits and fictitious property
+                  listings are filtered out before being uploaded on our
+                  platforms. Our Algorithams make sure that all listings on
+                  RenttoApp are genuine and authentic. Furthermore, the quality
+                  of an Ad is determined by our algoritham and an approriate Ad
+                  life is accordingly ascertained.
+                  <br />
+                  <br />
+                  This allows renters to shortlist suitable properties before
+                  physically visiting them hence saving valuable time.
                 </p>
                 <div className={classes.divider} />
                 <p>
-                “ Modern features such as 360 visualization makes the process of shortlisting properties from a vast pool of genuine properties fast and effective. ”
+                  “ Modern features such as 360 visualization makes the process
+                  of shortlisting properties from a vast pool of genuine
+                  properties fast and effective. ”
                 </p>
+
+                <div className={classes.testimonial_section}>
+                  <img src={placeholder_user.src} style={{ width: "40px" }} />
+                  <div className={classes.testimonial_section_content}>
+                    <p>Micole Duke, Product Manager.</p>
+                    <p>Uber Inc.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -169,10 +193,14 @@ function FeaturesSection() {
                 <p>OPTION 1</p>
                 <h1>List it Myself</h1>
                 <p>
-                  RentoApp gives Property Owners the freedom to list their vacant properties free of cost. A step by step smooth process facilitates the property owners to provide accurate, correct and useful information.
-                  <br/>
-                  <br/>
-                  Video tutorials and Rentto Helpline are available to facilitate the Ad uploading process. 
+                  RentoApp gives Property Owners the freedom to list their
+                  vacant properties free of cost. A step by step smooth process
+                  facilitates the property owners to provide accurate, correct
+                  and useful information.
+                  <br />
+                  <br />
+                  Video tutorials and Rentto Helpline are available to
+                  facilitate the Ad uploading process.
                 </p>
               </div>
             </div>
@@ -199,13 +227,21 @@ function FeaturesSection() {
                 </p>
                 <h1>Rentto Assistance</h1>
                 <p>
-                Property Owners seeking assistance to upload their property Ads without any difficulty can always reach out to our “Assistance Team”.
-                <br/>
-                  <br/>
-The assistace team provides an on-site service to gather relevant information relating to the property. 360 property visualizations, professional photoshoots and a verified status can not only make the Ad uploading easy but also promises maximized outreach for the property listing.
-<br/>
-                  <br/>
-“the assistance team were very professional and helpful. The Ad listing prepared by them will be useful for me in the furture as well when I re-rent my property again.”
+                  Property Owners seeking assistance to upload their property
+                  Ads without any difficulty can always reach out to our
+                  “Assistance Team”.
+                  <br />
+                  <br />
+                  The assistace team provides an on-site service to gather
+                  relevant information relating to the property. 360 property
+                  visualizations, professional photoshoots and a verified status
+                  can not only make the Ad uploading easy but also promises
+                  maximized outreach for the property listing.
+                  <br />
+                  <br />
+                  “the assistance team were very professional and helpful. The
+                  Ad listing prepared by them will be useful for me in the
+                  furture as well when I re-rent my property again.”
                 </p>
               </div>
             </div>
@@ -231,10 +267,22 @@ The assistace team provides an on-site service to gather relevant information re
                 <p>QUICK AND FAST</p>
                 <h1>Featured Property</h1>
                 <p>
-                Large scale residential or commercial projects that seek complete rental management solutions for their  projects can avail our complete range of services on an annual and reccuring basis.  
+                  Large scale residential or commercial projects that seek
+                  complete rental management solutions for their projects can
+                  avail our complete range of services on an annual and
+                  reccuring basis.
                 </p>
-                <div className={classes.divider} />
-               
+                <div
+                  style={{ marginTop: "20px", marginBottom: "5px" }}
+                  className={classes.divider}
+                />
+                <div className={classes.testimonial_section}>
+                  <img src={placeholder_user.src} style={{ width: "40px" }} />
+                  <div className={classes.testimonial_section_content}>
+                    <p>Micole Duke, Product Manager.</p>
+                    <p>Uber Inc.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

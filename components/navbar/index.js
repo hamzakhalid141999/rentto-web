@@ -9,6 +9,7 @@ import { useWindowSize } from "../../utils";
 import menu_icon from "../../public/assets/navbar_assets/menu_icon.png";
 import SlidingPanel, { PanelType } from "react-sliding-side-panel";
 import "react-sliding-side-panel/lib/index.css";
+import Link from "next/link";
 
 function Navbar() {
   const router = useRouter();
@@ -83,7 +84,7 @@ function Navbar() {
       >
         <div className={classes.panel_container}>
           <p style={{ color: "#266867" }} className={classes.logo}>
-            rentto
+            rentto<span className={classes.logo_orange}>app</span>
           </p>
           <div className={classes.divider} />
           <div className={classes.nav_menu_content}>
@@ -94,7 +95,9 @@ function Navbar() {
             <div className={classes.get_started_btn}>
               <p>Get Started</p>
             </div>
-            <p>Login</p>
+            <Link href={"/login"}>
+              <p>Login</p>
+            </Link>
 
             <DarkModeSwitch
               checked={darkTheme}
@@ -108,7 +111,7 @@ function Navbar() {
         {width > 786 ? (
           <>
             <p style={{ color: "#266867" }} className={classes.logo}>
-              rentto
+              rentto<span className={classes.logo_orange}>app</span>
             </p>
             <div className={classes.left_panel_btns}>
               <p>List a property</p>
@@ -124,7 +127,7 @@ function Navbar() {
               className={classes.menu_icon}
             />
             <p style={{ color: "#266867" }} className={classes.logo}>
-              rentto
+              rentto<span className={classes.logo_orange}>app</span>
             </p>
           </>
         )}
@@ -132,7 +135,9 @@ function Navbar() {
       <div className={classes.right_panel}>
         {/* <img src={heart_icon.src} className={classes.icon} />
         <img src={mail_icon.src} className={classes.icon} /> */}
-        <p>Login</p>
+        <Link href={"/login"}>
+          <p>Login</p>
+        </Link>
         <div className={classes.get_started_btn}>
           <p>Get Started</p>
         </div>

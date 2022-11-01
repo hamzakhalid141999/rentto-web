@@ -29,6 +29,9 @@
   flex-direction: column;
   pointer-events: none;
 }
+.logo_orange {
+  color: var(--orangeText) !important;
+}
 .single_btn {
   height: 50%;
   width: 100%;
