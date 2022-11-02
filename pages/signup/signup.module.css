@@ -24,6 +24,85 @@
   justify-content: center;
   position: relative;
 }
+.step_active {
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 500px;
+  margin-right: 7px;
+  margin-left: 7px;
+  background-color: var(--orangeText) !important;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+.step_active p {
+  color: var(--whiteText) !important;
+  font-size: 13px;
+  margin-left: 8px;
+  margin-top: 4px;
+  transition: ease-in-out 200ms;
+}
+.step_inactive {
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 500px;
+  margin-right: 7px;
+  margin-left: 7px;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+
+  background-color: var(--greyText) !important;
+}
+.step_inactive p {
+  color: var(--whiteText) !important;
+  font-size: 13px;
+  margin-left: 8px;
+  margin-top: 4px;
+  transition: ease-in-out 200ms;
+}
+.dashed_line {
+  width: 40px;
+  height: 1px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-top: 1px dashed grey;
+}
+.step_done {
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 500px;
+  margin-right: 7px;
+  margin-left: 7px;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+
+  background-color: var(--greenText) !important;
+}
+.step_done p {
+  margin-left: 8px;
+  margin-top: 4px;
+  color: var(--whiteText) !important;
+  font-size: 13px;
+  transition: ease-in-out 200ms;
+}
+.stepper_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
 .upper_triangle {
   position: absolute;
   top: 0;
@@ -91,6 +170,9 @@
   border-radius: 4px;
   height: 44px;
   padding-left: 20px;
+}
+.input_field:focus {
+  border: 1px solid var(--orangeText);
 }
 .input_field::placeholder {
   color: rgb(179, 179, 179);
