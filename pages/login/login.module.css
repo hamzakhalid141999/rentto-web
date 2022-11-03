@@ -184,3 +184,14 @@
   margin-top: 14px;
   color: var(--orangeText) !important;
 }
+@media only screen and (max-width: 786px) {
+  .carousel_section {
+    display: none;
+  }
+  .content_section {
+    width: 100%;
+  }
+  .content_container {
+    width: 95%;
+  }
+}

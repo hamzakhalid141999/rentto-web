@@ -37,6 +37,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  column-gap: 15px;
   width: 100%;
   min-height: 46px;
   background: #ff9000;

@@ -5,19 +5,40 @@ import lower_triangle from "../../public/assets/login_screen_assets/lower_triang
 import logo from "../../public/assets/navbar_assets/logo.png";
 import google_login_icon from "../../public/assets/login_screen_assets/google_login_icon.png";
 import Link from "next/link";
+import { ClipLoader } from "react-spinners";
 
 function SignUp() {
   const [activeStep, setActiveStep] = useState(1);
   const [otpSent, setOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phoneNo, setPhoneNo] = useState();
+  const [otp, setOtp] = useState();
+
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const handleNextStep = async () => {
     if (activeStep === 3) {
       if (!otpSent) {
+        setLoading(true);
+        await delay(1000);
+        setLoading(false);
         handleSendOpt();
       } else {
+        setLoading(true);
+        await delay(1000);
+        setLoading(false);
         setActiveStep(1);
+
+        setOtpSent(false);
       }
     } else {
+      setLoading(true);
+      await delay(1000);
+      setLoading(false);
       setActiveStep(activeStep + 1);
     }
   };
@@ -92,6 +113,9 @@ function SignUp() {
               <div className={classes.input_field_contaier}>
                 <label>First Name</label>
                 <input
+                  onChange={(e) => {
+                    setFirstName(e.target.value);
+                  }}
                   placeholder="Enter your First Name"
                   type="email"
                   className={classes.input_field}
@@ -100,6 +124,9 @@ function SignUp() {
               <div className={classes.input_field_contaier}>
                 <label>Last Name</label>
                 <input
+                  onChange={(e) => {
+                    setLastName(e.target.value);
+                  }}
                   placeholder="Enter your Last Name"
                   type="email"
                   className={classes.input_field}
@@ -108,6 +135,7 @@ function SignUp() {
 
               <div onClick={handleNextStep} className="orange_btn">
                 <p>PROCEED</p>
+                <ClipLoader color={"white"} loading={loading} size={17} />
               </div>
             </>
           ) : activeStep === 2 ? (
@@ -115,6 +143,9 @@ function SignUp() {
               <div className={classes.input_field_contaier}>
                 <label>Email Address</label>
                 <input
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   placeholder="Enter your Email Address"
                   type="email"
                   className={classes.input_field}
@@ -123,6 +154,7 @@ function SignUp() {
 
               <div onClick={handleNextStep} className="orange_btn">
                 <p>PROCEED</p>
+                <ClipLoader color={"white"} loading={loading} size={17} />
               </div>
             </>
           ) : (
@@ -133,6 +165,9 @@ function SignUp() {
                     <div className={classes.input_field_contaier}>
                       <label>Phone Number</label>
                       <input
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                         placeholder="Enter your Phone Number"
                         type="email"
                         className={classes.input_field}
@@ -141,6 +176,7 @@ function SignUp() {
 
                     <div onClick={handleNextStep} className="orange_btn">
                       <p>PROCEED</p>
+                      <ClipLoader color={"white"} loading={loading} size={17} />
                     </div>
                   </>
                 ) : (
@@ -152,6 +188,9 @@ function SignUp() {
                         to complete your account registration.
                       </label>
                       <input
+                        onChange={(e) => {
+                          setPhoneNo(e.target.value);
+                        }}
                         placeholder="Enter your Phone Number"
                         type="email"
                         className={classes.input_field}
@@ -160,6 +199,7 @@ function SignUp() {
 
                     <div onClick={handleNextStep} className="orange_btn">
                       <p>SUBMIT OTP</p>
+                      <ClipLoader color={"white"} loading={loading} size={17} />
                     </div>
                   </>
                 )}
