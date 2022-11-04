@@ -5,6 +5,7 @@ import lower_triangle from "../../public/assets/login_screen_assets/lower_triang
 import logo from "../../public/assets/navbar_assets/logo.png";
 import google_login_icon from "../../public/assets/login_screen_assets/google_login_icon.png";
 import Link from "next/link";
+import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 
 function Login() {
   return (
@@ -14,6 +15,11 @@ function Login() {
         <img src={lower_triangle.src} className={classes.lower_triangle} />
       </div>
       <div className={classes.content_section}>
+        <img
+          // onClick={handleGoBack}
+          src={back_arrow.src}
+          className={classes.back_arrow}
+        />
         <Link href={"/"}>
           <img src={logo.src} className={classes.logo} />
         </Link>

@@ -24,6 +24,44 @@
   justify-content: center;
   position: relative;
 }
+.logo_big {
+  width: 150px;
+  margin-bottom: 30px;
+}
+.single_slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 15px;
+}
+.single_slide h1 {
+  font-family: "DMSans-Bold";
+  font-size: 30px;
+  color: black;
+  margin-bottom: 0px;
+}
+.single_slide p {
+  font-family: "DMSans-Regular";
+  color: black;
+  margin-bottom: 0px;
+  width: 80%;
+  text-align: center;
+  margin-bottom: 0px;
+}
+.imgs_container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.card_imgs {
+  width: 240px;
+  max-height: 200px;
+}
 .step_active {
   width: 24px;
   height: 24px;
@@ -163,6 +201,7 @@
 .input_field_contaier label {
   font-size: 14px;
   color: var(--foreground);
+  /* margin-bottom: 30px; */
 }
 .input_field {
   width: 94%;
@@ -267,6 +306,35 @@
   margin-top: 14px;
   color: var(--orangeText) !important;
 }
+.back_arrow {
+  position: absolute;
+  width: 30px;
+  display: none;
+}
+.otp_input_single {
+  width: 63px !important;
+  height: 63px !important;
+  margin-right: 10px;
+  background: #f9f9f9;
+  border: 1px solid #b1b1b1;
+  color: black !important;
+  box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.25);
+  border-radius: 5px;
+  font-size: 20px;
+}
+.otp_input_single:focus {
+  outline: none !important;
+}
+.opt_input_focused {
+  width: 63px !important;
+  height: 63px !important;
+  margin-right: 10px;
+  background: #f9f9f9;
+  border: 1px solid #008080;
+  box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.25);
+  border-radius: 5px;
+  font-size: 20px;
+}
 @media only screen and (max-width: 786px) {
   .carousel_section {
     display: none;
@@ -275,6 +343,21 @@
     width: 100%;
   }
   .content_container {
-    width: 95%;
+    width: 87%;
+    margin-top: 120px !important;
+  }
+  .logo {
+    top: 30px;
+    left: 0;
+    right: 0;
+    /* bottom: 0; */
+    margin: auto;
+  }
+  .back_arrow {
+    position: absolute;
+    width: 25px;
+    display: flex;
+    left: 20px;
+    top: 20px;
   }
 }

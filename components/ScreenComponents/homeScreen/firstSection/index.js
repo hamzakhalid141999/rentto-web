@@ -51,7 +51,10 @@ function FirstSection() {
       </div>
 
       <div className={classes.search_bar_container}>
-        <div className={classes.search_bar}>
+        <p className={classes.coming_soon}>
+          C O M I N G <span style={{ color: "transparent" }}>n</span> S O O N
+        </p>
+        {/* <div className={classes.search_bar}>
           <select className={classes.drop_down}>
             <option>Home Type</option>
           </select>
@@ -64,7 +67,7 @@ function FirstSection() {
         </div>
         <div className={classes.search_btn}>
           <p>SEARCH</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
