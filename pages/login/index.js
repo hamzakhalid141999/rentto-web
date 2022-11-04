@@ -6,6 +6,19 @@ import logo from "../../public/assets/navbar_assets/logo.png";
 import google_login_icon from "../../public/assets/login_screen_assets/google_login_icon.png";
 import Link from "next/link";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
+import logo_big from "../../public/assets/login_screen_assets/logo.svg";
+
+import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
+import helpline from "../../public/assets/login_screen_assets/helpline.png";
+import list_property from "../../public/assets/login_screen_assets/list_property.png";
 
 function Login() {
   return (
@@ -13,6 +26,49 @@ function Login() {
       <div className={classes.carousel_section}>
         <img src={upper_triangle.src} className={classes.upper_triangle} />
         <img src={lower_triangle.src} className={classes.lower_triangle} />
+        <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={125}
+          totalSlides={2}
+          isPlaying
+          renderDots
+          style={{ width: "600px" }}
+        >
+          <Slider renderDots>
+            <Slide index={0}>
+              <div className={classes.single_slide}>
+                <img src={logo_big.src} className={classes.logo_big} />
+                <h1>Lorem Ipsum Dolor Set</h1>
+                <p>Lorem Ipsum Dolor Set</p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam.
+                </p>
+              </div>
+            </Slide>
+            <Slide index={1}>
+              <div className={classes.single_slide}>
+                <h1>Rentto Assistance</h1>
+
+                <p>Lorem Ipsum Dolor Set</p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam.
+                </p>
+                <div className={classes.imgs_container}>
+                  <img src={list_property.src} className={classes.card_imgs} />
+                  <img
+                    src={video_tutorials.src}
+                    className={classes.card_imgs}
+                  />
+                  <img src={helpline.src} className={classes.card_imgs} />
+                </div>
+              </div>
+            </Slide>
+          </Slider>
+        </CarouselProvider>
       </div>
       <div className={classes.content_section}>
         <img
