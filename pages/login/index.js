@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./login.module.css";
 import upper_triangle from "../../public/assets/login_screen_assets/upper_triangle.png";
 import lower_triangle from "../../public/assets/login_screen_assets/lower_triangle.png";
-import logo from "../../public/assets/navbar_assets/logo.png";
 import google_login_icon from "../../public/assets/login_screen_assets/google_login_icon.png";
 import Link from "next/link";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
@@ -14,15 +13,55 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import logo_big from "../../public/assets/login_screen_assets/logo.svg";
-
+import logo_big from "../../public/assets/login_screen_assets/logo.png";
+import toast, { Toaster } from "react-hot-toast";
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
+import Router, { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 
 function Login() {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const error = (msg) => {
+    toast.error(msg, {
+      style: {
+        background: "white",
+        color: "red",
+        border: "1px solid #ff9000",
+      },
+      position: "bottom-right",
+    });
+  };
+
+  const handleLogin = async () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (!email) {
+      error("Enter Email");
+      return;
+    } else if (reg.test(email) === false) {
+      error("Enter a valid email address");
+      return false;
+    } else if (!password) {
+      error("Enter password");
+      return false;
+    }
+
+    setLoading(true);
+    await delay(1000);
+    setLoading(false);
+    router.push("/");
+  };
+
   return (
     <div className={classes.login_screen_section}>
+      <Toaster />
       <div className={classes.carousel_section}>
         <img src={upper_triangle.src} className={classes.upper_triangle} />
         <img src={lower_triangle.src} className={classes.lower_triangle} />
@@ -77,7 +116,7 @@ function Login() {
           className={classes.back_arrow}
         />
         <Link href={"/"}>
-          <img src={logo.src} className={classes.logo} />
+          <img src={logo_big.src} className={classes.logo} />
         </Link>
 
         <div className={classes.content_container}>
@@ -91,6 +130,9 @@ function Login() {
           <div className={classes.input_field_contaier}>
             <label>Email</label>
             <input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               placeholder="Enter your E-mail Address"
               type="email"
               className={classes.input_field}
@@ -99,8 +141,11 @@ function Login() {
           <div className={classes.input_field_contaier}>
             <label>Password</label>
             <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               placeholder="Enter your Password"
-              type="email"
+              type="password"
               className={classes.input_field}
             />
           </div>
@@ -113,8 +158,9 @@ function Login() {
             <p className={classes.forgot_password}>Forgot Password?</p>
           </div>
 
-          <div className={classes.login_btn}>
-            <p>LOGIN</p>
+          <div onClick={handleLogin} className="orange_btn">
+            <p>PROCEED</p>
+            <ClipLoader color={"white"} loading={loading} size={17} />
           </div>
           <div className={classes.login_with_google}>
             <img src={google_login_icon.src} className={classes.btn_icon} />

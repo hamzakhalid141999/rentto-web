@@ -226,7 +226,6 @@
   justify-content: center;
 }
 .card_imgs {
-  width: 240px;
   max-height: 200px;
 }
 @media only screen and (max-width: 786px) {

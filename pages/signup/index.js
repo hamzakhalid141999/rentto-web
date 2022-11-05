@@ -18,7 +18,7 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import logo_big from "../../public/assets/login_screen_assets/logo.svg";
+import logo_big from "../../public/assets/login_screen_assets/logo.png";
 
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
@@ -30,10 +30,10 @@ function SignUp() {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [phoneNo, setPhoneNo] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
   const [otp, setOtp] = useState();
   const handleChange = (otp) => setOtp(otp);
 
@@ -46,29 +46,14 @@ function SignUp() {
     }
   };
 
-  const handleNextStep = async () => {
-    if (activeStep === 3) {
-      if (!otpSent) {
-        setLoading(true);
-        await delay(1000);
-        setLoading(false);
-        handleSendOpt();
-      } else {
-        setLoading(true);
-        await delay(1000);
-        setLoading(false);
-        success("Account created successfully");
-        await delay(1200);
-        router.push("/login");
-        setActiveStep(1);
-        setOtpSent(false);
-      }
-    } else {
-      setLoading(true);
-      await delay(1000);
-      setLoading(false);
-      setActiveStep(activeStep + 1);
-    }
+  const handleGotoScreen = async (screenNo) => {
+    setActiveStep(screenNo);
+  };
+
+  const handleResendOtp = async () => {
+    loadingToast("Sending OTP");
+    await delay(1000);
+    success("OTP Sent");
   };
 
   const handleSendOpt = async () => {
@@ -76,7 +61,58 @@ function SignUp() {
     success("OTP Sent to: " + phoneNo);
   };
 
-  console.log(activeStep);
+  const handleProceedStepOne = async () => {
+    if (!firstName) {
+      error("Enter first name");
+      return;
+    } else if (!lastName) {
+      error("Enter last name");
+      return;
+    }
+    setLoading(true);
+    await delay(1000);
+    setLoading(false);
+    setActiveStep(2);
+  };
+  const handleProceedStepTwo = async () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (!email) {
+      error("Enter Email");
+      return;
+    } else if (reg.test(email) === false) {
+      error("Enter a valid email address");
+      return false;
+    }
+    setLoading(true);
+    await delay(1000);
+    setLoading(false);
+    setActiveStep(3);
+  };
+  const handleProceedStepThree = async () => {
+    if (!phoneNo) {
+      error("Enter phone number");
+      return;
+    }
+    if (!otpSent) {
+      setLoading(true);
+      await delay(1000);
+      setLoading(false);
+      handleSendOpt();
+    } else {
+      if (otp?.length === 4) {
+        setLoading(true);
+        await delay(1000);
+        setLoading(false);
+        success("Account created successfully");
+        await delay(1200);
+        router.push("/login");
+        setOtpSent(false);
+      } else {
+        error("Enter valid OTP");
+      }
+    }
+  };
 
   const success = (msg) => {
     toast.success(msg, {
@@ -89,11 +125,23 @@ function SignUp() {
     });
   };
 
+  const loadingToast = (msg) => {
+    toast.loading(msg, {
+      style: {
+        background: "white",
+        color: "#ff9000",
+        border: "1px solid #ff9000",
+      },
+      duration: 900,
+      position: "bottom-right",
+    });
+  };
+
   const error = (msg) => {
     toast.error(msg, {
       style: {
         background: "white",
-        color: "#ff9000",
+        color: "red",
         border: "1px solid #ff9000",
       },
       position: "bottom-right",
@@ -157,7 +205,7 @@ function SignUp() {
           className={classes.back_arrow}
         />
         <Link href={"/"}>
-          <img src={logo.src} className={classes.logo} />
+          <img src={logo_big.src} className={classes.logo} />
         </Link>
 
         <div className={classes.content_container}>
@@ -173,6 +221,9 @@ function SignUp() {
           <div className={classes.stepper_container}>
             <div
               style={{ marginLeft: "0px" }}
+              onClick={() => {
+                handleGotoScreen(1);
+              }}
               className={
                 activeStep > 1
                   ? classes.step_done
@@ -183,6 +234,11 @@ function SignUp() {
             </div>
             <div className={classes.dashed_line} />
             <div
+              onClick={() => {
+                if (activeStep > 2) {
+                  handleGotoScreen(2);
+                }
+              }}
               className={
                 activeStep > 2
                   ? classes.step_done
@@ -196,6 +252,11 @@ function SignUp() {
             <div className={classes.dashed_line} />
 
             <div
+              onClick={() => {
+                if (activeStep > 3) {
+                  handleGotoScreen(3);
+                }
+              }}
               className={
                 activeStep > 3
                   ? classes.step_done
@@ -217,8 +278,9 @@ function SignUp() {
                     setFirstName(e.target.value);
                   }}
                   placeholder="Enter your First Name"
-                  type="email"
+                  type="text"
                   className={classes.input_field}
+                  value={firstName}
                 />
               </div>
               <div className={classes.input_field_contaier}>
@@ -228,12 +290,13 @@ function SignUp() {
                     setLastName(e.target.value);
                   }}
                   placeholder="Enter your Last Name"
-                  type="email"
+                  type="text"
                   className={classes.input_field}
+                  value={lastName}
                 />
               </div>
 
-              <div onClick={handleNextStep} className="orange_btn">
+              <div onClick={handleProceedStepOne} className="orange_btn">
                 <p>PROCEED</p>
                 <ClipLoader color={"white"} loading={loading} size={17} />
               </div>
@@ -249,10 +312,11 @@ function SignUp() {
                   placeholder="Enter your Email Address"
                   type="email"
                   className={classes.input_field}
+                  value={email}
                 />
               </div>
 
-              <div onClick={handleNextStep} className="orange_btn">
+              <div onClick={handleProceedStepTwo} className="orange_btn">
                 <p>PROCEED</p>
                 <ClipLoader color={"white"} loading={loading} size={17} />
               </div>
@@ -266,15 +330,22 @@ function SignUp() {
                       <label>Phone Number</label>
                       <input
                         onChange={(e) => {
-                          setPhoneNo(e.target.value);
+                          const reg = /^-?\d*\.?\d*$/;
+                          if (reg.test(e.target.value)) {
+                            setPhoneNo(e.target.value);
+                          }
                         }}
                         placeholder="Enter your Phone Number"
-                        type="number"
+                        type="text"
                         className={classes.input_field}
+                        value={phoneNo}
                       />
                     </div>
 
-                    <div onClick={handleNextStep} className="orange_btn">
+                    <div
+                      onClick={handleProceedStepThree}
+                      className="orange_btn"
+                    >
                       <p>PROCEED</p>
                       <ClipLoader color={"white"} loading={loading} size={17} />
                     </div>
@@ -298,10 +369,23 @@ function SignUp() {
                       />
                     </div>
 
-                    <div onClick={handleNextStep} className="orange_btn">
+                    <div
+                      onClick={handleProceedStepThree}
+                      className="orange_btn"
+                    >
                       <p>SUBMIT OTP</p>
                       <ClipLoader color={"white"} loading={loading} size={17} />
                     </div>
+
+                    <label style={{ marginTop: "60px" }}>
+                      Didn't recieve OTP?
+                    </label>
+                    <p
+                      onClick={handleResendOtp}
+                      className={classes.signup_text}
+                    >
+                      RESEND OTP
+                    </p>
                   </>
                 )}
               </>

@@ -59,8 +59,14 @@
   justify-content: center;
 }
 .card_imgs {
-  width: 240px;
   max-height: 200px;
+}
+.signup_text {
+  font-size: 16px;
+  line-height: 21px;
+  margin-top: 14px;
+  color: var(--orangeText) !important;
+  cursor: pointer;
 }
 .step_active {
   width: 24px;
