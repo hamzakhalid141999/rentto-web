@@ -39,6 +39,10 @@ function SignUp() {
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
+
   const handleGoBack = async () => {
     if (activeStep === 1) {
     } else {

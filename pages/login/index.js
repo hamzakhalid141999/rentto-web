@@ -26,7 +26,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const [darkTheme, setDarkTheme] = useState(undefined);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
 
   const error = (msg) => {
     toast.error(msg, {
