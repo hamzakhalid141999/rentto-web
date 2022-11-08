@@ -10,16 +10,9 @@ import toast, { Toaster } from "react-hot-toast";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import Router, { useRouter } from "next/router";
 import OtpInput from "react-otp-input";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-} from "pure-react-carousel";
+import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import logo_big from "../../public/assets/login_screen_assets/logo.png";
-
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";

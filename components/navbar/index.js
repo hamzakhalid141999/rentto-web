@@ -24,6 +24,15 @@ function Navbar() {
 
   let listener = null;
 
+  const [currentPage, setCurrentPage] = useState();
+
+  useEffect(() => {
+    if (router.pathname) {
+      const page = router.pathname.split("/");
+      setCurrentPage(page[1]);
+    }
+  }, [router.pathname]);
+
   useEffect(() => {
     if (darkTheme !== undefined) {
       if (darkTheme) {
@@ -70,6 +79,8 @@ function Navbar() {
           ? classes.navbar_body_opaque
           : backgroundColor === "opaque"
           ? classes.navbar_body_opaque
+          : currentPage === "properties"
+          ? classes.navbar_body_opaque
           : classes.navbar_body
       }
     >
@@ -83,13 +94,18 @@ function Navbar() {
         noBackdrop={noBackdrop}
       >
         <div className={classes.panel_container}>
-          <p style={{ color: "#266867" }} className={classes.logo}>
-            rentto<span className={classes.logo_orange}>app</span>
-          </p>
+          <Link href={"/"}>
+            <p style={{ color: "#266867" }} className={classes.logo}>
+              rentto<span className={classes.logo_orange}>app</span>
+            </p>
+          </Link>
+
           <div className={classes.divider} />
           <div className={classes.nav_menu_content}>
             <p>List a property</p>
-            <p>Featured</p>
+            <Link href={"/properties"}>
+              <p>Featured</p>
+            </Link>
             <p>FAQ</p>
             <div style={{ width: "60%" }} className={classes.divider} />
             <div className={classes.get_started_btn}>
@@ -110,12 +126,16 @@ function Navbar() {
       <div className={classes.left_panel}>
         {width > 786 ? (
           <>
-            <p style={{ color: "#266867" }} className={classes.logo}>
-              rentto<span className={classes.logo_orange}>app</span>
-            </p>
+            <Link href={"/"}>
+              <p style={{ color: "#266867" }} className={classes.logo}>
+                rentto<span className={classes.logo_orange}>app</span>
+              </p>
+            </Link>
             <div className={classes.left_panel_btns}>
               <p>List a property</p>
-              <p>Featured</p>
+              <Link href={"/properties"}>
+                <p>Featured</p>
+              </Link>
               <p>FAQ</p>
             </div>
           </>
@@ -126,9 +146,11 @@ function Navbar() {
               src={menu_icon.src}
               className={classes.menu_icon}
             />
-            <p style={{ color: "#266867" }} className={classes.logo}>
-              rentto<span className={classes.logo_orange}>app</span>
-            </p>
+            <Link href={"/"}>
+              <p style={{ color: "#266867" }} className={classes.logo}>
+                rentto<span className={classes.logo_orange}>app</span>
+              </p>
+            </Link>
           </>
         )}
       </div>

@@ -1,0 +1,134 @@
+.banner_container {
+  width: 100%;
+  height: 259px;
+  background-color: var(--nav-bar-color) !important;
+  margin-top: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left_triangle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+}
+.content_container {
+  width: 85%;
+  height: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+.left_panel {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.left_panel h2 {
+  font-family: "DMSans-Bold" !important;
+  font-size: 60px;
+  margin-bottom: 0px;
+}
+.left_panel h2 span {
+  font-size: 13px;
+  font-family: "DMSans-Regular" !important;
+  color: var(--greyText) !important;
+}
+.rooms_info {
+  color: var(--greyText) !important;
+  font-size: 15px !important;
+  margin-bottom: 20px;
+}
+.address {
+  color: var(--greyText) !important;
+  font-size: 24px;
+  line-height: 110%;
+  font-family: "DMSans-Medium" !important;
+  color: var(--foreground) !important;
+}
+.right_panel {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  row-gap: 10px;
+  align-items: center;
+  padding-bottom: 30px;
+}
+.single_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 20px;
+}
+.icons_container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.btn_filled {
+  width: 165px;
+  height: 46px;
+  background: #ff9000;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.btn_filled p {
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+
+  color: #ffffff !important;
+}
+.btn_empty {
+  width: 165px;
+  height: 46px;
+  border: 2px solid #ff9000;
+  background: transparent;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.btn_empty p {
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+
+  color: #ff9000 !important;
+}
+.photo_grid {
+  width: 100%;
+  max-width: 100vw;
+  height: 265px;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  column-gap: 5px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.photo_grid::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.property_img {
+  height: 100%;
+  min-width: 400px;
+  object-fit: fill;
+}

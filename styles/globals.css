@@ -5,12 +5,13 @@
   --background: white;
   --foreground: black;
   --text-color: black;
-  --nav-bar-color: white;
+  --nav-bar-color: #f8f8f8;
   --greenText: #008080;
   --whiteText: white;
   --greyText: #00000040;
   --orangeText: #ff9000;
   --lightGreyText: rgba(0, 0, 0, 0.6);
+  --greyBackground: rgba(225, 225, 225, 0.454);
 }
 
 [data-theme="dark"] {
@@ -23,6 +24,7 @@
   --greyText: white;
   --orangeText: #ff9000;
   --lightGreyText: white !important;
+  --greyBackground: rgb(42, 42, 42);
 }
 .firstSection_main_title_heading__o83af {
   font-family: "ClashGrotesk-Semibold";
