@@ -102,7 +102,9 @@ function Navbar() {
 
           <div className={classes.divider} />
           <div className={classes.nav_menu_content}>
-            <p>List a property</p>
+            <Link href={"/list_property"}>
+              <p>List a property</p>
+            </Link>
             <Link href={"/properties"}>
               <p>Featured</p>
             </Link>
@@ -132,7 +134,9 @@ function Navbar() {
               </p>
             </Link>
             <div className={classes.left_panel_btns}>
-              <p>List a property</p>
+              <Link href={"/list_property"}>
+                <p>List a property</p>
+              </Link>
               <Link href={"/properties"}>
                 <p>Featured</p>
               </Link>
