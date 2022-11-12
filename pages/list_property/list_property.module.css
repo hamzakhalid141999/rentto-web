@@ -15,6 +15,59 @@
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.left_panel h2 {
+  font-size: 30px;
+  line-height: 24px;
+  text-align: center;
+  font-family: "ClashGrotesk-Semibold";
+  color: #000000;
+  margin-bottom: 15px;
+}
+.left_panel h3 {
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  font-family: "DMSans-Regular";
+  color: #000000;
+  margin-bottom: 15px;
+}
+.left_panel p {
+  font-size: 16px;
+  text-align: center;
+  font-family: "ClashGrotesk-Regular";
+  color: #000000;
+  width: 90%;
+  line-height: 30px;
+}
+.btn_filled {
+  width: 81%;
+  height: 46px;
+  background: #ff9000;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  transition: ease-in-out 200ms;
+  margin-top: 40px;
+}
+.btn_filled p {
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.1rem !important;
+  font-family: "DMSans-Regular" !important;
+
+  color: #ffffff !important;
+}
+.btn_filled:hover {
+  background: #ffb95d;
+  cursor: pointer;
 }
 .top_left {
   width: 110px;
@@ -91,7 +144,7 @@
   background-color: var(--greyText) !important;
 }
 .step_inactive p {
-  color: var(--whiteText) !important;
+  color: var(--background) !important;
   font-size: 13px;
   margin-left: 8px;
   margin-top: 4px;
@@ -133,4 +186,29 @@
   width: 100%;
   margin-bottom: 40px;
   margin-top: 30px;
+}
+@media only screen and (max-width: 1112px) {
+  .list_property_section {
+    flex-direction: column-reverse;
+    margin-top: 60px;
+    row-gap: 100px;
+    height: fit-content;
+  }
+  .right_panel {
+    width: 90%;
+    max-width: initial;
+  }
+  .left_panel {
+    min-width: initial;
+    max-width: initial;
+    width: 90%;
+    border: 1px solid rgb(89, 89, 89) !important;
+    background-color: var(--background) !important;
+  }
+  .top_left {
+    width: 60px;
+  }
+  .bottom_right {
+    width: 60px;
+  }
 }

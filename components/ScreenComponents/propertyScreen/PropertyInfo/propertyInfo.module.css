@@ -188,7 +188,7 @@
   font-size: 24px;
   margin-bottom: 4px;
 }
-.amenities_container p {
+.amenities_description {
   font-weight: 400;
   font-size: 16px !important;
   font-family: "DMSans-Regular";
@@ -261,4 +261,19 @@
 /* Handle on hover */
 .properties_container::-webkit-scrollbar-thumb:hover {
   background: #dedede;
+}
+@media only screen and (max-width: 900px) {
+  .left_panel {
+    width: 100%;
+  }
+  .right_panel {
+    width: 0px;
+    display: none;
+  }
+  .content_section {
+    width: 90%;
+  }
+  .properties_container {
+    width: 84%;
+  }
 }

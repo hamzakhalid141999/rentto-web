@@ -22,6 +22,7 @@
   bottom: 10px;
   left: 10px;
   margin-bottom: 30px;
+  width: 98%;
 }
 .add_life_inner {
   width: 100%;
@@ -62,6 +63,7 @@
   column-gap: 15px;
   margin-top: 20px;
   margin-bottom: 15px;
+  width: 100%;
 }
 .btn_unselected {
   width: 277px;
@@ -122,6 +124,8 @@
   border-radius: 4px;
   padding-left: 20px;
   margin-bottom: 20px;
+  margin-left: -16px;
+  background-color: transparent !important;
 }
 .input_field::placeholder {
   color: var(--greyText) !important;
@@ -177,7 +181,7 @@
 }
 .input_field_right_label {
   position: absolute;
-  right: 0px;
+  right: 10px;
   top: 14px;
   color: var(--greyText) !important;
 }
@@ -265,4 +269,62 @@
 }
 .tag p {
   font-size: 10px !important;
+}
+@media only screen and (max-width: 786px) {
+  .form_heading {
+    width: 100%;
+    text-align: left;
+  }
+  .subheading {
+    width: 100%;
+    text-align: left;
+  }
+  .btn_filled {
+    width: 100%;
+  }
+  .input_container {
+    width: 93%;
+  }
+  .double_input_container {
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 0px;
+    column-gap: 25px !important;
+    width: 100%;
+  }
+  .double_input_container input {
+    margin-left: 0px !important;
+  }
+  .double_input_container .input_container {
+    width: 100% !important;
+  }
+  .double_input_container select {
+    margin-left: 0px !important;
+  }
+  .select {
+    margin-left: 0px !important;
+  }
+  .input_container .select {
+    margin-left: 0px !important;
+  }
+  .double_input_container .input_container {
+    width: 100% !important;
+  }
+  .file_dropper_section {
+    width: 90%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .form_body {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+  }
 }

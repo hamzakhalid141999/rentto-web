@@ -18,20 +18,22 @@ function Properties() {
               placeholder="Search Location"
             />
           </div>
-          <div className={classes.max_price}>
-            <p>Max Price</p>
-            <img src={dropdown.src} className={classes.dropdown_img} />
-          </div>
-          <div className={classes.rooms}>
-            <p>Rooms</p>
-            <img src={dropdown.src} className={classes.dropdown_img} />
-          </div>
-          <div className={classes.filters}>
-            <img src={filter_icon.src} className={classes.filters_img} />
-          </div>
-          <div className={classes.map_view}>
-            <img src={location_pin.src} className={classes.location_pin} />
-            <p>Map View</p>
+          <div className={classes.filter_btns_container}>
+            <div className={classes.max_price}>
+              <p>Max Price</p>
+              <img src={dropdown.src} className={classes.dropdown_img} />
+            </div>
+            <div className={classes.rooms}>
+              <p>Rooms</p>
+              <img src={dropdown.src} className={classes.dropdown_img} />
+            </div>
+            <div className={classes.filters}>
+              <img src={filter_icon.src} className={classes.filters_img} />
+            </div>
+            <div className={classes.map_view}>
+              <img src={location_pin.src} className={classes.location_pin} />
+              <p>Map View</p>
+            </div>
           </div>
         </div>
         <div className={classes.properties_section}>

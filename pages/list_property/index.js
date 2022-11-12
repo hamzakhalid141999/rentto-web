@@ -10,7 +10,7 @@ import Step5Form from "../../components/ScreenComponents/listPropertyScreen/step
 import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step6Form";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(6);
   const [features, setFeatures] = useState([]);
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
@@ -46,6 +46,16 @@ function ListProperty() {
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
         <img src={bottom_right_pattern.src} className={classes.bottom_right} />
+        <h2>Lorem Ipsum Dolor Set</h2>
+        <h3>Lorem Ipsum Dolor Set</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam.
+        </p>
+        <div className={classes.btn_filled}>
+          <p>Rentto Assistance</p>
+        </div>
       </div>
 
       <div className={classes.right_panel}>

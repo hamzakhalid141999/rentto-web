@@ -108,8 +108,8 @@ function PropertyInfo() {
           </div>
 
           <div className={classes.amenities_container}>
-            <h2>Amneties</h2>
-            <p>
+            <h2>Amenities</h2>
+            <p className={classes.amenities_description}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>

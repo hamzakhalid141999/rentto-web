@@ -5,23 +5,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
   padding-bottom: 40px;
+  transition: ease-in-out 200ms;
 }
 .content_container {
   width: 95%;
   height: 90%;
   margin-top: 125px;
-  background: #f8f8f8;
+  background: var(--darkGreyBackground);
   padding: 15px;
 }
 .filter_section {
   width: 100%;
   height: 60px;
-  display: flex;
+  display: grid;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
+  grid-template-columns: 8fr 4fr;
   column-gap: 10px;
   padding-bottom: 15px;
 }
@@ -42,9 +42,11 @@
 .input_field {
   width: 100%;
   border: none;
+  background-color: transparent;
   font-size: 15px;
   padding-left: 20px;
   height: 90%;
+  color: var(--foreground) !important;
 }
 .input_field:focus {
   outline: none;
@@ -54,8 +56,10 @@
 }
 .search_bar {
   height: 100%;
-  width: 65%;
-  background-color: white;
+  width: 97%;
+  min-height: 60px;
+  background-color: var(--background);
+  border: 1px solid white !important;
   box-shadow: 0px 0px 30px rgba(128, 128, 128, 0.158);
   display: flex;
   flex-direction: row;
@@ -70,19 +74,23 @@
   padding-left: 12px;
   padding-right: 12px;
   height: 100%;
-  background-color: white;
+  background-color: var(--background);
+  border: 1px solid white !important;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   column-gap: 10px;
+  min-height: 60px;
 }
 .filters {
   padding-left: 12px;
   padding-right: 12px;
+  min-height: 60px;
+  background-color: var(--background);
+  border: 1px solid white !important;
   height: 100%;
-  background-color: white;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
@@ -95,20 +103,25 @@
 }
 .max_price {
   padding-left: 12px;
+  min-height: 60px;
+  background-color: var(--background);
+  border: 1px solid white !important;
   padding-right: 12px;
   height: 100%;
-  background-color: white;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   column-gap: 10px;
+  width: 180px;
 }
 .map_view {
-  width: 10%;
+  min-height: 60px;
+  width: 60%;
   height: 100%;
-  background-color: white;
+  background-color: var(--background);
+  border: 1px solid white !important;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
@@ -135,4 +148,63 @@
 .map_view p {
   font-size: 15px;
   color: var(--foreground) !important;
+}
+.filter_btns_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 10px;
+  height: 100%;
+  min-height: 60px;
+}
+@media only screen and (max-width: 1400px) {
+  .properties_section {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 1060px) {
+  .properties_section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 707px) {
+  .properties_section {
+    grid-template-columns: 1fr;
+    height: fit-content;
+    max-height: initial;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .filter_section {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    grid-template-columns: 1fr;
+    column-gap: 10px;
+    padding-bottom: 15px;
+    row-gap: 15px;
+  }
+  .map_view {
+    display: none;
+  }
+  .max_price {
+    width: 40%;
+  }
+  .filters {
+    width: 20%;
+  }
+  .rooms {
+    width: 40%;
+  }
+  .search_bar {
+    width: 94%;
+  }
+  .content_container {
+    margin-top: 80px;
+    padding-top: 60px;
+  }
 }

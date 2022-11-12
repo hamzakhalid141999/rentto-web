@@ -64,6 +64,7 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
         <p>Choose Section</p>
 
         <select
+          style={{ marginLeft: "0px" }}
           onClick={(e) => {
             setSection(e.target.value);
           }}

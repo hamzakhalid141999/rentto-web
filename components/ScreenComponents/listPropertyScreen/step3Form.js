@@ -61,6 +61,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Bedrooms</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setBedrooms(e.target.value);
             }}
@@ -72,6 +73,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Bathrooms</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setBathrooms(e.target.value);
             }}
@@ -86,6 +88,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Longue</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setLounge(e.target.value);
             }}
@@ -97,6 +100,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Kitchen</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setKitchen(e.target.value);
             }}
@@ -111,6 +115,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Drawing Room</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setDrawingRoom(e.target.value);
             }}
@@ -122,6 +127,7 @@ function Step3Form({
         <div className={classes.input_container}>
           <p>Parking</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setParking(e.target.value);
             }}

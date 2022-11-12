@@ -61,6 +61,7 @@ function Step2Form({
             onChange={(e) => {
               setPropertySize(e.target.value);
             }}
+            type={"number"}
             value={propertySize}
             placeholder="e.g 2000"
             className={classes.input_field}
@@ -73,6 +74,7 @@ function Step2Form({
         <div className={classes.input_field_container}>
           <p className={classes.input_field_right_label}>Per Month</p>
           <input
+            type={"number"}
             onChange={(e) => {
               setExpectedRent(e.target.value);
             }}
