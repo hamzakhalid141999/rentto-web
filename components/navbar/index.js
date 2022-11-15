@@ -79,7 +79,7 @@ function Navbar() {
           ? classes.navbar_body_opaque
           : backgroundColor === "opaque"
           ? classes.navbar_body_opaque
-          : currentPage === "properties"
+          : currentPage === "properties" || currentPage === "chat"
           ? classes.navbar_body_opaque
           : classes.navbar_body
       }
