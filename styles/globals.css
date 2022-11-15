@@ -13,6 +13,7 @@
   --lightGreyText: rgba(0, 0, 0, 0.6);
   --greyBackground: rgba(225, 225, 225, 0.454);
   --darkGreyBackground: #f8f8f8;
+  --blackText: black;
 }
 
 [data-theme="dark"] {
@@ -27,6 +28,7 @@
   --orangeText: #ff9000;
   --lightGreyText: white !important;
   --greyBackground: rgb(42, 42, 42);
+  --blackText: black;
 }
 .firstSection_main_title_heading__o83af {
   font-family: "ClashGrotesk-Semibold";

@@ -116,6 +116,9 @@ function Navbar() {
             <Link href={"/login"}>
               <p>Login</p>
             </Link>
+            <Link href={"/chat"}>
+              <p>Chat</p>
+            </Link>
 
             <DarkModeSwitch
               checked={darkTheme}
@@ -141,6 +144,9 @@ function Navbar() {
                 <p>Featured</p>
               </Link>
               <p>FAQ</p>
+              <Link href={"/chat"}>
+                <p>Chat</p>
+              </Link>
             </div>
           </>
         ) : (

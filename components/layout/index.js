@@ -4,9 +4,11 @@ import Head from "next/head";
 import Navbar from "../navbar";
 import Footer from "../footer";
 import { useRouter } from "next/router";
+import { useWindowSize } from "../../utils";
 
 function Layout({ children }) {
   const router = useRouter();
+  const { width } = useWindowSize();
   const [currentPage, setCurrentPage] = useState();
 
   useEffect(() => {
@@ -16,11 +18,13 @@ function Layout({ children }) {
     }
   }, [router.pathname]);
 
-  console.log(router);
+  console.log(currentPage, width);
 
   return (
     <div className={classes.container}>
       {currentPage === "login" || currentPage === "signup" ? (
+        <div className={classes.main}>{children}</div>
+      ) : width < 786 && currentPage === "chat" ? (
         <div className={classes.main}>{children}</div>
       ) : (
         <>
