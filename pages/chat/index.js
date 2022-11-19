@@ -173,27 +173,32 @@ function Chat() {
               <h2>Messages</h2>
               <div className={classes.list}>
                 {DUMMY_DATA?.map((user, index) => (
-                  <div
-                    onClick={() => {
-                      handleSelectUser(user);
-                      console.log(
-                        "CALLED THE FUNCTION TO FUCKING TURN IT TRUE"
-                      );
-                      setShowInbox(true);
-                    }}
-                    key={index}
-                    className={classes.contact_tab}
-                  >
-                    <img
-                      src={placeholder_user.src}
-                      className={classes.user_img}
-                    />
-                    <div className={classes.name_text}>
-                      <p className={classes.name_title}>{user?.name}</p>
-                      <p className={classes.text}>Lorem ipsum dolor sit amet</p>
-                      <p className={classes.duration}>2H</p>
+                  <>
+                    <div
+                      onClick={() => {
+                        handleSelectUser(user);
+                        console.log(
+                          "CALLED THE FUNCTION TO FUCKING TURN IT TRUE"
+                        );
+                        setShowInbox(true);
+                      }}
+                      key={index}
+                      className={classes.contact_tab}
+                    >
+                      <img
+                        src={placeholder_user.src}
+                        className={classes.user_img}
+                      />
+                      <div className={classes.name_text}>
+                        <p className={classes.name_title}>{user?.name}</p>
+                        <p className={classes.text}>
+                          Lorem ipsum dolor sit amet
+                        </p>
+                        <p className={classes.duration}>2H</p>
+                      </div>
                     </div>
-                  </div>
+                    <div className={classes.divider} />
+                  </>
                 ))}
               </div>
             </div>
@@ -204,27 +209,32 @@ function Chat() {
               <h2>Messages</h2>
               <div className={classes.list}>
                 {DUMMY_DATA?.map((user, index) => (
-                  <div
-                    onClick={() => {
-                      handleSelectUser(user);
-                    }}
-                    key={index}
-                    className={
-                      selectedUserInbox?.id === user?.id
-                        ? classes.contact_tab_selected
-                        : classes.contact_tab
-                    }
-                  >
-                    <img
-                      src={placeholder_user.src}
-                      className={classes.user_img}
-                    />
-                    <div className={classes.name_text}>
-                      <p className={classes.name_title}>{user?.name}</p>
-                      <p className={classes.text}>Lorem ipsum dolor sit amet</p>
-                      <p className={classes.duration}>2H</p>
+                  <>
+                    <div
+                      onClick={() => {
+                        handleSelectUser(user);
+                      }}
+                      key={index}
+                      className={
+                        selectedUserInbox?.id === user?.id
+                          ? classes.contact_tab_selected
+                          : classes.contact_tab
+                      }
+                    >
+                      <img
+                        src={placeholder_user.src}
+                        className={classes.user_img}
+                      />
+                      <div className={classes.name_text}>
+                        <p className={classes.name_title}>{user?.name}</p>
+                        <p className={classes.text}>
+                          Lorem ipsum dolor sit amet
+                        </p>
+                        <p className={classes.duration}>2H</p>
+                      </div>
                     </div>
-                  </div>
+                    <div className={classes.divider} />
+                  </>
                 ))}
               </div>
             </div>

@@ -69,16 +69,21 @@
   display: none;
 }
 .contact_tab {
-  width: 87%;
+  width: 100%;
   min-height: 96px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   transition: ease-in-out 200ms;
-  border-bottom: 1px solid rgba(179, 179, 179, 0.25);
+  /* border-bottom: 1px solid rgba(179, 179, 179, 0.25); */
   column-gap: 20px;
   padding-left: 15px;
+}
+.divider {
+  min-height: 1px;
+  width: 87%;
+  background-color: rgba(179, 179, 179, 0.25);
 }
 .user_img {
   width: 45px;
@@ -110,7 +115,6 @@
 }
 .contact_tab:hover {
   background-color: rgba(179, 179, 179, 0.15) !important;
-  width: 96%;
   cursor: pointer;
 }
 .contact_tab_selected {
@@ -120,11 +124,10 @@
   justify-content: flex-start;
   align-items: center;
   transition: ease-in-out 200ms;
-  border-bottom: 1px solid rgba(179, 179, 179, 0.25);
   column-gap: 20px;
   padding-left: 15px;
   background-color: rgba(179, 179, 179, 0.269) !important;
-  width: 96%;
+  width: 100%;
 }
 .duration {
   position: absolute;

@@ -116,7 +116,7 @@
   width: 100%;
   max-width: 100vw;
   height: 265px;
-  margin-top: 14px;
+  /* margin-top: 14px; */
   display: flex;
   flex-direction: row;
   overflow-x: scroll;

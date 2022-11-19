@@ -104,6 +104,12 @@
   display: none !important;
   pointer-events: none !important;
 }
+.css-187mznn-MuiSlider-root {
+  color: var(--orangeText) !important;
+}
+.css-1v5z18m {
+  width: 100% !important;
+}
 @media only screen and (max-width: 786px) {
   .firstSection_main_title_heading__o83af {
     font-size: 40px !important;

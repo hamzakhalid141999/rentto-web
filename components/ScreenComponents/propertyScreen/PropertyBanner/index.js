@@ -25,7 +25,7 @@ function PropertyBanner() {
           <div className={classes.left_panel}>
             <div className={classes.single_row}>
               <h2>
-                Rs 150,0000<span>per month</span>
+                Rs 150,000<span>per month</span>
               </h2>
 
               <div className={classes.icons_container}>
