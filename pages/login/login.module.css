@@ -5,7 +5,7 @@
   flex-direction: row;
 }
 .carousel_section {
-  background-color: #f9f9f9;
+  background-color: var(--lightBackgroundColor);
   width: 50%;
   height: 100%;
   display: flex;
@@ -14,8 +14,11 @@
   justify-content: center;
   position: relative;
 }
+.content_container label {
+  color: var(--foreground) !important;
+}
 .content_section {
-  background-color: white;
+  background-color: var(--background);
   width: 50%;
   height: 100%;
   display: flex;
@@ -90,6 +93,7 @@
   border-radius: 4px;
   height: 44px;
   padding-left: 20px;
+  background-color: var(--background) !important;
 }
 .input_field::placeholder {
   color: rgb(179, 179, 179);
@@ -184,6 +188,11 @@
   margin-top: 14px;
   color: var(--orangeText) !important;
   cursor: pointer;
+}
+.darkmode_btn {
+  position: absolute;
+  right: 20px;
+  top: 30px;
 }
 .back_arrow {
   position: absolute;

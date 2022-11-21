@@ -5,7 +5,7 @@
   flex-direction: row;
 }
 .carousel_section {
-  background-color: #f9f9f9;
+  background-color: var(--lightBackgroundColor);
   width: 50%;
   height: 100%;
   display: flex;
@@ -14,8 +14,11 @@
   justify-content: center;
   position: relative;
 }
+.content_container label {
+  color: var(--foreground) !important;
+}
 .content_section {
-  background-color: white;
+  background-color: var(--background);
   width: 50%;
   height: 100%;
   display: flex;
@@ -101,14 +104,14 @@
   margin-left: 7px;
   cursor: pointer;
   transition: ease-in-out 200ms;
-
   background-color: var(--greyText) !important;
 }
 .step_inactive p {
-  color: var(--whiteText) !important;
+  color: var(--background) !important;
   font-size: 13px;
   margin-left: 8px;
   margin-top: 4px;
+
   transition: ease-in-out 200ms;
 }
 .dashed_line {
@@ -317,13 +320,18 @@
   width: 30px;
   display: none;
 }
+.darkmode_btn {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+}
 .otp_input_single {
   width: 63px !important;
   height: 63px !important;
   margin-right: 10px;
   background: #f9f9f9;
   border: 1px solid #b1b1b1;
-  color: black !important;
+  color: var(--foreground) !important;
   box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.25);
   border-radius: 5px;
   font-size: 20px;

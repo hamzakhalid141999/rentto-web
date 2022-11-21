@@ -14,6 +14,7 @@
   --greyBackground: rgba(225, 225, 225, 0.454);
   --darkGreyBackground: #f8f8f8;
   --blackText: black;
+  --lightBackgroundColor: #f9f9f9;
 }
 
 [data-theme="dark"] {
@@ -29,6 +30,7 @@
   --lightGreyText: white !important;
   --greyBackground: rgb(42, 42, 42);
   --blackText: black;
+  --lightBackgroundColor: #0f0f0f;
 }
 .firstSection_main_title_heading__o83af {
   font-family: "ClashGrotesk-Semibold";
@@ -121,6 +123,10 @@
 }
 input {
   color: var(--foreground) !important;
+  background-color: var(--background) !important;
+}
+input:focus {
+  outline: none !important;
 }
 select {
   -webkit-appearance: none;

@@ -20,6 +20,7 @@ import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
 import Router, { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -29,9 +30,27 @@ function Login() {
   const [darkTheme, setDarkTheme] = useState(undefined);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", "light");
+  // }, []);
+
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  }, []);
+    if (darkTheme !== undefined) {
+      if (darkTheme) {
+        // Set value of  darkmode to dark
+        document.documentElement.setAttribute("data-theme", "dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        // Set value of  darkmode to light
+        document.documentElement.removeAttribute("data-theme");
+        window.localStorage.setItem("theme", "light");
+      }
+    }
+  }, [darkTheme]);
+
+  const handleToggle = () => {
+    setDarkTheme(!darkTheme);
+  };
 
   const error = (msg) => {
     toast.error(msg, {
@@ -115,6 +134,12 @@ function Login() {
         </CarouselProvider>
       </div>
       <div className={classes.content_section}>
+        <DarkModeSwitch
+          checked={darkTheme}
+          onChange={handleToggle}
+          size={30}
+          className={classes.darkmode_btn}
+        />
         <img
           // onClick={handleGoBack}
           src={back_arrow.src}

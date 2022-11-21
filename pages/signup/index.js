@@ -16,6 +16,7 @@ import logo_big from "../../public/assets/login_screen_assets/logo.png";
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 function SignUp() {
   const router = useRouter();
@@ -29,12 +30,30 @@ function SignUp() {
   const [phoneNo, setPhoneNo] = useState("");
   const [otp, setOtp] = useState();
   const handleChange = (otp) => setOtp(otp);
-
+  const [darkTheme, setDarkTheme] = useState(undefined);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", "light");
+  // }, []);
+
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  }, []);
+    if (darkTheme !== undefined) {
+      if (darkTheme) {
+        // Set value of  darkmode to dark
+        document.documentElement.setAttribute("data-theme", "dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        // Set value of  darkmode to light
+        document.documentElement.removeAttribute("data-theme");
+        window.localStorage.setItem("theme", "light");
+      }
+    }
+  }, [darkTheme]);
+
+  const handleToggle = () => {
+    setDarkTheme(!darkTheme);
+  };
 
   const handleGoBack = async () => {
     if (activeStep === 1) {
@@ -196,6 +215,12 @@ function SignUp() {
         </CarouselProvider>
       </div>
       <div className={classes.content_section}>
+        <DarkModeSwitch
+          checked={darkTheme}
+          onChange={handleToggle}
+          size={30}
+          className={classes.darkmode_btn}
+        />
         <img
           onClick={handleGoBack}
           src={back_arrow.src}

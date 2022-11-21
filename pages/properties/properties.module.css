@@ -7,6 +7,7 @@
   justify-content: center;
   padding-bottom: 40px;
   transition: ease-in-out 200ms;
+  position: relative;
 }
 .container_map {
   height: 88vh;
@@ -29,6 +30,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.back_arrow {
+  display: none;
 }
 .properties_container_map_view {
   position: absolute;
@@ -78,8 +82,17 @@
   font-size: 12px;
   text-align: center;
 }
+.filter_section_map_view_container {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .filter_section_map_view {
   width: 75%;
+  max-width: 75%;
   max-width: 1086px;
   height: 60px;
   display: grid;
@@ -88,9 +101,12 @@
   grid-template-columns: 8fr 4fr;
   column-gap: 16px;
   padding-bottom: 15px;
-  position: absolute;
-  left: 20px;
-  top: 20px;
+}
+.right_panel {
+  width: 360px;
+  min-width: 360px;
+  height: 100%;
+  pointer-events: none;
 }
 .map_search_icon {
   width: 50px;
@@ -131,7 +147,7 @@
   width: 97%;
   min-height: 60px;
   background-color: var(--background);
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
   box-shadow: 0px 0px 30px rgba(128, 128, 128, 0.158);
   display: flex;
   flex-direction: row;
@@ -147,7 +163,7 @@
   padding-right: 12px;
   height: 100%;
   background-color: var(--background);
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
@@ -163,7 +179,7 @@
   padding-right: 12px;
   min-height: 60px;
   background-color: var(--background);
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
   height: 100%;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
@@ -180,7 +196,7 @@
   padding-left: 12px;
   min-height: 60px;
   background-color: var(--background);
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
   padding-right: 12px;
   height: 100%;
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
@@ -243,7 +259,7 @@
   width: 60%;
   height: 100%;
   background-color: var(--background);
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
   box-shadow: 0px 0px 30px rgb(128 128 128 / 16%);
   display: flex;
   flex-direction: row;
@@ -292,6 +308,28 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+@media only screen and (max-width: 1000px) {
+  .properties_container_map_view {
+    display: none;
+    width: 0px;
+  }
+  .filter_section_map_view_container {
+    width: 100%;
+    left: 10px;
+  }
+  .filter_section_map_view {
+    width: 95%;
+  }
+  .right_panel {
+    width: 0px;
+    min-width: initial;
+  }
+  .filter_section_map_view {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
 @media only screen and (max-width: 707px) {
   .properties_section {
     grid-template-columns: 1fr;
@@ -312,10 +350,16 @@
     row-gap: 15px;
   }
   .map_view {
+    width: 28%;
+  }
+  .map_view p {
     display: none;
   }
   .max_price {
     width: 40%;
+  }
+  .max_price p {
+    font-size: 11px;
   }
   .filters {
     width: 20%;
@@ -323,11 +367,26 @@
   .rooms {
     width: 40%;
   }
+  .rooms p {
+    font-size: 11px;
+  }
   .search_bar {
     width: 94%;
   }
   .content_container {
     margin-top: 80px;
     padding-top: 60px;
+  }
+  .container_map {
+    margin-top: 100px;
+    height: 92vh;
+    /* padding-top: 60px; */
+  }
+  .back_arrow {
+    position: absolute;
+    top: 100px;
+    width: 25px;
+    display: flex;
+    left: 20px;
   }
 }
