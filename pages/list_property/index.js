@@ -10,7 +10,7 @@ import Step5Form from "../../components/ScreenComponents/listPropertyScreen/step
 import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step6Form";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(6);
+  const [activeStep, setActiveStep] = useState(1);
   const [features, setFeatures] = useState([]);
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
