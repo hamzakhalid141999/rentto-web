@@ -156,7 +156,7 @@ function Step4Form({
               setServantView(e.target.value);
             }}
             value={servantView}
-            placeholder="Enter the number of parkings"
+            placeholder="Enter the number of servant rooms"
             className={classes.input_field}
           />
         </div>
@@ -170,7 +170,7 @@ function Step4Form({
               setStoreRoom(e.target.value);
             }}
             value={storeRoom}
-            placeholder="Enter the number of rooms"
+            placeholder="Enter the number of store rooms"
             className={classes.input_field}
           />
         </div>
@@ -181,7 +181,7 @@ function Step4Form({
               setSeparateDining(e.target.value);
             }}
             value={separateDining}
-            placeholder="Enter the number of parkings"
+            placeholder="Enter the number of dinings"
             className={classes.input_field}
           />
         </div>

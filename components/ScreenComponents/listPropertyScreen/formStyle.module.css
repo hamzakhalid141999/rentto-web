@@ -44,7 +44,7 @@
   position: absolute;
   right: 15px;
   top: 8px;
-  color: var(--greyText) !important;
+  color: var(--blackText) !important;
   font-family: "DMSans-Regular" !important;
   font-size: 12px;
 }
@@ -114,6 +114,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+  margin-left: -16px;
   font-family: "DMSans-Regular";
 }
 .input_field {
@@ -153,8 +154,10 @@
   cursor: pointer;
 }
 .btn_filled {
-  width: 91%;
+  width: 103%;
   height: 46px;
+  padding-left: 20px;
+  margin-left: -20px;
   background: #ff9000;
   border-radius: 100px;
   display: flex;
@@ -206,15 +209,53 @@
 .placeholder {
   width: 40px;
 }
-.dropper_content {
+.images_container {
   position: absolute !important;
-  top: 30px !important;
   width: 100%;
+  height: 80%;
+  display: flex;
+  padding-top: 20px;
+  overflow-y: scroll !important;
+  row-gap: 15px;
+  /* background-color: red; */
+  z-index: 10;
+  opacity: 0.5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  /* margin-bottom: 20px; */
+  max-height: 130px;
+  /* pointer-events: none; */
+}
+.property_pictures {
+  min-width: 50px;
+  min-height: 45px;
+  max-width: 50px;
+  max-height: 45px;
+  object-fit: contain;
+  border: 1px solid grey;
+}
+.dropper_content {
+  border: 1px solid white !important;
+  position: absolute !important;
+  top: 25px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   row-gap: 15px;
+  pointer-events: none;
+  z-index: 20 !important;
+  background-color: var(--background) !important;
+  opacity: 0.9 !important;
+  backdrop-filter: blur(20px) !important;
 }
 .drag_img_text {
   font-size: 12px;
@@ -229,6 +270,8 @@
   font-family: "DMSans-Regular" !important;
   font-size: 14px;
   line-height: 18px;
+  cursor: pointer;
+  pointer-events: none;
 }
 /* .pic_input {
   position: absolute;
@@ -281,9 +324,14 @@
   }
   .btn_filled {
     width: 100%;
+    margin-left: initial;
+    padding-left: initial;
   }
   .input_container {
     width: 93%;
+  }
+  .input_container p {
+    margin-left: -0px;
   }
   .double_input_container {
     display: grid;

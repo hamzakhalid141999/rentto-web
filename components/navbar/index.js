@@ -129,7 +129,7 @@ function Navbar() {
         </div>
       </SlidingPanel>
       <div className={classes.left_panel}>
-        {width > 786 ? (
+        {width > 941 ? (
           <>
             <Link href={"/"}>
               <p style={{ color: "#266867" }} className={classes.logo}>

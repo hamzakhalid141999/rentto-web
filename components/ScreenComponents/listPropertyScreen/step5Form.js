@@ -31,8 +31,8 @@ function Step5Form({ setActiveStep, setFeatures, features }) {
 
       <h2 className={classes.form_heading}>Property Specifications</h2>
 
-      <div className={classes.input_container}>
-        <p>Property Features</p>
+      <div style={{ width: "100%" }} className={classes.input_container}>
+        <p style={{ marginLeft: "0px" }}>Property Features</p>
 
         <ReactTagInput
           tags={features}
@@ -62,7 +62,11 @@ function Step5Form({ setActiveStep, setFeatures, features }) {
         By proceeding you agree to Rentto’s <span>Terms of Service</span> and{" "}
         <span>Privacy Policy.</span>
       </p>
-      <div onClick={toggleNextStep} className={classes.btn_filled}>
+      <div
+        style={{ paddingLeft: "initial", marginLeft: "initial" }}
+        onClick={toggleNextStep}
+        className={classes.btn_filled}
+      >
         <p>NEXT</p>
       </div>
     </div>

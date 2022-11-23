@@ -15,6 +15,8 @@
   --darkGreyBackground: #f8f8f8;
   --blackText: black;
   --lightBackgroundColor: #f9f9f9;
+  --tabsBackground: #f1f1f1;
+  --tabsBorder: #f1f1f1;
 }
 
 [data-theme="dark"] {
@@ -31,6 +33,8 @@
   --greyBackground: rgb(42, 42, 42);
   --blackText: black;
   --lightBackgroundColor: #0f0f0f;
+  --tabsBackground: rgb(30, 30, 30);
+  --tabsBorder: #ff9000;
 }
 .firstSection_main_title_heading__o83af {
   font-family: "ClashGrotesk-Semibold";
@@ -72,6 +76,19 @@
 .react-tag-input {
   height: 44px !important;
   border-radius: 4px !important;
+  background-color: var(--background) !important;
+}
+.react-responsive-modal-overlay,
+.react-responsive-modal-container,
+.react-responsive-modal-modal {
+  animation-fill-mode: forwards !important;
+}
+
+/* HIDE SPINNER ON NUMBER INPUT TYPES */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .react-tag-input__tag,
 .react-tag-input__tag__remove {
@@ -162,6 +179,10 @@ h1 {
   transition: ease-in-out 100ms !important;
 }
 h2 {
+  color: var(--text-color) !important;
+  transition: ease-in-out 100ms !important;
+}
+h3 {
   color: var(--text-color) !important;
   transition: ease-in-out 100ms !important;
 }

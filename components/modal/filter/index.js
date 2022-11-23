@@ -171,7 +171,12 @@ function Filter({ setOpen, open, onCloseModal }) {
           </div>
 
           <div
-            style={{ justifyContent: "flex-start" }}
+            style={{
+              // justifyContent: "flex-start",
+              columnGap: "15px",
+              flexWrap: "wrap",
+              // marginTop: "30px",
+            }}
             className={classes.single_row}
           >
             <p>Property Size</p>
@@ -191,8 +196,9 @@ function Filter({ setOpen, open, onCloseModal }) {
 
           <div
             style={{
-              justifyContent: "flex-start",
+              // justifyContent: "flex-start",
               columnGap: "15px",
+              flexWrap: "wrap",
               marginTop: "30px",
             }}
             className={classes.single_row}
@@ -291,8 +297,9 @@ function Filter({ setOpen, open, onCloseModal }) {
 
             <div
               style={{
-                justifyContent: "flex-start",
+                // justifyContent: "flex-start",
                 columnGap: "15px",
+                flexWrap: "wrap",
                 // marginTop: "30px",
               }}
               className={classes.single_row}
@@ -353,8 +360,9 @@ function Filter({ setOpen, open, onCloseModal }) {
 
             <div
               style={{
-                justifyContent: "flex-start",
+                // justifyContent: "flex-start",
                 columnGap: "15px",
+                flexWrap: "wrap",
                 // marginTop: "30px",
               }}
               className={classes.single_row}
@@ -427,8 +435,9 @@ function Filter({ setOpen, open, onCloseModal }) {
 
             <div
               style={{
-                justifyContent: "flex-start",
+                // justifyContent: "flex-start",
                 columnGap: "15px",
+                flexWrap: "wrap",
                 // marginTop: "30px",
               }}
               className={classes.single_row}
@@ -486,7 +495,7 @@ function Filter({ setOpen, open, onCloseModal }) {
 
           <div
             style={{
-              // justifyContent: "flex-start",
+              justifyContent: "space-between",
               columnGap: "15px",
               marginTop: "30px",
             }}
@@ -501,7 +510,7 @@ function Filter({ setOpen, open, onCloseModal }) {
 
           <div
             style={{
-              // justifyContent: "flex-start",
+              justifyContent: "space-between",
               columnGap: "15px",
               marginTop: "30px",
             }}
@@ -516,7 +525,7 @@ function Filter({ setOpen, open, onCloseModal }) {
 
           <div
             style={{
-              // justifyContent: "flex-start",
+              justifyContent: "space-between",
               columnGap: "15px",
               marginTop: "30px",
             }}
@@ -534,8 +543,9 @@ function Filter({ setOpen, open, onCloseModal }) {
 
             <div
               style={{
-                justifyContent: "flex-start",
+                // justifyContent: "flex-start",
                 columnGap: "15px",
+                flexWrap: "wrap",
                 // marginTop: "30px",
               }}
               className={classes.single_row}
@@ -594,14 +604,11 @@ function Filter({ setOpen, open, onCloseModal }) {
           </div>
         </div>
         <div className={classes.bottom_banner}>
-          <p onClick={handleResetFilters} style={{ marginLeft: "40px" }}>
+          <p className={classes.reset_filter} onClick={handleResetFilters}>
             Reset All
           </p>
 
-          <div
-            style={{ width: "200px", marginRight: "40px" }}
-            className={classes.btn_filled}
-          >
+          <div className={classes.btn_filled}>
             <p>Set Filter</p>
           </div>
         </div>

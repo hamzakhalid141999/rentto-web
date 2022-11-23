@@ -11,7 +11,8 @@
 .left_panel {
   width: 560px;
   height: 584px;
-  background-color: #f9f9f9;
+  border: 1px solid rgb(89, 89, 89) !important;
+  background-color: var(--background) !important;
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;
   position: relative;

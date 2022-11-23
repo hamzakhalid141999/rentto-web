@@ -61,7 +61,7 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
         </div>
       </div>
       <div className={classes.input_container}>
-        <p>Choose Section</p>
+        <p style={{ marginLeft: "0px" }}>Choose Section</p>
 
         <select
           style={{ marginLeft: "0px" }}
@@ -78,6 +78,15 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
       </div>
 
       <div className={classes.file_dropper_section}>
+        <div className={classes.images_container}>
+          {filesArr?.map((pic, index) => (
+            <img
+              className={classes.property_pictures}
+              key={index}
+              src={URL.createObjectURL(pic)}
+            />
+          ))}
+        </div>
         <div className={classes.dropper_content}>
           <img src={image_placeholder.src} className={classes.placeholder} />
           <p className={classes.drag_img_text}>
