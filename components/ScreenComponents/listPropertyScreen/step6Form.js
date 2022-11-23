@@ -18,6 +18,10 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
     }
   };
 
+  const handleAddFile = (e) => {
+    setFilesArr((arr) => [...arr, e]);
+  };
+
   useEffect(() => {
     var perc = (adLife / adLifeTier) * 100;
     setPercetage(perc.toFixed(1) + "%");
@@ -28,7 +32,7 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
   const toggleNextStep = async () => {
     // setActiveStep(7);
   };
-  const fileTypes = ["JPEG", "PNG", "GIF"];
+  const fileTypes = ["JPEG", "PNG", "JPG", "GIF"];
 
   const error = (msg) => {
     toast.error(msg, {
@@ -80,29 +84,48 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
       <div className={classes.file_dropper_section}>
         <div className={classes.images_container}>
           {filesArr?.map((pic, index) => (
-            <img
-              className={classes.property_pictures}
-              key={index}
-              src={URL.createObjectURL(pic)}
-            />
+            <>
+              <img
+                className={classes.property_pictures}
+                key={index}
+                src={URL.createObjectURL(pic)}
+              />
+            </>
           ))}
+          {filesArr?.length !== 0 && (
+            <div className={classes.more_images_adder}>
+              <p>+</p>
+              <input
+                onChange={(e) => {
+                  handleAddFile(e.target.files[0]);
+                }}
+                type="file"
+              />
+            </div>
+          )}
         </div>
-        <div className={classes.dropper_content}>
-          <img src={image_placeholder.src} className={classes.placeholder} />
-          <p className={classes.drag_img_text}>
-            Choose or drag and drop images of your property
-          </p>
-          <p className={classes.choose_image_text}>Choose Image</p>
-        </div>
-        <FileUploader
-          multiple={true}
-          handleChange={handleChange}
-          name="file"
-          types={fileTypes}
-          onTypeError={() => {
-            error("Format not supported");
-          }}
-        />
+        {filesArr?.length === 0 && (
+          <div className={classes.dropper_content}>
+            <img src={image_placeholder.src} className={classes.placeholder} />
+            <p className={classes.drag_img_text}>
+              Choose or drag and drop images of your property
+            </p>
+            <p className={classes.choose_image_text}>Choose Image</p>
+          </div>
+        )}
+        {filesArr?.length > 0 ? (
+          <div className={classes.fake_image_dropper_area}></div>
+        ) : (
+          <FileUploader
+            multiple={true}
+            handleChange={handleChange}
+            name="file"
+            types={fileTypes}
+            onTypeError={() => {
+              error("Format not supported");
+            }}
+          />
+        )}
       </div>
 
       <p className={classes.terms_services_text}>
