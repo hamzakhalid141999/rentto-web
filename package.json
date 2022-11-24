@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^4.0.3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
     "@pathofdev/react-tag-input": "^1.0.7",
     "aos": "^2.3.4",
+    "aws-amplify": "^5.0.4",
     "jquery": "^3.6.1",
     "multi-range-slider-react": "^2.0.2",
     "next": "12.3.1",

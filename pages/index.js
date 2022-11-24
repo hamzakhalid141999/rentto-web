@@ -9,6 +9,7 @@ import SubscriptionSection from "../components/ScreenComponents/homeScreen/subsc
 import DownloadAppSection from "../components/ScreenComponents/homeScreen/downloadAppSection";
 import FAQ from "../components/ScreenComponents/homeScreen/faqSection";
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
