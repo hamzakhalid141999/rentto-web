@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import MainLayout from "../components/layout/index";
 import defaultLayout from "../components/layout/default";
-
+import { AuthProvider } from "../contextApi";
 // import { Amplify, Auth } from 'aws-amplify';
 // import { withAuthenticator } from '@aws-amplify/ui-react';
 
@@ -13,15 +13,17 @@ function MyApp({ Component, pageProps, signOut, user }) {
   const Layout = Component.Layout || defaultLayout;
 
   return (
-    <MainLayout>
-      {/* <>
+    <AuthProvider>
+      <MainLayout>
+        {/* <>
       <h1>Hello {user.username}</h1>
       <button onClick={signOut}>Sign out</button>
     </> */}
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </MainLayout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MainLayout>
+    </AuthProvider>
   );
 }
 
