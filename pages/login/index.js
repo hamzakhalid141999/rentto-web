@@ -22,6 +22,9 @@ import Router, { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
+import { Auth } from 'aws-amplify';
+import { useAuth } from "../../contextApi";
+
 function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -29,6 +32,8 @@ function Login() {
   const router = useRouter();
   const [darkTheme, setDarkTheme] = useState(undefined);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const { user, signIn, removeUser } = useAuth();
 
   // useEffect(() => {
   //   document.documentElement.setAttribute("data-theme", "light");
@@ -77,10 +82,27 @@ function Login() {
       return false;
     }
 
-    setLoading(true);
-    await delay(1000);
-    setLoading(false);
-    router.push("/");
+    
+    try {
+        setLoading(true);
+        // await delay(1000);
+      
+        const local_user = await Auth.signIn(email, password);
+        console.log(local_user);
+        signIn(local_user);
+
+        console.log(user);
+        
+        setLoading(false);
+        router.push("/");
+
+    } catch (error_) {
+        console.log('error signing in', error_);
+        // error(error_);
+
+        setLoading(false);
+    }
+    
   };
 
   return (

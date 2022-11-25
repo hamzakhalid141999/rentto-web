@@ -26,6 +26,12 @@ function AuthProvider({ children }) {
     setUser(userInformation);
   };
 
+  const signIn = (userInformation) => {
+    // Sign in set user
+    localStorage.setItem("user", JSON.stringify(userInformation));
+    setUser(userInformation);
+  };
+
   const removeUser = (value) => {
     setUser(null);
     localStorage.clear();
@@ -33,6 +39,7 @@ function AuthProvider({ children }) {
 
   const value = {
     user,
+    signIn,
     signUp,
     removeUser,
     signedIn,

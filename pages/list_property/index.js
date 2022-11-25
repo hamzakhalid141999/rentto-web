@@ -35,6 +35,14 @@ function ListProperty() {
   const [section, setSection] = useState();
   const [filesArr, setFilesArr] = useState([]);
 
+ 
+  const handleDataUpload = () => {
+    console.log('filesArr', filesArr)
+
+  };
+
+  handleDataUpload();
+
   const handleActiveStep = async (value) => {
     if (value < activeStep) {
       setActiveStep(value);
@@ -46,7 +54,7 @@ function ListProperty() {
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
         <img src={bottom_right_pattern.src} className={classes.bottom_right} />
-        <h2>Lorem Ipsum Dolor Set</h2>
+        <h2>Hire Rentto</h2>
         <h3>Lorem Ipsum Dolor Set</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -221,12 +229,21 @@ function ListProperty() {
             setActiveStep={setActiveStep}
           />
         ) : activeStep === 6 ? (
-          <Step6Form
-            setFilesArr={setFilesArr}
-            filesArr={filesArr}
-            setActiveStep={setActiveStep}
-            setSection={setSection}
-          />
+
+          <>
+            <Step6Form
+              setFilesArr={setFilesArr}
+              filesArr={filesArr}
+              setActiveStep={setActiveStep}
+              setSection={setSection}
+            />
+
+            <div 
+              // onClick={toggleNextStep} 
+              className={classes.btn_filled}>
+              <p>Upload</p>
+            </div>
+          </>
         ) : (
           <></>
         )}

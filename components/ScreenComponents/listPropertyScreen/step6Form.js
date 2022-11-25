@@ -30,6 +30,7 @@ function Step6Form({ setActiveStep, filesArr, setFilesArr, setSection }) {
   console.log(percentage);
 
   const toggleNextStep = async () => {
+    
     // setActiveStep(7);
   };
   const fileTypes = ["JPEG", "PNG", "JPG", "GIF"];

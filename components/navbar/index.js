@@ -11,6 +11,10 @@ import SlidingPanel, { PanelType } from "react-sliding-side-panel";
 import "react-sliding-side-panel/lib/index.css";
 import Link from "next/link";
 
+
+import { Auth } from 'aws-amplify';
+import { useAuth } from "../../contextApi";
+
 function Navbar() {
   const router = useRouter();
   const { width } = useWindowSize();
@@ -21,6 +25,9 @@ function Navbar() {
   const [panelType, setPanelType] = useState("left");
   const [panelSize, setPanelSize] = useState(60);
   const [noBackdrop, setNoBackdrop] = useState(false);
+
+  const { user, removeUser } = useAuth();
+  console.log('User:', user)
 
   let listener = null;
 
@@ -46,6 +53,16 @@ function Navbar() {
       }
     }
   }, [darkTheme]);
+
+  async function signOut() {
+    try {
+        await Auth.signOut();
+        removeUser();
+        console.log('Sign out complete.')
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+  }
 
   const handleToggle = () => {
     setDarkTheme(!darkTheme);
@@ -136,7 +153,7 @@ function Navbar() {
                 rentto<span className={classes.logo_orange}>app</span>
               </p>
             </Link>
-            <div className={classes.left_panel_btns}>
+            {/* <div className={classes.left_panel_btns}>
               <Link href={"/list_property"}>
                 <p>List a property</p>
               </Link>
@@ -147,7 +164,7 @@ function Navbar() {
               <Link href={"/chat"}>
                 <p>Chat</p>
               </Link>
-            </div>
+            </div> */}
           </>
         ) : (
           <>
@@ -167,11 +184,34 @@ function Navbar() {
       <div className={classes.right_panel}>
         {/* <img src={heart_icon.src} className={classes.icon} />
         <img src={mail_icon.src} className={classes.icon} /> */}
-        <Link href={"/login"}>
-          <p>Login</p>
-        </Link>
+        
+
+        {/* <Link href={"/login"}> */}
+          
+
+          {
+            // window.localStorage.getItem('user')
+            user !== null ? (<p
+              onClick={() => signOut()}
+              >Signout</p>
+              ):(
+              <Link href={"/login"}>
+              <p>Login</p>
+            </Link>)
+          }
+          {/* <p
+              onClick={() => signOut()}
+              >Signout</p> */}
+        {/* </Link> */}
+
         <div className={classes.get_started_btn}>
-          <p>Get Started</p>
+          {/* <p>Get Started</p> */}
+          
+          <Link href={"/list_property"}>
+            <p>List a Property</p>
+
+          </Link>
+
         </div>
         <DarkModeSwitch checked={darkTheme} onChange={handleToggle} size={30} />
       </div>
