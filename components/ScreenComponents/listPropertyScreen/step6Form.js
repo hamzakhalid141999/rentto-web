@@ -106,6 +106,7 @@ function Step6Form({
   }, []);
 
   const toggleNextStep = async () => {
+    
     // setActiveStep(7);
     handleOpenModal();
   };

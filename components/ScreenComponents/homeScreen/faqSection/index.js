@@ -12,62 +12,71 @@ function FAQ() {
       </>
     );
   };
-
+  
   const data = {
     rows: [
       {
-        title: "Lorem Ipsum Dolor set?",
+        title: "Which cities are covered by renttoapp?",
         content: (
           <AnswerSection
             content={
-              "Es ist ein lang erwiesener Fakt, dass ein Leser vom Text abgelenkt wird, wenn er sich ein Layout ansieht. Der Punkt, Lorem Ipsum zu nutzen, ist, dass es mehr oder weniger die normale Anordnung von Buchstaben darstellt und somit nach lesbarer Sprache aussieht."
+              "At present renttoapp is available in Islamabad. Operations in Lahore and Karachi will commence soon."
             }
           />
         ),
       },
       {
-        title: "Lorem Ipsum Dolor set?",
+        title: "Who can upload an Ad?",
         content: (
           <AnswerSection
             content={
-              "Es ist ein lang erwiesener Fakt, dass ein Leser vom Text abgelenkt wird, wenn er sich ein Layout ansieht. Der Punkt, Lorem Ipsum zu nutzen, ist, dass es mehr oder weniger die normale Anordnung von Buchstaben darstellt und somit nach lesbarer Sprache aussieht."
+              "All genuine Property Owners who are willing to share their property information and contact details can upload and Ad."
             }
           />
         ),
       },
       {
-        title: "Lorem Ipsum Dolor set?",
+        title: "What Property Types can be uploaded on renttoapp?",
         content: (
           <AnswerSection
             content={
-              "Es ist ein lang erwiesener Fakt, dass ein Leser vom Text abgelenkt wird, wenn er sich ein Layout ansieht. Der Punkt, Lorem Ipsum zu nutzen, ist, dass es mehr oder weniger die normale Anordnung von Buchstaben darstellt und somit nach lesbarer Sprache aussieht."
+              "All types of Properties that are vacant and available for long term renting can be uploaded. This includes any of the following: Complete Houses, House Portions, Apartments, Farmhouses, Separate Rooms, Offices, Working Spaces, Shops, Commercial Spaces, Warehouses, Storage Space and Leasable Land."
             }
           />
         ),
       },
       {
-        title: "Lorem Ipsum Dolor set?",
+        title: "How is renttoapp different from other platforms?",
         content: (
           <AnswerSection
             content={
-              "Es ist ein lang erwiesener Fakt, dass ein Leser vom Text abgelenkt wird, wenn er sich ein Layout ansieht. Der Punkt, Lorem Ipsum zu nutzen, ist, dass es mehr oder weniger die normale Anordnung von Buchstaben darstellt und somit nach lesbarer Sprache aussieht."
+              "renttoapp is Pakistan’s first rent focused digital platform that aims to ease the cumbersome property rental process by completely eliminating the role of property agents. Through modern techniques such as 360 visualizations, map views, Ad life and more the platform gives its users more liberty to shortlist and select appropriate rental properties."
             }
           />
         ),
       },
       {
-        title: "Lorem Ipsum Dolor set?",
+        title: "What do I do if I have any difficulty in uploading my Property Ad?",
         content: (
           <AnswerSection
             content={
-              "Es ist ein lang erwiesener Fakt, dass ein Leser vom Text abgelenkt wird, wenn er sich ein Layout ansieht. Der Punkt, Lorem Ipsum zu nutzen, ist, dass es mehr oder weniger die normale Anordnung von Buchstaben darstellt und somit nach lesbarer Sprache aussieht."
+              "Video tutorials and Rentto Helpline are available to facilitate the Ad uploading process. You can also seek Rentto Assistance to upload your Property Ad."
+            }
+          />
+        ),
+      },
+      {
+        title: "What do I do if am approached by a Property Agent?",
+        content: (
+          <AnswerSection
+            content={
+              "Refuse to pay any kind of commission and Report the Ad immediately."
             }
           />
         ),
       },
     ],
   };
-
   return (
     <div className={classes.faq_section}>
       <p>FIND YOUR ANSWERS</p>
