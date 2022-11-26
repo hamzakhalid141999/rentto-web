@@ -4,11 +4,11 @@ import defaultLayout from "../components/layout/default";
 
 import { AuthProvider } from "../contextApi";
 
-import { Amplify, Auth } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import awsconfig from '../aws-exports';
+import { Amplify, Auth } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+// import awsconfig from '../aws-exports';
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 function MyApp({ Component, pageProps, signOut, user }) {
   const Layout = Component.Layout || defaultLayout;

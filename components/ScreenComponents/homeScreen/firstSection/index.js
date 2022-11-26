@@ -51,9 +51,7 @@ function FirstSection() {
 
       <div className={classes.main_title_heading}>
         <div className={classes.single_row}>
-          <h1>
-            The <span className={classes.animation_text}></span>
-          </h1>
+          <h1>The</h1>
           <p>
             <span style={{ color: "#ff9000" }} id="rotate"></span>
           </p>

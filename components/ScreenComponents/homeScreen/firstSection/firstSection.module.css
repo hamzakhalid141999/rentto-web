@@ -104,7 +104,10 @@
   justify-content: center;
   column-gap: 15px;
 }
-
+.single_row p {
+  color: var(--orangeText);
+  min-width: 320px;
+}
 @keyframes fade {
   0% {
     opacity: 0;
@@ -306,6 +309,18 @@
     font-size: 40px !important;
     line-height: 40px;
     width: 95%;
+  }
+  .single_row p {
+    color: var(--orangeText);
+    min-width: 100px;
+    margin-bottom: 5px;
+  }
+  .single_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0px;
   }
   .triangle {
     width: 200px;
