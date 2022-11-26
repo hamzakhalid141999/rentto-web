@@ -212,9 +212,9 @@
 .images_container {
   position: absolute !important;
   width: 95%;
-  height: 80%;
+  height: 90%;
   display: flex;
-  /* padding-top: 20px; */
+  padding-top: 20px;
   /* padding-left: 20px; */
   overflow-y: scroll !important;
   row-gap: 8px;
@@ -249,6 +249,23 @@
   border: 1px solid var(--orangeText);
   cursor: pointer;
   position: relative;
+}
+.del_icon {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  height: 15px;
+  width: 15px;
+  background-color: var(--background) !important;
+  border: 1px solid grey;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.del_icon p {
+  margin-bottom: 2px;
 }
 .more_images_adder p {
   color: var(--orangeText) !important;

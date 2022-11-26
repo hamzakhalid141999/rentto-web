@@ -44,14 +44,23 @@ function Step2Form({
 
       <div className={classes.input_container}>
         <p>Property Type</p>
-        <input
+        <select
+          style={{ width: "104%" }}
           onChange={(e) => {
             setPropertyTypeText(e.target.value);
           }}
-          value={propertyTypeText}
-          placeholder="Enter property Type"
           className={classes.input_field}
-        />
+        >
+          <option disabled>Enter property Type</option>
+          <option value={"fullhouse"}>Full House</option>
+          <option value={"microwave"}>Microwave</option>
+          <option value={"upperportion"}>Upper Portion</option>
+          <option value={"basement"}>Basement</option>
+          <option value={"twoportions"}>Two Portions</option>
+          <option value={"apartments"}>Apartments</option>
+          <option value={"separaterooms"}>Separate Rooms</option>
+          <option value={"farmhouse"}>Farm House</option>
+        </select>
       </div>
       <div className={classes.input_container}>
         <p>Property Size</p>

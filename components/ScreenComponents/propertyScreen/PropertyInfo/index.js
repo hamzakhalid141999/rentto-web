@@ -7,8 +7,11 @@ import electricity from "../../../../public/assets/property_page/electricity.svg
 import gas from "../../../../public/assets/property_page/gas.svg";
 import dining from "../../../../public/assets/property_page/dining.svg";
 import PropertyCard from "../../../propertyCard";
+import { useRouter } from "next/router";
 
 function PropertyInfo() {
+  const router = useRouter();
+
   return (
     <div className={classes.property_info_section}>
       <div className={classes.content_section}>
@@ -184,7 +187,12 @@ function PropertyInfo() {
               <p>+92 3315810101</p>
             </div>
 
-            <div className={classes.btn_empty}>
+            <div
+              onClick={() => {
+                router.push("/chat");
+              }}
+              className={classes.btn_empty}
+            >
               <p>Message</p>
             </div>
           </div>

@@ -186,7 +186,7 @@
   justify-content: space-between;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  border: 1px solid var(--whiteText);
+  /* border: 1px solid var(--whiteText); */
 }
 .text_input {
   height: 60%;

@@ -50,7 +50,7 @@ function PropertyCard() {
             <img src={heart.src} className={classes.heart} />
           </div>
           <p className={classes.bedroom_description}>
-            4 Beds, 2 Rooms, 1 Garage
+            Complete House | 4 Beds | 2 Rooms | 1 Garage
           </p>
           <div className={classes.address_section}>
             <p className={classes.address}>Park View, Bani Gala, Islamabad</p>

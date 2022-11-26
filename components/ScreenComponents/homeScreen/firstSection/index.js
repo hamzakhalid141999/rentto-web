@@ -27,6 +27,21 @@ function FirstSection() {
     $(rotateTerm);
   }, []);
 
+  var terms2 = ["Property", "House", "Workspace"];
+
+  useEffect(() => {
+    function rotateTerm() {
+      var ct = $("#rotate2").data("term") || 0;
+      $("#rotate2")
+        .data("term", ct == terms2.length - 1 ? 0 : ct + 1)
+        .text(terms2[ct])
+        .fadeIn()
+        .delay(2000)
+        .fadeOut(200, rotateTerm);
+    }
+    $(rotateTerm);
+  }, []);
+
   return (
     <div className={classes.first_section}>
       <img src={first_section_bg.src} className={classes.bg} />
@@ -46,7 +61,10 @@ function FirstSection() {
 
         <h1>
           {" "}
-          way to rent a <span className={classes.orange_text}>Property</span>
+          way to rent a{" "}
+          <span className={classes.orange_text}>
+            <span style={{ color: "#ff9000" }} id="rotate2"></span>
+          </span>
         </h1>
       </div>
 

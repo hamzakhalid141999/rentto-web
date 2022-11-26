@@ -8,10 +8,20 @@ import Step3Form from "../../components/ScreenComponents/listPropertyScreen/step
 import Step4Form from "../../components/ScreenComponents/listPropertyScreen/step4Form";
 import Step5Form from "../../components/ScreenComponents/listPropertyScreen/step5Form";
 import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step6Form";
+import ReviewProperty from "../../components/modal/reviewProperty";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(1);
-  const [features, setFeatures] = useState([]);
+  const [activeStep, setActiveStep] = useState(6);
+  const [features, setFeatures] = useState([
+    "Laundry",
+    "Backyard",
+    "Patio",
+    "Pool",
+    "Basement",
+    "Intercom",
+    "Stove",
+  ]);
+  const [featuresSelected, setFeaturesSelected] = useState([]);
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
   const [propertyType, setPropertyType] = useState("residential");
@@ -32,8 +42,21 @@ function ListProperty() {
   const [servantView, setServantView] = useState();
   const [storeRoom, setStoreRoom] = useState();
   const [separateDining, setSeparateDining] = useState();
-  const [section, setSection] = useState();
+
   const [filesArr, setFilesArr] = useState([]);
+  const [filesArrBathroom, setFilesArrBathroom] = useState([]);
+  const [filesArrDining, setFilesArrDining] = useState([]);
+
+  const [section, setSection] = useState("bedroom");
+  const [open, setOpen] = useState();
+
+  const handleOpenModal = async () => {
+    setOpen(true);
+  };
+
+  const handleCloseModal = async () => {
+    setOpen(false);
+  };
 
   const handleActiveStep = async (value) => {
     if (value < activeStep) {
@@ -41,8 +64,38 @@ function ListProperty() {
     }
   };
 
+  console.log(section);
+
   return (
     <div className={classes.list_property_section}>
+      <ReviewProperty
+        features={features}
+        address={address}
+        propertyType={propertyType}
+        propertyTypeText={propertyTypeText}
+        propertySize={propertySize}
+        expectedRent={expectedRent}
+        bedrooms={bedrooms}
+        bathrooms={bathrooms}
+        lounge={lounge}
+        kitchen={kitchen}
+        drawingRoom={drawingRoom}
+        parking={parking}
+        builtIn={builtIn}
+        propertyFinish={propertyFinish}
+        flooring={flooring}
+        locality={locality}
+        view={view}
+        servantView={servantView}
+        storeRoom={storeRoom}
+        separateDining={separateDining}
+        filesArr={filesArr}
+        filesArrBathroom={filesArrBathroom}
+        filesArrDining={filesArrDining}
+        city={city}
+        open={open}
+        onCloseModal={handleCloseModal}
+      />
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
         <img src={bottom_right_pattern.src} className={classes.bottom_right} />
@@ -219,13 +272,23 @@ function ListProperty() {
             features={features}
             setFeatures={setFeatures}
             setActiveStep={setActiveStep}
+            setFeaturesSelected={setFeaturesSelected}
+            featuresSelected={featuresSelected}
           />
         ) : activeStep === 6 ? (
           <Step6Form
             setFilesArr={setFilesArr}
             filesArr={filesArr}
+            setFilesArrBathroom={setFilesArrBathroom}
+            filesArrBathroom={filesArrBathroom}
+            setFilesArrDining={setFilesArrDining}
+            filesArrDining={filesArrDining}
             setActiveStep={setActiveStep}
             setSection={setSection}
+            section={section}
+            handleOpenModal={handleOpenModal}
+            open={open}
+            handleCloseModal={handleCloseModal}
           />
         ) : (
           <></>

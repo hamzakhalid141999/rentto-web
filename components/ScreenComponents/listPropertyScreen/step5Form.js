@@ -4,7 +4,13 @@ import "@pathofdev/react-tag-input/build/index.css";
 import toast, { Toaster } from "react-hot-toast";
 import classes from "./formStyle.module.css";
 
-function Step5Form({ setActiveStep, setFeatures, features }) {
+function Step5Form({
+  setActiveStep,
+  setFeatures,
+  features,
+  setFeaturesSelected,
+  featuresSelected,
+}) {
   const toggleNextStep = async () => {
     if (!features) {
       error("Enter features");
@@ -25,6 +31,10 @@ function Step5Form({ setActiveStep, setFeatures, features }) {
     });
   };
 
+  const handleSelectFeature = async (feature) => {
+    setFeaturesSelected((featureArr) => [...featureArr, feature]);
+  };
+
   return (
     <div className={classes.form_body}>
       <Toaster />
@@ -35,24 +45,30 @@ function Step5Form({ setActiveStep, setFeatures, features }) {
         <p style={{ marginLeft: "0px" }}>Property Features</p>
 
         <ReactTagInput
-          tags={features}
+          tags={featuresSelected}
           maxTags={50}
           removeOnBackspace={true}
           className={classes.input_field}
-          placeholder="Type and press enter"
+          placeholder="Select features below"
           onChange={(newTags) => {
             newTags = newTags.map(function (item) {
               return item.replace(/\s+/g, "");
             });
             var arr = newTags.filter((e) => String(e).trim());
-            setFeatures(arr);
+            setFeaturesSelected(arr);
           }}
         />
       </div>
 
       <div className={classes.tags_container}>
         {features?.map((feature, index) => (
-          <div key={index} className={classes.tag}>
+          <div
+            onClick={() => {
+              handleSelectFeature(feature);
+            }}
+            key={index}
+            className={classes.tag}
+          >
             <p>{feature}</p>
           </div>
         ))}

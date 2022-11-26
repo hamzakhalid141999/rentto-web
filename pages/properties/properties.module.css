@@ -37,7 +37,7 @@
 .properties_container_map_view {
   position: absolute;
   right: 10px;
-  top: 19px;
+  top: -30px;
   height: 85vh;
   max-height: 85vh;
   width: fit-content;
@@ -45,6 +45,7 @@
   flex-direction: column;
   row-gap: 15px;
   overflow-y: scroll;
+  padding-top: 50px;
 }
 .filter_section {
   width: 98%;

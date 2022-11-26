@@ -1,0 +1,58 @@
+.customOverlay {
+  background: rgba(0, 0, 0, 0.733);
+}
+.filterModal {
+  width: fit-content !important;
+  box-shadow: none !important;
+  padding-top: 0px !important;
+  padding-left: 00px !important;
+  padding-bottom: 0px !important;
+  padding-right: 0px !important;
+  max-height: 80%;
+  overflow-y: scroll !important;
+  scrollbar-width: none !important;
+  /* Firefox - for hiding scrollbar */
+  -ms-overflow-style: none !important;
+  transition: ease-in-out 200ms;
+  background-color: var(--background);
+  position: relative;
+  border-radius: 3px !important;
+}
+.main_container {
+  min-width: 800px;
+  max-width: 800px;
+}
+.img {
+  width: 100%;
+  object-fit: contain;
+}
+@media screen and (max-width: 768px) {
+  .filterModal {
+    min-width: initial !important;
+    width: 84% !important;
+    /* border-radius: 15px !important; */
+    margin-top: 80px !important;
+  }
+  .content_container {
+    width: 95%;
+  }
+  /* .single_row p:first-child {
+    font-size: 12px;
+  }
+  .row_with_label p {
+    font-size: 12px;
+  } */
+  .content_container h1 {
+    text-align: center;
+    font-size: 17px;
+    font-weight: normal;
+    margin-top: 20px;
+  }
+  .bottom_banner .btn_filled {
+    margin-right: 0px;
+    width: 120px;
+  }
+  .bottom_banner p:first-child {
+    margin-left: 10px;
+  }
+}

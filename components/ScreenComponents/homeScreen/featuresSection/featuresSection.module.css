@@ -101,6 +101,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  column-gap: 82px;
 }
 .no_fee_img {
   width: 500px;
@@ -132,6 +133,7 @@
 }
 .description_container {
   max-width: 500px;
+  width: 45%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -201,6 +203,9 @@
   .content_container {
     width: 90%;
   }
+  .description_container {
+    width: 100%;
+  }
   .content_container h1 {
     font-size: 35px !important;
     line-height: 40px;
@@ -223,6 +228,7 @@
   .card_imgs_container {
     /* width: 400px; */
     position: relative;
+    max-width: 400px;
     width: 100%;
     height: 310px;
     display: flex;
