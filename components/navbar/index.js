@@ -137,7 +137,7 @@ function Navbar() {
               </p>
             </Link>
             <div className={classes.left_panel_btns}>
-              <Link href={"/list_property"}>
+              {/* <Link href={"/list_property"}>
                 <p>List a property</p>
               </Link>
               <Link href={"/properties"}>
@@ -146,7 +146,7 @@ function Navbar() {
               <p>FAQ</p>
               <Link href={"/chat"}>
                 <p>Chat</p>
-              </Link>
+              </Link> */}
             </div>
           </>
         ) : (
@@ -167,11 +167,11 @@ function Navbar() {
       <div className={classes.right_panel}>
         {/* <img src={heart_icon.src} className={classes.icon} />
         <img src={mail_icon.src} className={classes.icon} /> */}
-        <Link href={"/login"}>
+        {/* <Link href={"/login"}>
           <p>Login</p>
-        </Link>
+        </Link> */}
         <div className={classes.get_started_btn}>
-          <p>Get Started</p>
+          <p>Coming Soon</p>
         </div>
         <DarkModeSwitch checked={darkTheme} onChange={handleToggle} size={30} />
       </div>

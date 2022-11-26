@@ -21,10 +21,10 @@ function DownloadAppSection() {
 
       <div className={classes.properties_content}>
         <img src={rentto_logo.src} className={classes.logo} />
-        <h2 data-aos="fade-up">Try Rentto For Free</h2>
-        <p>Rentto Lorem ipsum Dolor Set Est Lorem Ipsum</p>
+        <h2 data-aos="fade-up">Coming soon to your mobile devices</h2>
+        <p>Will be available on the Apple App Store and Google Playstore.</p>
         <div className={classes.get_app_btn}>
-          <p className={classes.btn_label}>Get Rentto App</p>
+          <p className={classes.btn_label}>Sign up for alerts</p>
         </div>
       </div>
 
