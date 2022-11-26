@@ -61,10 +61,7 @@ function FirstSection() {
 
         <h1>
           {" "}
-          way to rent a{" "}
-          <span className={classes.orange_text}>
-            <span style={{ color: "#ff9000" }} id="rotate2"></span>
-          </span>
+          way to rent a <span className={classes.orange_text}>Property</span>
         </h1>
       </div>
 
