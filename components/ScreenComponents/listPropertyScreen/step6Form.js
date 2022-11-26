@@ -106,7 +106,6 @@ function Step6Form({
   }, []);
 
   const toggleNextStep = async () => {
-    
     // setActiveStep(7);
     handleOpenModal();
   };
@@ -168,7 +167,7 @@ function Step6Form({
         <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {filesArr?.map((pic, index) => (
-              <div style={{ position: "relative" }}>
+              <div key={index} style={{ position: "relative" }}>
                 <div
                   onClick={() => {
                     handleDeletePicture(index);
@@ -232,7 +231,7 @@ function Step6Form({
         <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {filesArrDining?.map((pic, index) => (
-              <div style={{ position: "relative" }}>
+              <div key={index} style={{ position: "relative" }}>
                 <div
                   onClick={() => {
                     handleDeleteDiningPicture(index);
@@ -296,7 +295,7 @@ function Step6Form({
         <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {filesArrBathroom?.map((pic, index) => (
-              <div style={{ position: "relative" }}>
+              <div key={index} style={{ position: "relative" }}>
                 <div
                   onClick={() => {
                     handleDeleteBathroomPicture(index);

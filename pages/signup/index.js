@@ -400,7 +400,7 @@ function SignUp() {
                     </div>
 
                     <label style={{ marginTop: "60px" }}>
-                      Didn't recieve OTP?
+                      Didn&#39;t recieve OTP?
                     </label>
                     <p
                       onClick={handleResendOtp}

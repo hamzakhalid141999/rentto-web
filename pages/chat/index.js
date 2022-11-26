@@ -130,7 +130,7 @@ function Chat() {
               <div className={classes.chat_panel_mobile}>
                 {messaages?.map((msg, index) =>
                   msg?.messageLeft === true ? (
-                    <div className={classes.msg_container_left}>
+                    <div key={index} className={classes.msg_container_left}>
                       <div className={classes.left_msg}>
                         <p className={classes.msg_text}> {msg?.text}</p>
                       </div>
@@ -246,7 +246,7 @@ function Chat() {
               <div className={classes.chat_panel}>
                 {messaages?.map((msg, index) =>
                   msg?.messageLeft === true ? (
-                    <div className={classes.msg_container_left}>
+                    <div key={index} className={classes.msg_container_left}>
                       <div className={classes.left_msg}>
                         <p className={classes.msg_text}> {msg?.text}</p>
                       </div>

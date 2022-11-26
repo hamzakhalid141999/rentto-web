@@ -12,7 +12,7 @@ import { Typewriter, useTypewriter, Cursor } from "react-simple-typewriter";
 import $ from "jquery";
 
 function FirstSection() {
-  var terms = ["Easiest", "Reliable", "Safest"];
+  var terms = ["Easiest", "Fastest", "Cheapest"];
 
   useEffect(() => {
     function rotateTerm() {
@@ -59,7 +59,8 @@ function FirstSection() {
 
         <h1>
           {" "}
-          way to rent a <span className={classes.orange_text}>Property</span>
+          way to rent a{" "}
+          <span className={classes.orange_text} id="rotate2"></span>
         </h1>
       </div>
 

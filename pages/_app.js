@@ -6,7 +6,7 @@ import { AuthProvider } from "../contextApi";
 
 import { Amplify, Auth } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-// import awsconfig from '../aws-exports';
+// import awsconfig from "../aws-exports";
 
 // Amplify.configure(awsconfig);
 

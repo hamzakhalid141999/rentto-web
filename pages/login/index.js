@@ -22,7 +22,7 @@ import Router, { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
-import { Auth } from 'aws-amplify';
+import { Auth } from "aws-amplify";
 import { useAuth } from "../../contextApi";
 
 function Login() {
@@ -82,27 +82,24 @@ function Login() {
       return false;
     }
 
-    
     try {
-        setLoading(true);
-        // await delay(1000);
-      
-        const local_user = await Auth.signIn(email, password);
-        console.log(local_user);
-        signIn(local_user);
+      setLoading(true);
+      // await delay(1000);
 
-        console.log(user);
-        
-        setLoading(false);
-        router.push("/");
+      const local_user = await Auth.signIn(email, password);
+      console.log(local_user);
+      signIn(local_user);
 
+      console.log(user);
+
+      setLoading(false);
+      router.push("/");
     } catch (error_) {
-        console.log('error signing in', error_);
-        // error(error_);
+      console.log("error signing in", error_);
+      // error(error_);
 
-        setLoading(false);
+      setLoading(false);
     }
-    
   };
 
   return (
@@ -218,7 +215,9 @@ function Login() {
             <img src={google_login_icon.src} className={classes.btn_icon} />
             <p>Login With Google</p>
           </div>
-          <label style={{ marginTop: "60px" }}>Don't have an account?</label>
+          <label style={{ marginTop: "60px" }}>
+            Don&#39;t have an account?
+          </label>
           <Link href={"/signup"}>
             <p className={classes.signup_text}>SIGNUP</p>
           </Link>
