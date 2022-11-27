@@ -51,7 +51,9 @@ function Step2Form({
           }}
           className={classes.input_field}
         >
-          <option disabled>Enter property Type</option>
+          <option selected value={"nil"} disabled>
+            Enter property Type
+          </option>
           <option value={"fullhouse"}>Full House</option>
           <option value={"microwave"}>Microwave</option>
           <option value={"upperportion"}>Upper Portion</option>
