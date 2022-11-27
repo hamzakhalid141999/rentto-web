@@ -1,0 +1,10 @@
+{
+  "resourceName": "s3renttodevstorage6028e195",
+  "bucketName": "rentto-dev-storage-6028e195",
+  "policyUUID": "eaa30e04",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ]
+}

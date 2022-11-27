@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, 
+  // Image
+} from "react";
 import classes from "./propertyCard.module.css";
 import mail from "../../public/assets/property_card_assets/mail_icon_card.png";
 import heart from "../../public/assets/property_card_assets/heart_icon_card.png";
@@ -8,7 +10,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
 
-function PropertyCard() {
+function PropertyCard({adlife, adlifetier, address, price, placeholderimage}) {
+  // console.log('pcimage', placeholderimage)
   return (
     <Link href={"/properties/1"}>
       <div className={classes.card_body}>
@@ -27,18 +30,25 @@ function PropertyCard() {
                   style={{ color: "white" }}
                   className={classes.ad_life_progress}
                 >
-                  20/60 Days
+                  {adlife}/{adlifetier} Days
                 </p>
               </div>
             </div>
           </div>
-          <img src={placeholder.src} className={classes.image} />
+          <img 
+            // src={placeholder.src}
+            // src={placeholderimage} 
+            // src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+      
+            // className={classes.image}
+           />
         </div>
 
         <div className={classes.description_container}>
           <div className={classes.price_row}>
             <p style={{ color: "#008080" }} className={classes.price}>
-              Rs 1500,000
+              {/* Rs {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} */}
+              Rs 120,000
               <span
                 style={{ color: "#00000040" }}
                 className={classes.per_month}
@@ -53,7 +63,7 @@ function PropertyCard() {
             Complete House | 4 Beds | 2 Rooms | 1 Garage
           </p>
           <div className={classes.address_section}>
-            <p className={classes.address}>Park View, Bani Gala, Islamabad</p>
+            <p className={classes.address}>{address}</p>
             <div className={classes.icons_row}>
               <img src={phone.src} className={classes.contact_icon} />
               <img src={mail.src} className={classes.contact_icon} />

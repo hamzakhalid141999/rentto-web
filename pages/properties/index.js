@@ -11,15 +11,25 @@ import Filter from "../../components/modal/filter";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import { useRouter } from "next/router";
 
+import {DataStore} from '@aws-amplify/datastore';
+import {Listing} from '../../models';
+
+import * as queries from '../../graphql/queries';
+import { API, graphqlOperation } from 'aws-amplify';
+
 function Properties() {
   const router = useRouter();
   const [mapView, setMapView] = useState(false);
   const [isMapSearch, setIsMapSearch] = useState(false);
   const [open, setOpen] = useState();
 
+  const [listings, setListings] = useState([]);
+
   const handleOpenModal = async () => {
     setOpen(true);
   };
+
+  // graphql/**/*.js
 
   const onCloseModal = async () => {
     setOpen(false);
@@ -36,6 +46,67 @@ function Properties() {
   const handleToggleNormalView = async () => {
     setMapView(false);
   };
+
+  const fetch_listings = async () => {
+    // console.log(user)
+    // await API.graphql({
+    //   query: mutations.createListing,
+    //   variables: { input: propertyFeatures },
+    // });
+
+
+
+    // let filter = {
+    //     _deleted: {
+    //         eq: null // filter priority = 1
+    //     }
+    // };
+    // Query using a parameter
+    const fetched_listings = await API.graphql({
+      query: queries.listListings
+      // variables: { filter: filter }
+
+      // variables: { Name: 'Shhs' }
+
+      // House # 1029D, Street # 46
+    });
+
+    // const fetched_listings = await API.graphql(graphqlOperation(queries.listListings, {
+    //     filter: {
+    //         _deleted: {
+    //             eq: "completed"
+    //         }
+    //     }
+    // }));
+
+    // fetched_listings.data.listListings.items
+
+    var data_filter = fetched_listings.data.listListings.items.filter( element => element._deleted == null)
+
+    setListings(data_filter)
+
+    console.log('fetched_listings', data_filter);
+  }
+
+  useEffect(() => {
+
+
+    fetch_listings();    
+
+
+    // const subscription = DataStore.observeQuery(Listing).subscribe(snapshot => {
+    //   const {items, isSynced} = snapshot;
+    //   // dispatch(fetch_data(items));
+
+    //   setListings(items)
+    //   console.log(items)
+    // });
+
+    // return () => {
+    //   // Anything in here is fired on component unmount.
+    //   subscription.unsubscribe();
+    // };
+  }, []);
 
   return (
     <>
@@ -227,23 +298,28 @@ function Properties() {
               </div>
             </div>
             <div className={classes.properties_section}>
+            {listings == null ? (
+                  null
+                ) : (
+                  listings.map(listing => {
+                    return (
+                      <PropertyCard 
+                        adlife={listing.AdLife}
+                        adlifetier={listing.AdLifeTier}
+                        address={listing.Address}
+                        price={listing.Price}
+                        placeholderimage={listing.Images[0]}
+                      />
+                    );
+                  })
+                )}
+              {/* <PropertyCard />
               <PropertyCard />
               <PropertyCard />
               <PropertyCard />
               <PropertyCard />
               <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
-              <PropertyCard />
+              <PropertyCard /> */}
             </div>
           </div>
         </div>

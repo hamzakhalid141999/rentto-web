@@ -1,0 +1,15 @@
+projects:
+  renttodev:
+    schemaPath: amplify/backend/api/renttodev/build/schema.graphql
+    includes:
+      - graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 3

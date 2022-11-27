@@ -153,18 +153,18 @@ function Navbar() {
                 rentto<span className={classes.logo_orange}>app</span>
               </p>
             </Link>
-            {/* <div className={classes.left_panel_btns}>
-              <Link href={"/list_property"}>
+            <div className={classes.left_panel_btns}>
+              {/* <Link href={"/list_property"}>
                 <p>List a property</p>
-              </Link>
+              </Link> */}
               <Link href={"/properties"}>
                 <p>Featured</p>
               </Link>
-              <p>FAQ</p>
+              {/* <p>FAQ</p>
               <Link href={"/chat"}>
                 <p>Chat</p>
-              </Link>
-            </div> */}
+              </Link> */}
+            </div>
           </>
         ) : (
           <>
