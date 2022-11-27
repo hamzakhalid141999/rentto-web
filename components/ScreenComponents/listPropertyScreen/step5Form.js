@@ -10,6 +10,11 @@ function Step5Form({
   features,
   setFeaturesSelected,
   featuresSelected,
+  propertyFinish,
+  setFurnishingFeatures,
+  furnishingFeatures,
+  setFurnishingFeaturesSelected,
+  furnishingFeaturesSelected,
 }) {
   const toggleNextStep = async () => {
     if (!features) {
@@ -19,6 +24,8 @@ function Step5Form({
 
     setActiveStep(6);
   };
+
+  console.log(propertyFinish);
 
   const error = (msg) => {
     toast.error(msg, {
@@ -32,7 +39,15 @@ function Step5Form({
   };
 
   const handleSelectFeature = async (feature) => {
-    setFeaturesSelected((featureArr) => [...featureArr, feature]);
+    if (!featuresSelected?.includes(feature)) {
+      setFeaturesSelected((featureArr) => [...featureArr, feature]);
+    }
+  };
+
+  const handleSelectFurnishingFeature = async (feature) => {
+    if (!furnishingFeaturesSelected?.includes(feature)) {
+      setFurnishingFeaturesSelected((featureArr) => [...featureArr, feature]);
+    }
   };
 
   return (
@@ -74,41 +89,45 @@ function Step5Form({
         ))}
       </div>
 
-      {/* <div
-        style={{ width: "100%", marginTop: "50px" }}
-        className={classes.input_container}
-      >
-        <p style={{ marginLeft: "0px" }}>Property Features</p>
-
-        <ReactTagInput
-          tags={featuresSelected}
-          maxTags={50}
-          removeOnBackspace={true}
-          className={classes.input_field}
-          placeholder="Select features below"
-          onChange={(newTags) => {
-            newTags = newTags.map(function (item) {
-              return item.replace(/\s+/g, "");
-            });
-            var arr = newTags.filter((e) => String(e).trim());
-            setFeaturesSelected(arr);
-          }}
-        />
-      </div>
-
-      <div className={classes.tags_container}>
-        {features?.map((feature, index) => (
+      {(propertyFinish === true || propertyFinish === "true") && (
+        <>
           <div
-            onClick={() => {
-              handleSelectFeature(feature);
-            }}
-            key={index}
-            className={classes.tag}
+            style={{ width: "100%", marginTop: "30px" }}
+            className={classes.input_container}
           >
-            <p>{feature}</p>
+            <p style={{ marginLeft: "0px" }}>Property Furnishing Features</p>
+
+            <ReactTagInput
+              tags={furnishingFeaturesSelected}
+              maxTags={50}
+              removeOnBackspace={true}
+              className={classes.input_field}
+              placeholder="Select features below"
+              onChange={(newTags) => {
+                newTags = newTags.map(function (item) {
+                  return item.replace(/\s+/g, "");
+                });
+                var arr = newTags.filter((e) => String(e).trim());
+                setFurnishingFeatures(arr);
+              }}
+            />
           </div>
-        ))}
-      </div> */}
+
+          <div className={classes.tags_container}>
+            {furnishingFeatures?.map((feature, index) => (
+              <div
+                onClick={() => {
+                  handleSelectFurnishingFeature(feature);
+                }}
+                key={index}
+                className={classes.tag}
+              >
+                <p>{feature}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       <p className={classes.terms_services_text}>
         By proceeding you agree to Rentto’s <span>Terms of Service</span> and{" "}

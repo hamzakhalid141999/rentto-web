@@ -26,7 +26,7 @@ function Step4Form({
       error("Enter built year");
       return;
     } else if (!propertyFinish) {
-      error("Enter property finish year");
+      error("Enter property finishing");
       return;
     } else if (!flooring) {
       error("Enter flooring");
@@ -60,6 +60,8 @@ function Step4Form({
       position: "bottom-right",
     });
   };
+
+  console.log("INSIDE FORM: ", propertyFinish);
 
   return (
     <div className={classes.form_body}>

@@ -47,6 +47,7 @@ function ReviewProperty({
   city,
   filesArrBathroom,
   filesArrDining,
+  furnishingFeatures,
 }) {
   const label = { inputProps: { "aria-label": "Color switch demo" } };
   const [rent, setRent] = useState();
@@ -330,45 +331,16 @@ function ReviewProperty({
                   </p>
 
                   <div className={classes.tags_container}>
-                    <div className={classes.tag}>
-                      <p>Full House</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Microwave</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Upper Portion</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Basement</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Two Portion</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Apartments</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Farmhouse</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Elevators</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Two Portion</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Apartments</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Farmhouse</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Elevators</p>
-                    </div>
-                    <div className={classes.tag}>
-                      <p>Gymnasium / Yoga Area</p>
-                    </div>
+                    {features?.map((feature, index) => (
+                      <div key={index} className={classes.tag}>
+                        <p>{feature}</p>
+                      </div>
+                    ))}
+                    {furnishingFeatures?.map((feature, index) => (
+                      <div key={index} className={classes.tag}>
+                        <p>{feature}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 

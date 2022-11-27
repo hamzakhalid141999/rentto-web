@@ -331,9 +331,11 @@
   width: 100%;
   max-height: 210px;
   min-height: 210px;
-
-  border: none !important;
+  padding-left: 20px;
+  padding-top: 20px;
+  border: 1px solid var(--orangeText) !important;
   font-family: "DMSans-Regular";
+  border-radius: 5px;
 }
 .description_container textarea:focus {
   outline: none !important;

@@ -11,7 +11,7 @@ import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step
 import ReviewProperty from "../../components/modal/reviewProperty";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(6);
   const [features, setFeatures] = useState([
     "Laundry",
     "Backyard",
@@ -21,7 +21,29 @@ function ListProperty() {
     "Intercom",
     "Stove",
   ]);
+  const [furnishingFeatures, setFurnishingFeatures] = useState([
+    "Dryer",
+    "Washing Machine",
+    "Microwave",
+    "Electriv Kettle",
+    "Refrigerator",
+    "Dish Washer",
+    "Closets",
+    "Dining Table",
+    "Dinner Set",
+    "Tables",
+    "Sofas",
+    "Chairs",
+    "Tea Set",
+    "Coffee Maker",
+    "Study Table",
+    "Cable/Dish",
+    "Music System",
+  ]);
   const [featuresSelected, setFeaturesSelected] = useState([]);
+  const [furnishingFeaturesSelected, setFurnishingFeaturesSelected] = useState(
+    []
+  );
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
   const [propertyType, setPropertyType] = useState("residential");
@@ -35,7 +57,7 @@ function ListProperty() {
   const [drawingRoom, setDrawingRoom] = useState();
   const [parking, setParking] = useState();
   const [builtIn, setBuiltIn] = useState();
-  const [propertyFinish, setPropertyFinish] = useState();
+  const [propertyFinish, setPropertyFinish] = useState(true);
   const [flooring, setFlooring] = useState();
   const [locality, setLocality] = useState();
   const [view, setView] = useState();
@@ -76,6 +98,7 @@ function ListProperty() {
     <div className={classes.list_property_section}>
       <ReviewProperty
         features={features}
+        furnishingFeatures={furnishingFeatures}
         address={address}
         propertyType={propertyType}
         propertyTypeText={propertyTypeText}
@@ -277,9 +300,14 @@ function ListProperty() {
           <Step5Form
             features={features}
             setFeatures={setFeatures}
+            setFurnishingFeatures={setFurnishingFeatures}
+            furnishingFeatures={furnishingFeatures}
             setActiveStep={setActiveStep}
             setFeaturesSelected={setFeaturesSelected}
+            setFurnishingFeaturesSelected={setFurnishingFeaturesSelected}
+            furnishingFeaturesSelected={furnishingFeaturesSelected}
             featuresSelected={featuresSelected}
+            propertyFinish={propertyFinish}
           />
         ) : activeStep === 6 ? (
           <>
