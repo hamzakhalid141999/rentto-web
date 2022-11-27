@@ -20,8 +20,8 @@ import { useRouter } from "next/router";
 
 import { useAuth } from "../../../contextApi";
 
-import { API, Storage  } from 'aws-amplify';
-import * as mutations from '../../../graphql/mutations';
+import { API, Storage } from "aws-amplify";
+import * as mutations from "../../../graphql/mutations";
 
 // import "../../../public";
 function ReviewProperty({
@@ -53,6 +53,8 @@ function ReviewProperty({
   filesArrBathroom,
   filesArrDining,
   furnishingFeatures,
+  featuresSelected,
+  furnishingFeaturesSelected,
 }) {
   const label = { inputProps: { "aria-label": "Color switch demo" } };
   const [rent, setRent] = useState();
@@ -86,88 +88,84 @@ function ReviewProperty({
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const uploadListing = async () => {
-      console.log(filesArr)
+    console.log(filesArr);
 
-      var signedArr = [];
+    var signedArr = [];
 
-      for (let i = 0; i < filesArr.length; i++) {
-        try {
-          const result = await Storage.put(filesArr[i].name, filesArr[i], {
-            level: 'protected',
-            contentType: filesArr[i].type, // contentType is optional
-          });
-  
-          console.log(result)
-  
-          var signedUrl = await Storage.get(result.key, { level: 'protected' });     
-          // var signedUrl = await Storage.get(result.key, { level: 'public' });     
-          
-          signedArr.push(signedUrl);
-          console.log(signedUrl);
-        } catch (error) {
-          console.log("Error uploading file: ", error);
-        }
+    for (let i = 0; i < filesArr.length; i++) {
+      try {
+        const result = await Storage.put(filesArr[i].name, filesArr[i], {
+          level: "protected",
+          contentType: filesArr[i].type, // contentType is optional
+        });
+
+        console.log(result);
+
+        var signedUrl = await Storage.get(result.key, { level: "protected" });
+        // var signedUrl = await Storage.get(result.key, { level: 'public' });
+
+        signedArr.push(signedUrl);
+        console.log(signedUrl);
+      } catch (error) {
+        console.log("Error uploading file: ", error);
       }
-      
+    }
 
-      const propertyFeatures = {
-        Name: address,
-        FeatureDescription: `${bedrooms} BedRooms, ${kitchen} Bathrooms, ${lounge} lounges`,
-        Address: address,
-        AdLife: 22,
-        AdLifeTier: 60,
-        Price: '30000',
-        userID: user.attributes.sub,
-        PropertyDetails: JSON.stringify({
-          propertyType: propertyType,
-          propertySize: propertySize,
-          builtIn: builtIn,
-          propertyFinish: propertyFinish,
-          flooring: flooring,
-          locality: locality,
-          bedRooms: bedrooms,
-          bathrooms: bathrooms,
-          lounges: lounge,
-          kitchen: kitchen,
-          parking: parking,
-          servantRoom: servantView,
-          storeRoom: storeRoom,
-          diningRoom: separateDining,
-        }),
-        PropertySpecification: JSON.stringify({
-          propertyFeatures: features,
-          propertyFeatures2: features,
-        }),
-        Images: signedArr,
-        // Images: [
-        //   'https://th.bing.com/th/id/OIP.Si21-XFZaoVcG8-ve9uw-gHaF6?w=259&h=207&c=7&r=0&o=5&dpr=1.5&pid=1.7',
-        // ],
-        PropertyDescription:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lLorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lLorem ipsum',
-      };
-
-      console.log(propertyFeatures)
-
-      await API.graphql({
-        query: mutations.createListing,
-        variables: { input: propertyFeatures },
-      });
-  
-      // onConfirm();
+    const propertyFeatures = {
+      Name: address,
+      FeatureDescription: `${bedrooms} BedRooms, ${kitchen} Bathrooms, ${lounge} lounges`,
+      Address: address,
+      AdLife: 22,
+      AdLifeTier: 60,
+      Price: "30000",
+      userID: user.attributes.sub,
+      PropertyDetails: JSON.stringify({
+        propertyType: propertyType,
+        propertySize: propertySize,
+        builtIn: builtIn,
+        propertyFinish: propertyFinish,
+        flooring: flooring,
+        locality: locality,
+        bedRooms: bedrooms,
+        bathrooms: bathrooms,
+        lounges: lounge,
+        kitchen: kitchen,
+        parking: parking,
+        servantRoom: servantView,
+        storeRoom: storeRoom,
+        diningRoom: separateDining,
+      }),
+      PropertySpecification: JSON.stringify({
+        propertyFeatures: features,
+        propertyFeatures2: features,
+      }),
+      Images: signedArr,
+      // Images: [
+      //   'https://th.bing.com/th/id/OIP.Si21-XFZaoVcG8-ve9uw-gHaF6?w=259&h=207&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+      // ],
+      PropertyDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lLorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lLorem ipsum",
     };
 
+    console.log(propertyFeatures);
 
-    const handlePostList = async () => {
-      setLoading(true);
-      await delay(2000);
-      setLoading(false);
-      uploadListing();
-      setIsPosted(true);
-      await delay(2000);
-      window.location.reload();
-    };
+    await API.graphql({
+      query: mutations.createListing,
+      variables: { input: propertyFeatures },
+    });
 
-  
+    // onConfirm();
+  };
+
+  const handlePostList = async () => {
+    setLoading(true);
+    await delay(2000);
+    setLoading(false);
+    uploadListing();
+    setIsPosted(true);
+    await delay(2000);
+    window.location.reload();
+  };
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -414,12 +412,12 @@ function ReviewProperty({
                   </p>
 
                   <div className={classes.tags_container}>
-                    {features?.map((feature, index) => (
+                    {featuresSelected?.map((feature, index) => (
                       <div key={index} className={classes.tag}>
                         <p>{feature}</p>
                       </div>
                     ))}
-                    {furnishingFeatures?.map((feature, index) => (
+                    {furnishingFeaturesSelected?.map((feature, index) => (
                       <div key={index} className={classes.tag}>
                         <p>{feature}</p>
                       </div>

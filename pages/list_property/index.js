@@ -98,6 +98,8 @@ function ListProperty() {
     <div className={classes.list_property_section}>
       <ReviewProperty
         features={features}
+        featuresSelected={featuresSelected}
+        furnishingFeaturesSelected={furnishingFeaturesSelected}
         furnishingFeatures={furnishingFeatures}
         address={address}
         propertyType={propertyType}
