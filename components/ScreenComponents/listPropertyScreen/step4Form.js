@@ -92,9 +92,9 @@ function Step4Form({
             placeholder="Enter the number of bathrooms"
             className={classes.input_field}
           >
-            <option>Select Finish Year</option>
-            <option>2</option>
-            <option>3</option>
+            <option disabled>Select Finish Year</option>
+            <option value={true}>Furnished</option>
+            <option value={false}>Unfurnished</option>
           </select>
         </div>
       </div>

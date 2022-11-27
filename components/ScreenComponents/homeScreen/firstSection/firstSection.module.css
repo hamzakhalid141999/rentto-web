@@ -13,7 +13,7 @@
   color: black;
   z-index: 10;
   font-weight: 900;
-  width: 70%;
+  width: 90%;
   text-align: center;
   line-height: 90px;
   margin-top: 70px;
@@ -95,7 +95,19 @@
 }
 .main_title_heading h1 {
   margin-top: 0px !important;
-  margin-bottom: 5px !important;
+  margin-bottom: 0px !important;
+}
+.first_line_single_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+  max-width: 430px;
+}
+.first_line_single_row p {
+  color: var(--orangeText);
+  min-width: 320px;
 }
 .single_row {
   display: flex;
@@ -176,6 +188,16 @@
   right: -50px;
   bottom: 0px;
   pointer-events: none;
+  transition: ease-in-out 200ms;
+}
+.triangle_upside_down {
+  width: 400px;
+  position: absolute;
+  right: -190px;
+  bottom: -140px;
+  pointer-events: none;
+  transform: rotate(180deg);
+  transition: ease-in-out 200ms;
 }
 .triangle:hover {
   animation: textanimation 0.5s linear infinite;
@@ -308,12 +330,12 @@
   .first_section h1 {
     font-size: 40px !important;
     line-height: 40px;
-    width: 95%;
+    width: 75%;
   }
   .single_row p {
     color: var(--orangeText);
-    min-width: 100px;
-    margin-bottom: 5px;
+    min-width: 100px !important;
+    margin-bottom: 0px;
   }
   .single_row {
     display: flex;
@@ -366,6 +388,13 @@
   }
   .search_icon {
     margin-left: 30px;
+  }
+  .first_line_single_row {
+    max-width: 150px;
+  }
+  .first_line_single_row p {
+    max-width: 150px;
+    min-width: 150px;
   }
 }
 

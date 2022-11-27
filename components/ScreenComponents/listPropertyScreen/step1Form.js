@@ -73,14 +73,24 @@ function Step1Form({
 
       <div className={classes.input_container}>
         <p>City</p>
-        <input
+        <select
+          style={{ width: "104%" }}
           onChange={(e) => {
             setCity(e.target.value);
           }}
           value={city}
-          placeholder="Enter the city of your listing"
           className={classes.input_field}
-        />
+        >
+          <option disabled>Select the city of your listing</option>
+          <option value={"islamabad"}>Islamabad</option>
+          <option value={"rawalpindi"}>Rawalpindi</option>
+          <option value={"lahore"}>Lahore</option>
+          <option value={"peshawar"}>Peshawar</option>
+          <option value={"karachi"}>Karachi</option>
+          <option value={"quetta"}>Quetta</option>
+          <option value={"faisalabad"}>Faisalabad</option>
+          <option value={"banigala"}>Bani Gala</option>
+        </select>
       </div>
       <div className={classes.input_container}>
         <p>Address</p>

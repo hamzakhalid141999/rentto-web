@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./firstSection.module.css";
 import first_section_bg from "../../../../public/assets/homescreen/first_section_bg.png";
 import orange_blob from "../../../../public/assets/homescreen/orange_blob.png";
@@ -12,7 +12,9 @@ import { Typewriter, useTypewriter, Cursor } from "react-simple-typewriter";
 import $ from "jquery";
 
 function FirstSection() {
+  var listener;
   var terms = ["Easiest", "Fastest", "Cheapest"];
+  const [invertTriangles, setInvertTriangles] = useState();
 
   useEffect(() => {
     function rotateTerm() {
@@ -42,17 +44,39 @@ function FirstSection() {
     $(rotateTerm);
   }, []);
 
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
+      if (document !== null) {
+        let scrolled = document.scrollingElement.scrollTop;
+
+        if (scrolled >= 10) {
+          setInvertTriangles(true);
+        } else {
+          setInvertTriangles(false);
+        }
+      }
+    });
+    return () => {
+      document.removeEventListener("scroll", listener);
+    };
+  }, []);
+
   return (
     <div className={classes.first_section}>
       <img src={first_section_bg.src} className={classes.bg} />
       <img src={orange_blob.src} className={classes.orange_blob} />
       <img src={green_blob.src} className={classes.green_blob} />
-      <img src={triangle.src} className={classes.triangle} />
+      <img
+        src={triangle.src}
+        className={
+          invertTriangles ? classes.triangle_upside_down : classes.triangle
+        }
+      />
 
       <div className={classes.main_title_heading}>
-        <div className={classes.single_row}>
+        <div className={classes.first_line_single_row}>
           <h1>The</h1>
-          <p>
+          <p className={classes.first_line_p}>
             <span style={{ color: "#ff9000" }} id="rotate"></span>
           </p>
         </div>
