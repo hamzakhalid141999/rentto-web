@@ -13,7 +13,16 @@
     },
     "categories": {
       "auth": {
-        "renttodevf2ce8d14": {}
+        "renttodev": {}
+      },
+      "storage": {
+        "s3renttodevstorage6028e195": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d26vcntasqbi7a",
+          "type": "cicd"
+        }
       }
     }
   }
