@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef, 
+import React, {
+  useState,
+  useEffect,
+  useRef,
   // Image
 } from "react";
 import classes from "./propertyCard.module.css";
@@ -10,7 +13,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
 
-function PropertyCard({adlife, adlifetier, address, price, placeholderimage}) {
+function PropertyCard({
+  adlife,
+  adlifetier,
+  address,
+  price,
+  placeholderimage,
+}) {
   // console.log('pcimage', placeholderimage)
   return (
     <Link href={"/properties/1"}>
@@ -35,13 +44,12 @@ function PropertyCard({adlife, adlifetier, address, price, placeholderimage}) {
               </div>
             </div>
           </div>
-          <img 
-            // src={placeholder.src}
-            // src={placeholderimage} 
+          <img
+            src={placeholder.src}
+            // src={placeholderimage}
             // src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
-      
-            // className={classes.image}
-           />
+            className={classes.image}
+          />
         </div>
 
         <div className={classes.description_container}>
