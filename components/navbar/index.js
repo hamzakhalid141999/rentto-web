@@ -168,6 +168,7 @@ function Navbar() {
           </>
         ) : (
           <>
+          
             <img
               onClick={() => setOpenPanel(true)}
               src={menu_icon.src}

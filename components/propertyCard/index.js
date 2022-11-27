@@ -20,6 +20,10 @@ function PropertyCard({
   price,
   placeholderimage,
 }) {
+
+  if (!price) {
+    var price = 160000
+  }
   // console.log('pcimage', placeholderimage)
   return (
     <Link href={"/properties/1"}>
@@ -55,8 +59,8 @@ function PropertyCard({
         <div className={classes.description_container}>
           <div className={classes.price_row}>
             <p style={{ color: "#008080" }} className={classes.price}>
-              {/* Rs {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} */}
-              Rs 120,000
+              Rs {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              {/* Rs 120,000 */}
               <span
                 style={{ color: "#00000040" }}
                 className={classes.per_month}
@@ -68,7 +72,7 @@ function PropertyCard({
             <img src={heart.src} className={classes.heart} />
           </div>
           <p className={classes.bedroom_description}>
-            Complete House | 4 Beds | 2 Rooms | 1 Garage
+            Complete House | 6 Beds | 2 Rooms | 1 Kanal
           </p>
           <div className={classes.address_section}>
             <p className={classes.address}>{address}</p>

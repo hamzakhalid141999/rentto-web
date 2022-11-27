@@ -199,7 +199,7 @@ function FeaturesSection() {
                   and useful information.
                   <br />
                   <br />
-                  Video tutorials and Rentto Helpline are available to
+                  Video tutorials are available to
                   facilitate the Ad uploading process.
                 </p>
               </div>
@@ -277,10 +277,12 @@ function FeaturesSection() {
                   className={classes.divider}
                 />
                 <div className={classes.testimonial_section}>
-                  <img src={placeholder_user.src} style={{ width: "40px" }} />
+                  <img 
+                  // src={placeholder_user.src} 
+                  style={{ width: "40px" }} />
                   <div className={classes.testimonial_section_content}>
-                    <p>Micole Duke, Product Manager.</p>
-                    <p>Uber Inc.</p>
+                    <p>Aslam Baig, Product Manager.</p>
+                    <p>Careem</p>
                   </div>
                 </div>
               </div>

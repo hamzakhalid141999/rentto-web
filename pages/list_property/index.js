@@ -47,7 +47,7 @@ function ListProperty() {
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
   const [propertyType, setPropertyType] = useState("residential");
-  const [propertyTypeText, setPropertyTypeText] = useState("fullhouse");
+  const [propertyTypeText, setPropertyTypeText] = useState();
   const [propertySize, setPropertySize] = useState();
   const [expectedRent, setExpectedRent] = useState();
   const [bedrooms, setBedrooms] = useState();
@@ -130,8 +130,8 @@ function ListProperty() {
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
         <img src={bottom_right_pattern.src} className={classes.bottom_right} />
-        <h2>Hire Rentto</h2>
-        <h3>Lorem Ipsum Dolor Set</h3>
+        <h2>Property Details</h2>
+        <h3>Step 1</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -140,6 +140,12 @@ function ListProperty() {
         <div className={classes.btn_filled}>
           <p>Rentto Assistance</p>
         </div>
+
+        <p className={classes.sub_heading}>
+        {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
+        For Property Owners seeking assistance in uploading their Property Listings
+        </p>
+        {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
       </div>
 
       <div className={classes.right_panel}>
@@ -328,12 +334,12 @@ function ListProperty() {
               handleCloseModal={handleCloseModal}
             />
 
-            <div
+            {/* <div
               // onClick={toggleNextStep}
               className={classes.btn_filled}
             >
               <p>Upload</p>
-            </div>
+            </div> */}
           </>
         ) : (
           <></>
