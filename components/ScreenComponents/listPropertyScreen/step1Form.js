@@ -81,7 +81,9 @@ function Step1Form({
           value={city}
           className={classes.input_field}
         >
-          <option disabled>Select the city of your listing</option>
+          <option selected disabled value={"nil"}>
+            Select the city of your listing
+          </option>
           <option value={"islamabad"}>Islamabad</option>
           <option value={"rawalpindi"}>Rawalpindi</option>
           <option value={"lahore"}>Lahore</option>

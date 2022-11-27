@@ -11,7 +11,7 @@ import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step
 import ReviewProperty from "../../components/modal/reviewProperty";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(6);
+  const [activeStep, setActiveStep] = useState(1);
   const [features, setFeatures] = useState([
     "Laundry",
     "Backyard",
@@ -47,7 +47,7 @@ function ListProperty() {
   const [city, setCity] = useState();
   const [address, setAddress] = useState();
   const [propertyType, setPropertyType] = useState("residential");
-  const [propertyTypeText, setPropertyTypeText] = useState();
+  const [propertyTypeText, setPropertyTypeText] = useState("fullhouse");
   const [propertySize, setPropertySize] = useState();
   const [expectedRent, setExpectedRent] = useState();
   const [bedrooms, setBedrooms] = useState();
