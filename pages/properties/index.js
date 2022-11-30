@@ -25,11 +25,21 @@ const AnyReactComponent = ({ text }) => <img
         className={classes.location_pin}
         />;
 
-const MarkerComponent = ({ price }) =>  <div className={classes.price_tag}>
-<div className={classes.pin_container}></div>
-<p>PKR {price} </p>
-</div>;
+// const MarkerComponent = ({ price, isFeatured }) =>  <div style={{backgroundColor: isFeatured ? '#ff9000': 'green'}} className={classes.price_tag}>
+//   <div className={classes.pin_container}></div>
+//   <div className={classes.pin_top_hider} />
+//   <p className={classes.tag_text}>Rs. {price == null ? '60000': price} </p>
+// </div>;
 
+
+const MarkerComponent = ({ price, isFeatured }) =>  <div className={classes.view_tag}>
+  <div className={classes.view_pin_container}></div>
+  <div className={classes.view_pin_top_hider} />
+  <div className={classes.single_row}>
+    <img src={location_pin.src} className={classes.img} />
+    <p className={classes.view_tag_text}>PKR askjdjajkdfhajshd </p>
+  </div>
+</div>;
 
 
 function Properties() {
@@ -182,6 +192,7 @@ function Properties() {
               lat={defaultProps.center.lat}
               lng={defaultProps.center.lng}
               text="My Marker"
+              isFeatured={true}
             />
 
               {listings == null ? (
@@ -195,6 +206,7 @@ function Properties() {
                         lat={listing.lat}
                         lng={listing.long}
                         price={listing.Price}
+                        isFeatured={false}
                         // text="My Marker"
                       />
                     );

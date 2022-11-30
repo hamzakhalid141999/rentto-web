@@ -11,14 +11,14 @@ import img4 from "../../../../public/assets/property_page/img4.jpeg";
 import PictureModal from "../../../modal/pictureModal";
 import { useRouter } from "next/router";
 
-function PropertyBanner(props) {
+function PropertyBanner({ listing }) {
   const [isLiked, setIsLiked] = useState(false);
   const [picture, setPicture] = useState();
   const [openPicModal, setOpenPicModal] = useState();
 
   const router = useRouter();
 
-  console.log('listing', props)
+  // console.log("listing", props);
 
   // if (!price) {
   //   price = "";
@@ -49,8 +49,13 @@ function PropertyBanner(props) {
           <div className={classes.left_panel}>
             <div className={classes.single_row}>
               <h2>
-                Rs {listing.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              
+                Rs{" "}
+                {listing
+                  ? listing?.Price.toString().replace(
+                      /\B(?=(\d{3})+(?!\d))/g,
+                      ","
+                    )
+                  : " "}
                 Rs 150,000
                 <span>per month</span>
               </h2>
@@ -67,10 +72,10 @@ function PropertyBanner(props) {
               </div>
             </div>
 
-            <p className={classes.rooms_info}>{listing.FeatureDescription}</p>
-            <p className={classes.address}>
-              {listing.Name}
-              </p>
+            <p className={classes.rooms_info}>
+              {listing ? listing.FeatureDescription : " "}
+            </p>
+            <p className={classes.address}>{listing ? listing?.Name : " "}</p>
           </div>
           <div className={classes.right_panel}>
             <div className={classes.btn_filled}>
