@@ -19,6 +19,8 @@ export const createListing = /* GraphQL */ `
       userID
       PropertyDetails
       PropertySpecification
+      lat
+      long
       createdAt
       updatedAt
       _version
@@ -45,6 +47,8 @@ export const updateListing = /* GraphQL */ `
       userID
       PropertyDetails
       PropertySpecification
+      lat
+      long
       createdAt
       updatedAt
       _version
@@ -71,6 +75,8 @@ export const deleteListing = /* GraphQL */ `
       userID
       PropertyDetails
       PropertySpecification
+      lat
+      long
       createdAt
       updatedAt
       _version
@@ -354,6 +360,8 @@ export const createUser = /* GraphQL */ `
           userID
           PropertyDetails
           PropertySpecification
+          lat
+          long
           createdAt
           updatedAt
           _version
@@ -425,6 +433,8 @@ export const updateUser = /* GraphQL */ `
           userID
           PropertyDetails
           PropertySpecification
+          lat
+          long
           createdAt
           updatedAt
           _version
@@ -496,6 +506,8 @@ export const deleteUser = /* GraphQL */ `
           userID
           PropertyDetails
           PropertySpecification
+          lat
+          long
           createdAt
           updatedAt
           _version

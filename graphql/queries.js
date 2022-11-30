@@ -16,6 +16,8 @@ export const getListing = /* GraphQL */ `
       userID
       PropertyDetails
       PropertySpecification
+      lat
+      long
       createdAt
       updatedAt
       _version
@@ -44,6 +46,8 @@ export const listListings = /* GraphQL */ `
         userID
         PropertyDetails
         PropertySpecification
+        lat
+        long
         createdAt
         updatedAt
         _version
@@ -81,6 +85,8 @@ export const syncListings = /* GraphQL */ `
         userID
         PropertyDetails
         PropertySpecification
+        lat
+        long
         createdAt
         updatedAt
         _version
@@ -348,6 +354,8 @@ export const getUser = /* GraphQL */ `
           userID
           PropertyDetails
           PropertySpecification
+          lat
+          long
           createdAt
           updatedAt
           _version

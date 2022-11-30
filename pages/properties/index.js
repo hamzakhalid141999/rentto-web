@@ -25,6 +25,12 @@ const AnyReactComponent = ({ text }) => <img
         className={classes.location_pin}
         />;
 
+const MarkerComponent = ({ price }) =>  <div className={classes.price_tag}>
+<div className={classes.pin_container}></div>
+<p>PKR {price} </p>
+</div>;
+
+
 
 function Properties() {
   const router = useRouter();
@@ -166,11 +172,36 @@ function Properties() {
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}
           >
-            <AnyReactComponent
+            {/* <AnyReactComponent
+              lat={defaultProps.center.lat}
+              lng={defaultProps.center.lng}
+              text="My Marker"
+            /> */}
+
+            <MarkerComponent
               lat={defaultProps.center.lat}
               lng={defaultProps.center.lng}
               text="My Marker"
             />
+
+              {listings == null ? (
+                  null
+                ) : (
+                  listings.map(listing => {
+                    console.log(listing)
+                    return (
+                      <MarkerComponent
+                        key={listing.id}
+                        lat={listing.lat}
+                        lng={listing.long}
+                        price={listing.Price}
+                        // text="My Marker"
+                      />
+                    );
+                  })
+                )}
+
+
           </GoogleMapReact>
 
           {/* <iframe
