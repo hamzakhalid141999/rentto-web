@@ -1,0 +1,42 @@
+type Listing @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+  FeatureDescription: String
+  Address: String
+  Images: [String]
+  AdLife: Int
+  AdLifeTier: Int
+  Price: String
+  PropertyDescription: String
+  userID: ID! @index(name: "byUser")
+  PropertyDetails: AWSJSON
+  PropertySpecification: AWSJSON
+  lat: Float
+  long: Float
+}
+
+type ChatRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Messages: [Message] @hasMany(indexName: "byChatRoom", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserChatRoom")
+  LastMessage: Message @hasOne
+}
+
+type Message @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String
+  userID: ID! @index(name: "byUser")
+  chatroomID: ID! @index(name: "byChatRoom")
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  image: String
+  status: String
+  Messages: [Message] @hasMany(indexName: "byUser", fields: ["id"])
+  ChatRooms: [ChatRoom] @manyToMany(relationName: "UserChatRoom")
+  Listings: [Listing] @hasMany(indexName: "byUser", fields: ["id"])
+  likeListings: [String]
+}
+ 
