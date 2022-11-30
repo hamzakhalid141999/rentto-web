@@ -46,7 +46,7 @@ function PropertyCard({
   }, []);
 
   if (!price) {
-    var price = 160000
+    price = 160000
   }
   // console.log('pcimage', placeholderimage)
   return (
