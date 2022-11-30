@@ -11,7 +11,7 @@ import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step
 import ReviewProperty from "../../components/modal/reviewProperty";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(6);
   const [features, setFeatures] = useState([
     "Laundry",
     "Backyard",
@@ -64,6 +64,9 @@ function ListProperty() {
   const [servantView, setServantView] = useState();
   const [storeRoom, setStoreRoom] = useState();
   const [separateDining, setSeparateDining] = useState();
+
+  const [propertyMeta, setPropertyMeta] = useState([]);
+
 
   const [filesArr, setFilesArr] = useState([]);
   const [filesArrBathroom, setFilesArrBathroom] = useState([]);
@@ -130,21 +133,46 @@ function ListProperty() {
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
         <img src={bottom_right_pattern.src} className={classes.bottom_right} />
-        <h2>Property Details</h2>
-        <h3>Step 1</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam.
-        </p>
+        
+       {activeStep === 1 ? (<h2>Property Details</h2>)
+        : activeStep === 2? (<h2>Property Details</h2>)
+        : activeStep === 3? (<h2>Property Specification</h2>)
+        : activeStep === 4 ? (<h2>Property Features</h2>)
+        : activeStep === 5 ? (<h2>Property Features</h2>)
+        : activeStep === 6 ? (<h2>Property Photos</h2>) : (null)
+        }
+
+      {activeStep === 1 ? (<h3>Step 1</h3>)
+        : activeStep === 2? (<h3>Step 2</h3>)
+        : activeStep === 3? (<h3>Step 3</h3>)
+        : activeStep === 4 ? (<h3>Step 4</h3>)
+        : activeStep === 5 ? (<h3>Step 5</h3>)
+        : activeStep === 6 ? (<h3>Step 6</h3>) : (null)
+        }
+
+      {activeStep === 1 ? (<p>Property Owners provide the general information of their Rental Property in order to determine the Property Type and verify its Location</p>)
+        : activeStep === 2? (<p>Property Owners provide specific property details to determine the Property Category, Property Size and its Expected Rent </p>)
+        : activeStep === 3? (<p>Property Owners ascertain the Property Specifications by clicking on each of the tabs to confirm the number of components present in the property </p>)
+        : activeStep === 4 ? (<p>Property Details that are essential to develop a better understanding of the condition of the Property and its locality will be provided here</p>)
+        : activeStep === 5 ? (<p>Property Owners can select the available amenities in the property to give a better idea of the overall features the property possesses </p>)
+        : activeStep === 6 ? (<p>Good photographs will not only add to the appeal of the Property Listing but will also increaase its Ad life. For specification provided previously add the relevant photographs. For guidlines click here  </p>) : (null)
+        }
+        
+        
+        
+
+        
+        
         <div className={classes.btn_filled}>
           <p>Rentto Assistance</p>
         </div>
 
         <p className={classes.sub_heading}>
-        {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
-        For Property Owners seeking assistance in uploading their Property Listings
+          {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
+          For Property Owners seeking assistance in uploading their Property Listings
         </p>
+
+        
         {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
       </div>
 
@@ -270,22 +298,6 @@ function ListProperty() {
           />
         ) : activeStep === 3 ? (
           <Step3Form
-            setBedrooms={setBedrooms}
-            setBathrooms={setBathrooms}
-            setLounge={setLounge}
-            setKitchen={setKitchen}
-            setDrawingRoom={setDrawingRoom}
-            setParking={setParking}
-            bedrooms={bedrooms}
-            bathrooms={bathrooms}
-            lounge={lounge}
-            kitchen={kitchen}
-            drawingRoom={drawingRoom}
-            parking={parking}
-            setActiveStep={setActiveStep}
-          />
-        ) : activeStep === 4 ? (
-          <Step4Form
             setBuiltIn={setBuiltIn}
             setPropertyFinish={setPropertyFinish}
             setFlooring={setFlooring}
@@ -303,6 +315,32 @@ function ListProperty() {
             storeRoom={storeRoom}
             separateDining={separateDining}
             setActiveStep={setActiveStep}
+          />
+        ) : activeStep === 4 ? (
+          <Step4Form
+            setBedrooms={setBedrooms}
+            setBathrooms={setBathrooms}
+            setLounge={setLounge}
+            setKitchen={setKitchen}
+            setDrawingRoom={setDrawingRoom}
+            setParking={setParking}
+            bedrooms={bedrooms}
+            bathrooms={bathrooms}
+            lounge={lounge}
+            kitchen={kitchen}
+            drawingRoom={drawingRoom}
+            parking={parking}
+            setActiveStep={setActiveStep}
+
+            setSeparateDining={setSeparateDining}
+            setServantView={setServantView}
+            setStoreRoom={setStoreRoom}
+            view={view}
+            servantView={servantView}
+            storeRoom={storeRoom}
+            separateDining={separateDining}
+            setPropertyMeta={setPropertyMeta}
+            // setActiveStep={setActiveStep}
           />
         ) : activeStep === 5 ? (
           <Step5Form
@@ -332,6 +370,8 @@ function ListProperty() {
               handleOpenModal={handleOpenModal}
               open={open}
               handleCloseModal={handleCloseModal}
+
+              propertyMeta={propertyMeta}
             />
 
             {/* <div

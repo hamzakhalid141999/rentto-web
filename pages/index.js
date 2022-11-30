@@ -10,7 +10,43 @@ import DownloadAppSection from "../components/ScreenComponents/homeScreen/downlo
 import FAQ from "../components/ScreenComponents/homeScreen/faqSection";
 
 
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../contextApi";
+
 export default function Home() {
+
+  // const { user, signIn, removeUser } = useAuth();
+
+  // async function signIn() {
+    
+  
+  //   if (!user) {
+  //     try {
+  //       // const user = await Auth.signIn(username, password);
+  
+  //       // console.log(user);
+  
+  //       // store.dispatch(signInSet(user));
+  
+  //       console.log('get state');
+  //       // console.log(store.getState());
+  
+  //       return user;
+  //     } catch (error) {
+  //       console.log('error signing in', error);
+  
+  //       return null;
+  //     }
+  //   }
+  
+  //   // return saved_user;
+  // }
+
+  // useEffect(() => {
+  //   signIn();
+  // }, []);
+
+
   return (
     <div className={styles.container}>
       <FirstSection />

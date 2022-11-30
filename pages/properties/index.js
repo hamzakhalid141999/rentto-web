@@ -9,13 +9,22 @@ import map_search_icon from "../../public/assets/properties_screen_assets/map_se
 import map_search_icon_white from "../../public/assets/properties_screen_assets/map_search_icon_white.png";
 import Filter from "../../components/modal/filter";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
+import heart from "../../public/assets/property_card_assets/heart_icon_card.png";
 import { useRouter } from "next/router";
+
+import GoogleMapReact from 'google-map-react';
 
 import {DataStore} from '@aws-amplify/datastore';
 import {Listing} from '../../models';
 
 import * as queries from '../../graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
+
+const AnyReactComponent = ({ text }) => <img
+        src={location_pin.src}
+        className={classes.location_pin}
+        />;
+
 
 function Properties() {
   const router = useRouter();
@@ -24,6 +33,14 @@ function Properties() {
   const [open, setOpen] = useState();
 
   const [listings, setListings] = useState([]);
+
+  var defaultProps = {
+    center: {
+      lat: 33.6755223,
+      lng: 72.9971537
+    },
+    zoom: 16
+  };
 
   const handleOpenModal = async () => {
     setOpen(true);
@@ -89,9 +106,18 @@ function Properties() {
   }
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
 
+      defaultProps.center.lat = position.coords.latitude;
+      defaultProps.center.lng = position.coords.longitude;
+
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
 
     fetch_listings();    
+
+    
 
 
     // const subscription = DataStore.observeQuery(Listing).subscribe(snapshot => {
@@ -134,7 +160,20 @@ function Properties() {
             />
             <p style={{ color: isMapSearch && "white" }}>Manual Search</p>
           </div>
-          <iframe
+
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: "AIzaSyAtLTTQK0DCmLqBqBeskqq2vnewAPaVKvo" }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+          >
+            <AnyReactComponent
+              lat={defaultProps.center.lat}
+              lng={defaultProps.center.lng}
+              text="My Marker"
+            />
+          </GoogleMapReact>
+
+          {/* <iframe
             width="100%"
             height="100%"
             frameborder="0"
@@ -142,7 +181,9 @@ function Properties() {
             marginheight="0"
             marginwidth="0"
             src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-          ></iframe>
+          ></iframe> */}
+
+
           <div className={classes.filter_section_map_view_container}>
             <div className={classes.filter_section_map_view}>
               <div className={classes.search_bar}>
@@ -304,6 +345,8 @@ function Properties() {
                   listings.map(listing => {
                     return (
                       <PropertyCard 
+                        key={listing.id}
+                        id={listing.id}
                         adlife={listing.AdLife}
                         adlifetier={listing.AdLifeTier}
                         address={listing.Address}

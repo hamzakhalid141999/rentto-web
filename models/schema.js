@@ -34,7 +34,7 @@ export const schema = {
                 "Images": {
                     "name": "Images",
                     "isArray": true,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
@@ -85,6 +85,20 @@ export const schema = {
                     "name": "PropertySpecification",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lat": {
+                    "name": "lat",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "long": {
+                    "name": "long",
+                    "isArray": false,
+                    "type": "Float",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -538,5 +552,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "fcdb4cfce8949c4b52e0b939958c1ef2"
+    "version": "31df2ed36e5d354c5842999d378c7b04"
 };

@@ -39,4 +39,3 @@ type User @model @auth(rules: [{allow: public}]) {
   Listings: [Listing] @hasMany(indexName: "byUser", fields: ["id"])
   likeListings: [String]
 }
- 

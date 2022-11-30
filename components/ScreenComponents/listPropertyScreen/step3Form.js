@@ -4,41 +4,54 @@ import toast, { Toaster } from "react-hot-toast";
 
 function Step3Form({
   setActiveStep,
-  setBedrooms,
-  setBathrooms,
-  setLounge,
-  setKitchen,
-  setDrawingRoom,
-  setParking,
-  bedrooms,
-  bathrooms,
-  lounge,
-  kitchen,
-  drawingRoom,
-  parking,
+  setBuiltIn,
+  setPropertyFinish,
+  setFlooring,
+  setLocality,
+  setView,
+  // setServantView,
+  // setStoreRoom,
+  builtIn,
+  propertyFinish,
+  flooring,
+  locality,
+  view,
+  // servantView,
+  // storeRoom,
+  // setSeparateDining,
+  // separateDining,
 }) {
   const toggleNextStep = async () => {
-    if (!bedrooms) {
-      error("Enter number of bedrooms");
+    if (!builtIn) {
+      error("Enter built year");
       return;
-    } else if (!bathrooms) {
-      error("Enter number of bathrooms");
+    } else if (!propertyFinish) {
+      error("Enter property finishing");
       return;
-    } else if (!kitchen) {
-      error("Enter number of kitchen");
+    } else if (!flooring) {
+      error("Enter flooring");
       return;
-    } else if (!drawingRoom) {
-      error("Enter number of drawing rooms");
+    } else if (!locality) {
+      error("Enter locality");
       return;
-    } else if (!parking) {
-      error("Enter parking");
-      return;
-    } else if (!lounge) {
-      error("Enter lounge");
+    } else if (!view) {
+      error("Enter view");
       return;
     }
+    //  else if (!servantView) {
+    //   error("Enter servant view");
+    //   return;
+    // } else if (!storeRoom) {
+    //   error("Enter number of store rooms");
+    //   return;
+    // } else if (!separateDining) {
+    //   error("Enter separate dining");
+    //   return;
+    // }
     setActiveStep(4);
   };
+
+  
 
   const error = (msg) => {
     toast.error(msg, {
@@ -51,92 +64,169 @@ function Step3Form({
     });
   };
 
+
+
+  console.log("INSIDE FORM: ", propertyFinish);
+
+  const flooringOpts = ['Marble', 'Tiles', 'Wooden', 'Chips', 'Concrete', 'Carpet', 'Paneling', 'Multiple'];
+  const localityOpts = ['Corner', 'Park Facing', 'Main Road', 'Other']
+  const viewOpts = ['North', 'South', 'West', 'East']
+
   return (
     <div className={classes.form_body}>
       <Toaster />
-
-      <h2 className={classes.form_heading}>Property Specifications</h2>
+      <h2 className={classes.form_heading}>Property Details</h2>
 
       <div className={classes.double_input_container}>
         <div className={classes.input_container}>
-          <p>Bedrooms</p>
-          <input
-            type={"number"}
+          <p>Built in</p>
+          <select
             onChange={(e) => {
-              setBedrooms(e.target.value);
+              setBuiltIn(e.target.value);
             }}
-            value={bedrooms}
+            value={builtIn}
             placeholder="Enter the number of bedrooms"
             className={classes.input_field}
-          />
+          >
+            <option>Select Built Year</option>
+            <option>Before 2018</option>
+            <option>After 2018</option>
+          </select>
         </div>
         <div className={classes.input_container}>
-          <p>Bathrooms</p>
-          <input
-            type={"number"}
+          <p>Property Finish</p>
+          <select
             onChange={(e) => {
-              setBathrooms(e.target.value);
+              setPropertyFinish(e.target.value);
             }}
-            value={bathrooms}
+            value={propertyFinish}
             placeholder="Enter the number of bathrooms"
             className={classes.input_field}
-          />
+          >
+            <option disabled>Select Finish Year</option>
+            <option value={true}>Furnished</option>
+            <option value={false}>Unfurnished</option>
+          </select>
         </div>
       </div>
 
       <div className={classes.double_input_container}>
         <div className={classes.input_container}>
-          <p>Longue</p>
-          <input
-            type={"number"}
+          <p>Flooring</p>
+          <select
             onChange={(e) => {
-              setLounge(e.target.value);
+              setFlooring(e.target.value);
             }}
-            value={lounge}
+            value={flooring}
             placeholder="Enter the number of lounge"
             className={classes.input_field}
-          />
+          >
+            <option>Select Floorings</option>
+
+            {flooringOpts == null ? (
+                  null
+                ) : (
+                  flooringOpts.map((opt, id) => {
+                    return (
+                      <option key={id}>{opt}</option>
+                    );
+                  })
+                )}
+          </select>
         </div>
         <div className={classes.input_container}>
-          <p>Kitchen</p>
-          <input
-            type={"number"}
+          <p>Locality</p>
+          <select
             onChange={(e) => {
-              setKitchen(e.target.value);
+              setLocality(e.target.value);
             }}
-            value={kitchen}
+            value={locality}
             placeholder="Enter the number of kitchen"
             className={classes.input_field}
-          />
+          >
+            {" "}
+            <option>Select Locality</option>
+            {localityOpts == null ? (
+                  null
+                ) : (
+                  localityOpts.map((opt, id) => {
+                    return (
+                      <option key={id}>{opt}</option>
+                    );
+                  })
+                )}
+            {/* <option>2</option>
+            <option>3</option> */}
+          </select>
         </div>
       </div>
 
       <div className={classes.double_input_container}>
         <div className={classes.input_container}>
-          <p>Drawing Room</p>
-          <input
-            type={"number"}
+          <p>View</p>
+          <select
             onChange={(e) => {
-              setDrawingRoom(e.target.value);
+              setView(e.target.value);
             }}
-            value={drawingRoom}
+            value={view}
             placeholder="Enter the number of rooms"
+            className={classes.input_field}
+          >
+            <option>Select View</option>
+            {viewOpts == null ? (
+                  null
+                ) : (
+                  viewOpts.map((opt, id) => {
+                    return (
+                      <option key={id}>{opt}</option>
+                    );
+                  })
+                )}
+            {/* <option>2</option>
+            <option>3</option> */}
+          </select>
+        </div>
+
+
+        {/* <div className={classes.input_container}>
+          <p>Servant Room</p>
+          <input
+            onChange={(e) => {
+              setServantView(e.target.value);
+            }}
+            value={servantView}
+            placeholder="Enter the number of servant rooms"
+            className={classes.input_field}
+          />
+        </div> */}
+
+
+      </div>
+
+      {/* <div className={classes.double_input_container}>
+        <div className={classes.input_container}>
+          <p>Store Room</p>
+          <input
+            onChange={(e) => {
+              setStoreRoom(e.target.value);
+            }}
+            value={storeRoom}
+            placeholder="Enter the number of store rooms"
             className={classes.input_field}
           />
         </div>
         <div className={classes.input_container}>
-          <p>Parking</p>
+          <p>Separate Dining Room</p>
           <input
-            type={"number"}
             onChange={(e) => {
-              setParking(e.target.value);
+              setSeparateDining(e.target.value);
             }}
-            value={parking}
-            placeholder="Enter the number of parkings"
+            value={separateDining}
+            placeholder="Enter the number of dinings"
             className={classes.input_field}
           />
         </div>
-      </div>
+      </div> */}
 
       <p className={classes.terms_services_text}>
         By proceeding you agree to Rentto’s <span>Terms of Service</span> and{" "}

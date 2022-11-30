@@ -2,6 +2,9 @@
   min-width: 310px;
   max-width: 310px;
   min-height: 273px;
+
+  /* max-height: 373px; */
+  
   box-shadow: 0px 0px 20px rgba(135, 135, 135, 0.292);
   background-color: rgba(255, 255, 255, 0.584);
   backdrop-filter: blur(10px);

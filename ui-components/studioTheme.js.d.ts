@@ -4,5 +4,5 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as Group1000004243 } from "./Group1000004243";
-export { default as studioTheme } from "./studioTheme";
+declare const _default: any;
+export default _default;

@@ -19,13 +19,21 @@ function Step6Form({
   setFilesArrDining,
   filesArrDining,
   section,
+
+  propertyMeta
 }) {
+
+  propertyMeta = ['Bedroom # 1', 'Bathroom # 1', 'Kitchen # 1', 'Drawing Room # 1', 'Parking # 1', 'Lounge # 1', 'Store Room # 1', 'Separate Dining # 1']
+
   console.log(section);
   const [adLife, setAdLife] = useState(22);
   const [adLifeTier, setAdLifeTier] = useState(60);
   const [percentage, setPercetage] = useState();
   const [openPicModal, setOpenPicModal] = useState();
   const [picture, setPicture] = useState();
+
+  const [propMetaJSON, setPropMetaJSON] = useState();
+
   const onClosePicModal = async () => {
     setOpenPicModal(false);
   };
@@ -33,14 +41,16 @@ function Step6Form({
     setOpenPicModal(true);
   };
 
-  const handleDeletePicture = (index) => {
-    var tempArr = [];
-    filesArr?.map((file, i) => {
+  const handleDeletePicture = (index, section) => {
+    var tempJson = propMetaJSON;
+    tempJson[section]?.map((file, i) => {
       if (i !== index) {
-        tempArr.push(file);
+        tempJson[section].push(file);
       }
     });
-    setFilesArr(tempArr);
+    // setFilesArr(tempArr)
+
+    setPropMetaJSON(tempJson);
   };
 
   const handleChange = (file) => {
@@ -50,7 +60,7 @@ function Step6Form({
     }
   };
 
-  const handleAddFile = (e) => {
+  const handleAddFile = (e, section) => {
     setFilesArr((arr) => [...arr, e]);
   };
 
@@ -103,6 +113,16 @@ function Step6Form({
   useEffect(() => {
     var perc = (adLife / adLifeTier) * 100;
     setPercetage(perc.toFixed(1) + "%");
+
+    var propMetaJSON_ = {}; 
+    for (let i = 0; i < propertyMeta.length; i++) {
+      // tempMeta.push('Lounge # '+(i+1));
+
+      propMetaJSON_[propertyMeta[i]] = [];
+    }
+    
+    setPropMetaJSON(propMetaJSON_)
+    // console.log('propMetaJSON', propMetaJSON)
   }, []);
 
   const toggleNextStep = async () => {
@@ -157,13 +177,89 @@ function Step6Form({
           className={classes.input_field}
           type={"text"}
         >
-          <option value={"bedroom"}>Bedroom</option>
+          {propertyMeta == null ? (
+                  null
+                ) : (
+                  propertyMeta.map((opt, id) => {
+                    return (
+                      <option key={id} value={opt}>{opt}</option>
+                    );
+                  })
+                )}
+          {/* <option value={"bedroom"}>Bedroom</option>
           <option value={"dining"}>Dining</option>
-          <option value={"bathroom"}>Bathroom</option>
+          <option value={"bathroom"}>Bathroom</option> */}
         </select>
       </div>
 
-      {section === "bedroom" ? (
+      {/* {propMetaJSON ? (
+      <div className={classes.file_dropper_section}>
+          <div className={classes.images_container}>
+            {propMetaJSON[section]?.map((pic, index) => (
+              <div key={index} style={{ position: "relative" }}>
+                <div
+                  onClick={() => {
+                    handleDeletePicture(index, section);
+                  }}
+                  className={classes.del_icon}
+                >
+                  <p>-</p>
+                </div>
+
+                <img
+                  className={classes.property_pictures}
+                  onClick={() => {
+                    onOpenPicModal();
+                    setPicture(pic);
+                  }}
+                  key={index}
+                  src={URL.createObjectURL(pic)}
+                />
+              </div>
+            ))}
+            {propMetaJSON[section]?.length !== 0 && (
+              <div className={classes.more_images_adder}>
+                <p style={{ marginBottom: "2px", fontSize: "18px" }}>+</p>
+                <input
+                  onChange={(e) => {
+                    handleAddFile(e.target.files[0], section);
+                  }}
+                  type="file"
+                />
+              </div>
+            )}
+          </div>
+
+          {propMetaJSON[section]?.length === 0 && (
+            <div className={classes.dropper_content}>
+              <img
+                src={image_placeholder.src}
+                className={classes.placeholder}
+              />
+              <p className={classes.drag_img_text}>
+                Choose or drag and drop images of your property
+              </p>
+              <p className={classes.choose_image_text}>Choose Image</p>
+            </div>
+          )}
+          {propMetaJSON[section]?.length > 0 ? (
+            <div className={classes.fake_image_dropper_area}></div>
+          ) : (
+            <FileUploader
+              multiple={true}
+              handleChange={handleChange}
+              name="file"
+              types={fileTypes}
+              onTypeError={() => {
+                error("Format not supported");
+              }}
+            />
+          )}
+        </div>):(
+          null
+        )} */}
+
+      {section === "Bedroom # 1" ? (
         <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {filesArr?.map((pic, index) => (

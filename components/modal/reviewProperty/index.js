@@ -18,6 +18,9 @@ import { ClipLoader } from "react-spinners";
 import PictureModal from "../pictureModal";
 import { useRouter } from "next/router";
 
+import { v4 } from "uuid";
+
+
 import { useAuth } from "../../../contextApi";
 
 import { API, Storage } from "aws-amplify";
@@ -94,22 +97,29 @@ function ReviewProperty({
 
     for (let i = 0; i < filesArr.length; i++) {
       try {
-        const result = await Storage.put(filesArr[i].name, filesArr[i], {
+        var db_img_url = v4() + '_' + filesArr[i].name
+        const result = await Storage.put(db_img_url, filesArr[i], {
+          // level: "public",
           level: "protected",
           contentType: filesArr[i].type, // contentType is optional
         });
 
         console.log(result);
 
-        var signedUrl = await Storage.get(result.key, { level: "protected" });
+        // ;
+
+
+        // var signedUrl = await Storage.get(result.key, { level: "protected" });
         // var signedUrl = await Storage.get(result.key, { level: 'public' });
 
-        signedArr.push(signedUrl);
-        console.log(signedUrl);
+        signedArr.push(db_img_url);
+        // console.log(signedUrl);
       } catch (error) {
         console.log("Error uploading file: ", error);
       }
     }
+
+    console.log(signedArr)
 
     const propertyFeatures = {
       Name: address,
@@ -164,7 +174,7 @@ function ReviewProperty({
     uploadListing();
     setIsPosted(true);
     await delay(2000);
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {

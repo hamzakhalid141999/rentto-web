@@ -13,7 +13,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
 
+import { API, Storage } from "aws-amplify";
+
 function PropertyCard({
+  id,
   adlife,
   adlifetier,
   address,
@@ -21,12 +24,41 @@ function PropertyCard({
   placeholderimage,
 }) {
 
+  const [signedImage, setSignedImage] = useState(false);
+
+  const fetchImage = async () => {
+    
+        console.log(id, placeholderimage);
+
+        // var signedUrl = await Storage.get(placeholderimage, { level: "protected" });
+        
+        // d3f806b5-b844-4c50-86f9-e988d5eae045_2 ds.jpeg
+        // var signedUrl = await Storage.get('225a1359-646a-4d8b-ba85-8dfa718ac33c_IMG_3990.jpeg', { level: 'protected' });
+
+        // var signedUrl = await Storage.get(placeholderimage, { level: 'protected'});
+
+        // setSignedImage(signedUrl);
+
+        setSignedImage(placeholderimage);
+  }
+  useEffect(() => {
+    fetchImage();    
+  }, []);
+
   if (!price) {
     var price = 160000
   }
   // console.log('pcimage', placeholderimage)
   return (
-    <Link href={"/properties/1"}>
+    // <Link href={"/properties/1"}>
+
+    <Link href={{
+      pathname: "/properties/[id]",
+      query: {
+          id: id,
+          title: address
+      }
+  }}>
       <div className={classes.card_body}>
         <div className={classes.card_image}>
           <div className={classes.add_life}>
@@ -49,7 +81,7 @@ function PropertyCard({
             </div>
           </div>
           <img
-            src={placeholder.src}
+            src={signedImage}
             // src={placeholderimage}
             // src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
             className={classes.image}

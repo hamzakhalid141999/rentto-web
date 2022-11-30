@@ -158,7 +158,7 @@ function Navbar() {
                 <p>List a property</p>
               </Link> */}
               <Link href={"/properties"}>
-                <p>Featured</p>
+                <p>Explore</p>
               </Link>
               {/* <p>FAQ</p>
               <Link href={"/chat"}>

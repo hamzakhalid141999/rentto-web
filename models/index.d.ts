@@ -35,6 +35,8 @@ type EagerListing = {
   readonly userID: string;
   readonly PropertyDetails?: string | null;
   readonly PropertySpecification?: string | null;
+  readonly lat?: number | null;
+  readonly long?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -52,6 +54,8 @@ type LazyListing = {
   readonly userID: string;
   readonly PropertyDetails?: string | null;
   readonly PropertySpecification?: string | null;
+  readonly lat?: number | null;
+  readonly long?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

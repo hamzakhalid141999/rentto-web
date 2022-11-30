@@ -11,12 +11,18 @@ import img4 from "../../../../public/assets/property_page/img4.jpeg";
 import PictureModal from "../../../modal/pictureModal";
 import { useRouter } from "next/router";
 
-function PropertyBanner() {
+function PropertyBanner(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [picture, setPicture] = useState();
   const [openPicModal, setOpenPicModal] = useState();
 
   const router = useRouter();
+
+  console.log('listing', props)
+
+  // if (!price) {
+  //   price = "";
+  // }
 
   const onClosePicModal = async () => {
     setOpenPicModal(false);
@@ -43,6 +49,8 @@ function PropertyBanner() {
           <div className={classes.left_panel}>
             <div className={classes.single_row}>
               <h2>
+                Rs {listing.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              
                 Rs 150,000
                 <span>per month</span>
               </h2>
@@ -59,8 +67,10 @@ function PropertyBanner() {
               </div>
             </div>
 
-            <p className={classes.rooms_info}>2 Beds, 2 Bathrooms, 1 Garage</p>
-            <p className={classes.address}>Park View, Bani Gala, Islamabad</p>
+            <p className={classes.rooms_info}>{listing.FeatureDescription}</p>
+            <p className={classes.address}>
+              {listing.Name}
+              </p>
           </div>
           <div className={classes.right_panel}>
             <div className={classes.btn_filled}>

@@ -12,7 +12,7 @@ function Step2Form({
   expectedRent,
 }) {
   const toggleNextStep = async () => {
-    if (propertyTypeText) {
+    if (!propertyTypeText) {
       error("Enter property type");
       return;
     } else if (!propertySize) {
