@@ -9,27 +9,40 @@ import { useRouter } from 'next/router'
 // import { useAuth } from "../contextApi";
 import { getListing } from "../../../graphql/queries";
 
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 // import { createUser, deleteUser } from "../graphql/mutations";
 
 
 function Property(props) {
 
-  // const router = useRouter()
-  // console.log('App', router.query);
+  const router = useRouter()
+  console.log('App', router.query);
 
 
-  // const [listing, setListing] = useState(null);
+  const [listing, setListing] = useState(null);
+  const [images, setImages] = useState(null);
 
   const getListingDetails = async () => {
     // query the database using Auth user id (sub)
-    // const listingData = await API.graphql(
-    //   graphqlOperation(getListing, { id: router.query.id })
-    // );
+    const listingData = await API.graphql(
+      graphqlOperation(getListing, { id: router.query.id })
+    );
 
     // console.log('DATA', listingData.data.getListing);
 
-    // setListing(listingData);
+    setListing(listingData.data.getListing);
+
+    var tmp = [];
+    for (let i = 0; i < listingData.data.getListing.Images.length; i++) {
+
+      // var signedUrl = await Storage.get(listingData.data.getListing.Images[i], { level: "protected" });
+      // tmp.push(signedUrl);
+
+      tmp.push(listingData.data.getListing.Images[i]);
+    }
+
+    setImages(tmp)
+
   }
 
   
@@ -46,7 +59,8 @@ function Property(props) {
   return (
     <div className={classes.property_section}>
       <PropertyBanner
-        // listing = {listing}
+        listing = {listing}
+        images={images}
       />
       <PropertyInfo />
     </div>

@@ -22,24 +22,34 @@ import { API, graphqlOperation } from 'aws-amplify';
 
 const AnyReactComponent = ({ text }) => <img
         src={location_pin.src}
-        className={classes.location_pin}
+        className={classes.location_pin_map}
         />;
 
-// const MarkerComponent = ({ price, isFeatured }) =>  <div style={{backgroundColor: isFeatured ? '#ff9000': 'green'}} className={classes.price_tag}>
-//   <div className={classes.pin_container}></div>
-//   <div className={classes.pin_top_hider} />
-//   <p className={classes.tag_text}>Rs. {price == null ? '60000': price} </p>
-// </div>;
-
-
-const MarkerComponent = ({ price, isFeatured }) =>  <div className={classes.view_tag}>
-  <div className={classes.view_pin_container}></div>
-  <div className={classes.view_pin_top_hider} />
-  <div className={classes.single_row}>
-    <img src={location_pin.src} className={classes.img} />
-    <p className={classes.view_tag_text}>PKR askjdjajkdfhajshd </p>
-  </div>
+const MarkerComponent = ({ price, isFeatured, id, adlife, adlifetier, address, placeholderimage }) =>  <div className={classes.price_tag}>
+  <div className={classes.property}>
+      <PropertyCard 
+        id={id}
+        adlife={adlife}
+        adlifetier={adlifetier}
+        address={address}
+        // price={listing.Price}
+        placeholderimage={placeholderimage}
+      />
+    </div>
+<div className={classes.pin_container}></div>
+<div className={classes.pin_top_hider} />
+<p className={classes.tag_text}>Rs. {price} </p>
 </div>;
+
+
+// const MarkerComponent = ({ price, isFeatured }) =>  <div className={classes.view_tag}>
+//   <div className={classes.view_pin_container}></div>
+//   <div className={classes.view_pin_top_hider} />
+//   <div className={classes.single_row}>
+//     <img src={location_pin.src} className={classes.img} />
+//     <p className={classes.view_tag_text}>PKR askjdjajkdfhajshd </p>
+//   </div>
+// </div>;
 
 
 function Properties() {
@@ -49,6 +59,11 @@ function Properties() {
   const [open, setOpen] = useState();
 
   const [listings, setListings] = useState([]);
+  const [mapcenter, setMapcenter] = useState({
+    lat: 33.6755223,
+    lng: 72.9971537
+  });
+  
 
   var defaultProps = {
     center: {
@@ -127,6 +142,10 @@ function Properties() {
       defaultProps.center.lat = position.coords.latitude;
       defaultProps.center.lng = position.coords.longitude;
 
+      console.log(defaultProps);
+
+      setMapcenter({lat: position.coords.latitude, lng : position.coords.longitude})
+
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
     });
@@ -179,7 +198,7 @@ function Properties() {
 
           <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyAtLTTQK0DCmLqBqBeskqq2vnewAPaVKvo" }}
-            defaultCenter={defaultProps.center}
+            defaultCenter={mapcenter}
             defaultZoom={defaultProps.zoom}
           >
             {/* <AnyReactComponent
@@ -188,10 +207,10 @@ function Properties() {
               text="My Marker"
             /> */}
 
-            <MarkerComponent
-              lat={defaultProps.center.lat}
-              lng={defaultProps.center.lng}
-              text="My Marker"
+            <AnyReactComponent
+              lat={mapcenter.lat}
+              lng={mapcenter.lng}
+              text="You current location"
               isFeatured={true}
             />
 
@@ -207,6 +226,15 @@ function Properties() {
                         lng={listing.long}
                         price={listing.Price}
                         isFeatured={false}
+
+                        
+
+                        id={listing.id}
+                        adlife={listing.AdLife}
+                        adlifetier={listing.AdLifeTier}
+                        address={listing.Address}
+                        // price={listing.Price}
+                        placeholderimage={listing.Images[0]}
                         // text="My Marker"
                       />
                     );
@@ -301,8 +329,26 @@ function Properties() {
           </div>
 
           <div className={classes.properties_container_map_view}>
-            <PropertyCard />
-            <PropertyCard /> <PropertyCard /> <PropertyCard /> <PropertyCard />
+            {/* <PropertyCard />
+            <PropertyCard /> <PropertyCard /> <PropertyCard /> <PropertyCard /> */}
+
+            {listings == null ? (
+                  null
+                ) : (
+                  listings.map(listing => {
+                    return (
+                      <PropertyCard 
+                        key={listing.id}
+                        id={listing.id}
+                        adlife={listing.AdLife}
+                        adlifetier={listing.AdLifeTier}
+                        address={listing.Address}
+                        price={listing.Price}
+                        placeholderimage={listing.Images[0]}
+                      />
+                    );
+                  })
+                )}
           </div>
         </div>
       ) : (

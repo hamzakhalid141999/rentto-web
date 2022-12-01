@@ -163,7 +163,13 @@ function FeaturesSection() {
           </div>
         </div>
       </div>
-      <RenttoPropertySection />
+      
+      
+      
+      {/* <RenttoPropertySection /> */}
+
+
+
       <div className={classes.features_section}>
         <div className={classes.first_feature_section}>
           <img src={left_bg.src} className={classes.left_bg} />

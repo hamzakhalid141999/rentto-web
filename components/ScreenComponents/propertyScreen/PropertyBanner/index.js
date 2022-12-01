@@ -11,14 +11,14 @@ import img4 from "../../../../public/assets/property_page/img4.jpeg";
 import PictureModal from "../../../modal/pictureModal";
 import { useRouter } from "next/router";
 
-function PropertyBanner({ listing }) {
+function PropertyBanner({ listing, images }) {
   const [isLiked, setIsLiked] = useState(false);
   const [picture, setPicture] = useState();
   const [openPicModal, setOpenPicModal] = useState();
 
   const router = useRouter();
 
-  // console.log("listing", props);
+  console.log("listing", listing);
 
   // if (!price) {
   //   price = "";
@@ -28,6 +28,7 @@ function PropertyBanner({ listing }) {
     setOpenPicModal(false);
   };
   const onOpenPicModal = async () => {
+    console.log('Opened', picture)
     setOpenPicModal(true);
   };
   const handleLike = async () => {
@@ -50,13 +51,13 @@ function PropertyBanner({ listing }) {
             <div className={classes.single_row}>
               <h2>
                 Rs{" "}
-                {listing
+                {listing?.Price
                   ? listing?.Price.toString().replace(
                       /\B(?=(\d{3})+(?!\d))/g,
                       ","
                     )
                   : " "}
-                Rs 150,000
+                {/* Rs 150,000 */}
                 <span>per month</span>
               </h2>
 
@@ -94,38 +95,33 @@ function PropertyBanner({ listing }) {
       </div>
 
       <div className={classes.photo_grid}>
-        <img
+
+      {images == null ? (
+                  null
+                ) : (
+                  images.map(image => {
+                    console.log(image)
+                    return (
+                      <img
+                        onClick={() => {
+                          onOpenPicModal();
+                          setPicture(image);
+                        }}
+                        className={classes.property_img}
+                        src={image}
+                      />
+                    );
+                  })
+                )}
+        {/* <img
           onClick={() => {
             onOpenPicModal();
             setPicture(img1);
           }}
           className={classes.property_img}
           src={img1.src}
-        />
-        <img
-          onClick={() => {
-            onOpenPicModal();
-            setPicture(img2);
-          }}
-          className={classes.property_img}
-          src={img2.src}
-        />
-        <img
-          onClick={() => {
-            onOpenPicModal();
-            setPicture(img3);
-          }}
-          className={classes.property_img}
-          src={img3.src}
-        />
-        <img
-          onClick={() => {
-            onOpenPicModal();
-            setPicture(img4);
-          }}
-          className={classes.property_img}
-          src={img4.src}
-        />
+        /> */}
+
       </div>
     </>
   );

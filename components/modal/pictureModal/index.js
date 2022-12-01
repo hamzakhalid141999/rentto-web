@@ -42,7 +42,8 @@ function PictureModal({ setOpen, open, onCloseModal, pic, isImportedPicture }) {
       <div className={classes.main_container}>
         {pic ? (
           <img
-            src={isImportedPicture ? pic.src : URL?.createObjectURL(pic)}
+            // src={isImportedPicture ? pic.src : URL?.createObjectURL(pic)}
+            src={isImportedPicture ? pic.src : pic}
             className={classes.img}
           />
         ) : (

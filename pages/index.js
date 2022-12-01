@@ -51,7 +51,7 @@ export default function Home() {
     <div className={styles.container}>
       <FirstSection />
       <FeaturesSection />
-      <ClientSection />
+      {/* <ClientSection /> */}
       <SubscriptionSection />
       <DownloadAppSection />
       <FAQ />
