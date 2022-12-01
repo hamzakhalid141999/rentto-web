@@ -9,7 +9,7 @@
     "framework": "react",
     "config": {
       "SourceDir": "./",
-      "DistributionDir": "out",
+      "DistributionDir": ".next",
       "BuildCommand": "yarn build",
       "StartCommand": "yarn start"
     }

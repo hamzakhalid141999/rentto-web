@@ -10,20 +10,6 @@
       "StackName": "amplify-renttodev-staging-94933",
       "StackId": "arn:aws:cloudformation:us-east-1:270852168249:stack/amplify-renttodev-staging-94933/0a408490-31b7-11ed-9ed9-0e4136615187",
       "AmplifyAppId": "d26vcntasqbi7a"
-    },
-    "categories": {
-      "auth": {
-        "renttodev": {}
-      },
-      "storage": {
-        "s3renttodevstorage6028e195": {}
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d26vcntasqbi7a",
-          "type": "cicd"
-        }
-      }
     }
   }
 }
