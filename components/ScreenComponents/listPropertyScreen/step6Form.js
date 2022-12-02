@@ -53,15 +53,36 @@ function Step6Form({
     setPropMetaJSON(tempJson);
   };
 
-  const handleChange = (file) => {
+  const handleChange = (file, index) => {
+    // for (var i = 0; i < file?.length; i++) {
+    //   const fileObj = file[i];
+    //   setFilesArr((arr) => [...arr, fileObj]);
+    // }
+
+    var tempJson = propMetaJSON;
     for (var i = 0; i < file?.length; i++) {
       const fileObj = file[i];
-      setFilesArr((arr) => [...arr, fileObj]);
+      tempJson[section].push(fileObj)
     }
+
+    // tempJson[section]?.map((file, i) => {
+    //   if (i !== index) {
+    //     tempJson[section].push(file);
+    //   }
+    // });
+    // setFilesArr(tempArr)
+
+    setPropMetaJSON(tempJson);
   };
 
   const handleAddFile = (e, section) => {
     setFilesArr((arr) => [...arr, e]);
+
+    var tempJson = propMetaJSON;
+    for (var i = 0; i < file?.length; i++) {
+      const fileObj = file[i];
+      tempJson[section].push(fileObj)
+    }
   };
 
   // Dining Washroom pictures
@@ -177,6 +198,8 @@ function Step6Form({
           className={classes.input_field}
           type={"text"}
         >
+
+          <option disabled={true} value={"bedroom"}>Select area</option>
           {propertyMeta == null ? (
                   null
                 ) : (
@@ -192,7 +215,7 @@ function Step6Form({
         </select>
       </div>
 
-      {/* {propMetaJSON ? (
+      {propMetaJSON ? (
       <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {propMetaJSON[section]?.map((pic, index) => (
@@ -257,7 +280,7 @@ function Step6Form({
           )}
         </div>):(
           null
-        )} */}
+        )}
 
       {section === "Bedroom # 1" ? (
         <div className={classes.file_dropper_section}>

@@ -11,7 +11,7 @@ import Step6Form from "../../components/ScreenComponents/listPropertyScreen/step
 import ReviewProperty from "../../components/modal/reviewProperty";
 
 function ListProperty() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(6);
   const [features, setFeatures] = useState([
     "Laundry",
     "Backyard",
@@ -161,16 +161,17 @@ function ListProperty() {
         
         
 
+        <p className={classes.terms_services_text}>
+            <span>For Property Owners seeking  assistace in uploading their Property Listings</span>
+          </p>
         
         
         <div className={classes.btn_filled}>
           <p>Rentto Assistance</p>
         </div>
 
-        <p className={classes.sub_heading}>
-          {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}
-          For Property Owners seeking assistance in uploading their Property Listings
-        </p>
+        
+
 
         
         {/* <p >For Property Owners seeking assistance in uploading their Property Listings</p> */}

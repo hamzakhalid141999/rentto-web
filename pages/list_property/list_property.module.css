@@ -188,6 +188,29 @@
   margin-bottom: 40px;
   margin-top: 30px;
 }
+
+.terms_services_text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: "DMSans-Regular";
+  margin-top: 14px;
+  margin-bottom: 30px !important;
+}
+.terms_services_text span {
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-family: "DMSans-Regular" !important;
+  margin-top: 14px !important;
+  color: var(--orangeText) !important;
+  text-transform: capitalize !important;
+  word-spacing: initial !important;
+  letter-spacing: initial !important;
+}
+
 @media only screen and (max-width: 1112px) {
   .list_property_section {
     flex-direction: column-reverse;

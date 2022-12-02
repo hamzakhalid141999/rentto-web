@@ -24,7 +24,8 @@ import list_property_img from "../../../../public/assets/homescreen/list_propert
 import left_bg from "../../../../public/assets/homescreen/left_pattern.png";
 import right_bg from "../../../../public/assets/homescreen/right_pattern.png";
 import lower_right_pattern from "../../../../public/assets/homescreen/lower_right_pattern.png";
-import placeholder_user from "../../../../public/assets/homescreen/placeholder_user.svg";
+// import placeholder_user from "../../../../public/assets/homescreen/placeholder_user.svg";
+import placeholder_user from "../../../../public/assets/homescreen/guy.jpeg";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -176,7 +177,7 @@ function FeaturesSection() {
           <div className={classes.content_container}>
             <h1 data-aos="fade-up">
               Thinking of <span className={classes.orange_text}>listing</span>{" "}
-              your property?
+              your rental property?
             </h1>
             <div
               style={{ marginTop: "100px" }}
@@ -284,7 +285,7 @@ function FeaturesSection() {
                 />
                 <div className={classes.testimonial_section}>
                   <img 
-                  // src={placeholder_user.src} 
+                  src={placeholder_user.src} 
                   style={{ width: "40px" }} />
                   <div className={classes.testimonial_section_content}>
                     <p>Aslam Baig, Product Manager.</p>

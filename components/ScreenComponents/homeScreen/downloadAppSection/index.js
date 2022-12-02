@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./downloadAppSection.module.css";
 import triangle from "../../../../public/assets/homescreen/triangle.png";
-import rentto_logo from "../../../../public/assets/homescreen/rentto_logo.png";
+import rentto_logo from "../../../../public/assets/homescreen/rentto_logo.svg";
 import phone from "../../../../public/assets/homescreen/phone.png";
 import AOS from "aos";
 import "aos/dist/aos.css";

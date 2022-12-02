@@ -13,7 +13,11 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import logo_big from "../../public/assets/login_screen_assets/logo.png";
+
+// import logo_big from "../../public/assets/login_screen_assets/logo.png";
+import logo_big from "../../public/assets/homescreen/rentto_logo.svg";
+
+
 import toast, { Toaster } from "react-hot-toast";
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";

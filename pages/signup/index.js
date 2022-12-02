@@ -12,7 +12,10 @@ import Router, { useRouter } from "next/router";
 import OtpInput from "react-otp-input";
 import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import logo_big from "../../public/assets/login_screen_assets/logo.png";
+// import logo_big from "../../public/assets/login_screen_assets/logo.png";
+
+import logo_big from "../../public/assets/homescreen/rentto_logo.svg";
+
 import video_tutorials from "../../public/assets/login_screen_assets/video_tutorials.png";
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
@@ -163,6 +166,43 @@ function SignUp() {
       position: "bottom-right",
     });
   };
+
+  const handleSignup = async () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (!email) {
+      error("Enter Email");
+      return;
+    } else if (reg.test(email) === false) {
+      error("Enter a valid email address");
+      return false;
+    } else if (!password) {
+      error("Enter password");
+      return false;
+    }
+
+    try {
+      setLoading(true);
+      await delay(1000);
+
+      // const local_user = await Auth.signIn(email, password);
+      // console.log(local_user);
+      // signIn(local_user);
+
+      // console.log(user);
+
+      setLoading(false);
+      // router.push("/");
+    } catch (error_) {
+      console.log("error signing in", error_);
+      // error(error_);
+
+      setLoading(false);
+    }
+  };
+
+
+
 
   return (
     <div className={classes.login_screen_section}>
@@ -318,7 +358,10 @@ function SignUp() {
                 />
               </div>
 
-              <div onClick={handleProceedStepOne} className="orange_btn">
+              <div 
+              // onClick={handleProceedStepOne} 
+              onClick={handleSignup} 
+              className="orange_btn">
                 <p>PROCEED</p>
                 <ClipLoader color={"white"} loading={loading} size={17} />
               </div>
