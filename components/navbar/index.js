@@ -11,8 +11,7 @@ import SlidingPanel, { PanelType } from "react-sliding-side-panel";
 import "react-sliding-side-panel/lib/index.css";
 import Link from "next/link";
 
-
-import { Auth } from 'aws-amplify';
+import { Auth } from "aws-amplify";
 import { useAuth } from "../../contextApi";
 
 function Navbar() {
@@ -27,7 +26,7 @@ function Navbar() {
   const [noBackdrop, setNoBackdrop] = useState(false);
 
   const { user, removeUser } = useAuth();
-  console.log('User:', user)
+  console.log("User:", user);
 
   let listener = null;
 
@@ -56,11 +55,11 @@ function Navbar() {
 
   async function signOut() {
     try {
-        await Auth.signOut();
-        removeUser();
-        console.log('Sign out complete.')
+      await Auth.signOut();
+      removeUser();
+      console.log("Sign out complete.");
     } catch (error) {
-        console.log('error signing out: ', error);
+      console.log("error signing out: ", error);
     }
   }
 
@@ -120,10 +119,22 @@ function Navbar() {
           <div className={classes.divider} />
           <div className={classes.nav_menu_content}>
             <Link href={"/list_property"}>
-              <p>List a property</p>
+              <p
+                onClick={() => {
+                  setOpenPanel(false);
+                }}
+              >
+                List a property
+              </p>
             </Link>
             <Link href={"/properties"}>
-              <p>Featured</p>
+              <p
+                onClick={() => {
+                  setOpenPanel(false);
+                }}
+              >
+                Featured
+              </p>
             </Link>
             <p>FAQ</p>
             <div style={{ width: "60%" }} className={classes.divider} />
@@ -131,10 +142,22 @@ function Navbar() {
               <p>Get Started</p>
             </div>
             <Link href={"/login"}>
-              <p>Login</p>
+              <p
+                onClick={() => {
+                  setOpenPanel(false);
+                }}
+              >
+                Login
+              </p>
             </Link>
             <Link href={"/chat"}>
-              <p>Chat</p>
+              <p
+                onClick={() => {
+                  setOpenPanel(false);
+                }}
+              >
+                Chat
+              </p>
             </Link>
 
             <DarkModeSwitch
@@ -168,7 +191,6 @@ function Navbar() {
           </>
         ) : (
           <>
-          
             <img
               onClick={() => setOpenPanel(true)}
               src={menu_icon.src}
@@ -185,34 +207,30 @@ function Navbar() {
       <div className={classes.right_panel}>
         {/* <img src={heart_icon.src} className={classes.icon} />
         <img src={mail_icon.src} className={classes.icon} /> */}
-        
 
         {/* <Link href={"/login"}> */}
-          
 
-          {
-            // window.localStorage.getItem('user')
-            user !== null ? (<p
-              onClick={() => signOut()}
-              >Signout</p>
-              ):(
-              <Link href={"/login"}>
+        {
+          // window.localStorage.getItem('user')
+          user !== null ? (
+            <p onClick={() => signOut()}>Signout</p>
+          ) : (
+            <Link href={"/login"}>
               <p>Login</p>
-            </Link>)
-          }
-          {/* <p
+            </Link>
+          )
+        }
+        {/* <p
               onClick={() => signOut()}
               >Signout</p> */}
         {/* </Link> */}
 
         <div className={classes.get_started_btn}>
           {/* <p>Get Started</p> */}
-          
+
           <Link href={"/list_property"}>
             <p>List a Property</p>
-
           </Link>
-
         </div>
         <DarkModeSwitch checked={darkTheme} onChange={handleToggle} size={30} />
       </div>
