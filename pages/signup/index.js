@@ -21,6 +21,9 @@ import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
+import {Auth} from "aws-amplify";
+
+
 function SignUp() {
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(1);
@@ -29,7 +32,11 @@ function SignUp() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+
   const [phoneNo, setPhoneNo] = useState("");
   const [otp, setOtp] = useState();
   const handleChange = (otp) => setOtp(otp);
@@ -69,9 +76,19 @@ function SignUp() {
     setActiveStep(screenNo);
   };
 
+  async function resendConfirmationCode() {
+    try {
+        await Auth.resendSignUp(email);
+        console.log('code resent successfully');
+    } catch (err) {
+        console.log('error resending code: ', err);
+    }
+  }
+
   const handleResendOtp = async () => {
     loadingToast("Sending OTP");
     await delay(1000);
+    resendConfirmationCode();
     success("OTP Sent");
   };
 
@@ -95,27 +112,69 @@ function SignUp() {
   };
   const handleProceedStepTwo = async () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-
     if (!email) {
       error("Enter Email");
       return;
     } else if (reg.test(email) === false) {
       error("Enter a valid email address");
       return false;
+    } else if (password !== confirmPass) {
+      error("Passwords don't match")
+      return false;
     }
+
     setLoading(true);
     await delay(1000);
     setLoading(false);
     setActiveStep(3);
   };
+
+  async function confirmSignUp() {
+    try {
+      await Auth.confirmSignUp(email, otp);
+    } catch (error) {
+        console.log('error confirming sign up', error);
+    }
+  }
+
   const handleProceedStepThree = async () => {
     if (!phoneNo) {
       error("Enter phone number");
       return;
     }
+
+    console.log(firstName, lastName, email, phoneNo);
+    var phone_number = '+'+phoneNo;
+    var username = email;
+    // var password = 'Rentto@123'
+
+
+
     if (!otpSent) {
       setLoading(true);
       await delay(1000);
+
+      try {
+        const { user } = await Auth.signUp({
+            username,
+            password,
+            attributes: {
+                email,          // optional
+                phone_number,   // optional - E.164 number convention
+                // other custom attributes 
+            },
+            autoSignIn: { // optional - enables auto sign in after user is confirmed
+                enabled: true,
+            }
+        });
+
+
+        console.log(user);
+      } catch (error_) {
+          error(error_)
+          console.log('error signing up:', error_);
+          return false
+      }
       setLoading(false);
       handleSendOpt();
     } else {
@@ -123,9 +182,16 @@ function SignUp() {
         setLoading(true);
         await delay(1000);
         setLoading(false);
+
+        // Load up otp for signup
+        confirmSignUp();
+
         success("Account created successfully");
         await delay(1200);
-        router.push("/login");
+
+
+        // router.push("/login");
+        
         setOtpSent(false);
       } else {
         error("Enter valid OTP");
@@ -169,6 +235,8 @@ function SignUp() {
 
   const handleSignup = async () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+
 
     if (!email) {
       error("Enter Email");
@@ -359,8 +427,8 @@ function SignUp() {
               </div>
 
               <div 
-              // onClick={handleProceedStepOne} 
-              onClick={handleSignup} 
+              onClick={handleProceedStepOne} 
+              // onClick={handleSignup} 
               className="orange_btn">
                 <p>PROCEED</p>
                 <ClipLoader color={"white"} loading={loading} size={17} />
@@ -378,6 +446,28 @@ function SignUp() {
                   type="email"
                   className={classes.input_field}
                   value={email}
+                />
+
+                <label>Password</label>
+                <input
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  placeholder="Enter your Email Address"
+                  type="password"
+                  className={classes.input_field}
+                  value={password}
+                />
+
+                <label>Confirm Password</label>
+                <input
+                  onChange={(e) => {
+                    setConfirmPass(e.target.value);
+                  }}
+                  placeholder="Enter your Email Address"
+                  type="password"
+                  className={classes.input_field}
+                  value={confirmPass}
                 />
               </div>
 
@@ -409,6 +499,7 @@ function SignUp() {
 
                     <div
                       onClick={handleProceedStepThree}
+                      // onClick={handleSignup}
                       className="orange_btn"
                     >
                       <p>PROCEED</p>
@@ -420,7 +511,7 @@ function SignUp() {
                     <div className={classes.input_field_contaier}>
                       <h2>{phoneNo ? phoneNo : "0331 1344123"}</h2>
                       <label style={{ marginBottom: "25px" }}>
-                        Enter the 5-digit ITP code that has been sent from SMS
+                        Enter the 5-digit OTP code that has been sent from SMS
                         to complete your account registration.
                       </label>
                       <OtpInput

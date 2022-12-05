@@ -69,8 +69,11 @@ function FirstSection() {
       <img
         src={triangle.src}
         className={
-          invertTriangles ? classes.triangle_upside_down : classes.triangle
+          classes.triangle
         }
+        // className={
+        //   invertTriangles ? classes.triangle_upside_down : classes.triangle
+        // }
       />
 
       <div className={classes.main_title_heading}>

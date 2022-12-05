@@ -10,10 +10,13 @@ import bypass_agents_bg from "../../../../public/assets/homescreen/bypass_agents
 import genuine_img from "../../../../public/assets/homescreen/genuine_img.png";
 import genuine_bg from "../../../../public/assets/homescreen/genuine_bg.png";
 
-import assistance_img from "../../../../public/assets/homescreen/assistance_img.png";
+// import assistance_img from "../../../../public/assets/homescreen/assistance_img.png";
+
+import assistance_img from "../../../../public/assets/homescreen/assistance_img_new.svg";
 import assistance_bg from "../../../../public/assets/homescreen/assistance_bg.png";
 
-import featured_img from "../../../../public/assets/homescreen/featured_img.png";
+// import featured_img from "../../../../public/assets/homescreen/featured_img.png";
+import featured_img from "../../../../public/assets/homescreen/featured_img_new.svg";
 import featured_bg from "../../../../public/assets/homescreen/featured_bg.png";
 
 import secure_img from "../../../../public/assets/homescreen/secure_img.png";
