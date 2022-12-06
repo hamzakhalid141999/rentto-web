@@ -22,15 +22,26 @@ function Property(props) {
   const [listing, setListing] = useState(null);
   const [images, setImages] = useState(null);
 
+  const [propertyDetails, setPropertyDetails] = useState(null);
+  const [propertySpecification, setPropertySpecification] = useState(null);
+
   const getListingDetails = async () => {
     // query the database using Auth user id (sub)
     const listingData = await API.graphql(
       graphqlOperation(getListing, { id: router.query.id })
     );
 
-    // console.log('DATA', listingData.data.getListing);
+    console.log('DATA', listingData.data.getListing);
 
     setListing(listingData.data.getListing);
+
+    setPropertyDetails(JSON.parse(listingData.data.getListing.PropertyDetails));
+    setPropertySpecification(JSON.parse(listingData.data.getListing.PropertySpecification));
+
+    console.log(JSON.parse(listingData.data.getListing.PropertyDetails))
+    console.log(JSON.parse(listingData.data.getListing.PropertySpecification))
+
+
 
     var tmp = [];
     for (let i = 0; i < listingData.data.getListing.Images.length; i++) {
@@ -62,7 +73,9 @@ function Property(props) {
         listing = {listing}
         images={images}
       />
-      <PropertyInfo />
+      <PropertyInfo 
+        description={listing.PropertyDescription}
+      />
     </div>
   );
 }

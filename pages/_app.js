@@ -40,9 +40,9 @@ function MyApp({ Component, pageProps }) {
       graphqlOperation(listUsers)
     );
 
-    console.log('UD', listData);
+    console.log('UD', userData.data.getUser);
 
-    if (userData.data.getUser) {
+    if (userData.data.getUser && !userData.data.getUser._deleted) {
       console.log("User already exists in DB");
       return;
     }

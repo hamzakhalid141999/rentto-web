@@ -170,15 +170,18 @@ function SignUp() {
 
 
         console.log(user);
+
+        handleSendOpt();
       } catch (error_) {
-          error(error_)
-          console.log('error signing up:', error_);
+          error(error_.toString())
+          console.log('error signing up:', error_.toString());
+          setLoading(false);
           return false
       }
-      setLoading(false);
-      handleSendOpt();
+      
+      
     } else {
-      if (otp?.length === 4) {
+      if (otp?.length === 6) {
         setLoading(true);
         await delay(1000);
         setLoading(false);
@@ -511,13 +514,13 @@ function SignUp() {
                     <div className={classes.input_field_contaier}>
                       <h2>{phoneNo ? phoneNo : "0331 1344123"}</h2>
                       <label style={{ marginBottom: "25px" }}>
-                        Enter the 5-digit OTP code that has been sent from SMS
+                        Enter the 6-digit OTP code that has been sent from SMS
                         to complete your account registration.
                       </label>
                       <OtpInput
                         value={otp}
                         onChange={handleChange}
-                        numInputs={4}
+                        numInputs={6}
                         separator={<span></span>}
                         // containerStyle={classes.otp_input_single}
                         inputStyle={classes.otp_input_single}

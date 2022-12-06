@@ -6,10 +6,32 @@ import { useWindowSize } from "../../utils";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import { useRouter } from "next/router";
 
+
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { listUsers, getChatRoom } from "../../graphql/queries";
+import { createChatRoom, createUserChatRoom, createMessage, updateChatRoom } from "../../graphql/mutations";
+import { getCommonChatRoomWithUser } from "../../services/chatRoomService";
+
+import { useAuth } from "../../contextApi";
+
 function Chat() {
   const [showInbox, setShowInbox] = useState(false);
   const router = useRouter();
   const { width } = useWindowSize();
+
+  const [users, setUsers] = useState([]);
+
+  // get user data
+  const { user } = useAuth();
+
+  useEffect(() => {
+    API.graphql(graphqlOperation(listUsers)).then((result) => {
+
+      var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null)
+
+      setUsers(data_filter);
+    });
+  }, []);
 
   useEffect(() => {
     console.log(showInbox);
@@ -90,6 +112,10 @@ function Chat() {
   const [messaages, setMessages] = useState(MESSAGES_DUMMY);
   const [message, setMessage] = useState();
 
+  const [chatroom, setChatroom] = useState();
+  const [text, setText] = useState("");
+
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSendMessage();
@@ -105,8 +131,89 @@ function Chat() {
     ]);
   };
 
+  const chatRoomFetch = async (user) => {
+    // TODO: catch create chat room fails
+    // Check if we already have a ChatRoom with user
+    const existingChatRoom = await getCommonChatRoomWithUser(user.id);
+
+    console.log('existingChatRoom', existingChatRoom)
+    if (existingChatRoom) {
+      API.graphql(graphqlOperation(getChatRoom, { id: existingChatRoom?.chatRoom.id })).then(
+        (result) => setChatroom(result.data?.getChatRoom)
+        // (result) => console.log(result)
+      );
+      // navigation.navigate("Chat", { id: existingChatRoom.id });
+      return;
+    }
+
+    // Create a new Chatroom
+    const newChatRoomData = await API.graphql(
+      graphqlOperation(createChatRoom, { input: {} })
+    );
+    console.log(newChatRoomData);
+    if (!newChatRoomData.data?.createChatRoom) {
+      console.log("Error creating the chat error");
+    }
+    const newChatRoom = newChatRoomData.data?.createChatRoom;
+
+    // Add the clicked user to the ChatRoom
+    await API.graphql(
+      graphqlOperation(createUserChatRoom, {
+        input: { chatRoomID: newChatRoom.id, userID: user.id },
+      })
+    );
+
+    // Add the auth user to the ChatRoom
+    const authUser = await Auth.currentAuthenticatedUser();
+    await API.graphql(
+      graphqlOperation(createUserChatRoom, {
+        input: { chatRoomID: newChatRoom.id, userID: authUser.attributes.sub },
+      })
+    );
+
+    API.graphql(graphqlOperation(getChatRoom, { id: newChatRoom.id })).then(
+      (result) => setChatroom(result.data?.getChatRoom)
+    );
+
+    // navigate to the newly created ChatRoom
+    // navigation.navigate("Chat", { id: newChatRoom.id });
+  };
+
   const handleSelectUser = async (user) => {
+    // Engage chat room
     setSelectedUserInbox(user);
+
+    chatRoomFetch(user);
+
+    console.log(chatroom?.Messages)
+  };
+
+  const onSend = async () => {
+    console.log('chatroom', chatroom)
+    const authUser = await Auth.currentAuthenticatedUser();
+
+    const newMessage = {
+      chatroomID: chatroom.id,
+      text,
+      userID: authUser.attributes.sub,
+    };
+
+    const newMessageData = await API.graphql(
+      graphqlOperation(createMessage, { input: newMessage })
+    );
+
+    setText("");
+
+    // set the new message as LastMessage of the ChatRoom
+    await API.graphql(
+      graphqlOperation(updateChatRoom, {
+        input: {
+          _version: chatroom._version,
+          chatRoomLastMessageId: newMessageData.data.createMessage.id,
+          id: chatroom.id,
+        },
+      })
+    );
   };
 
   return (
@@ -172,7 +279,7 @@ function Chat() {
               />
               <h2>Messages</h2>
               <div className={classes.list}>
-                {DUMMY_DATA?.map((user, index) => (
+                {users?.map((user, index) => (
                   <>
                     <div
                       onClick={() => {
@@ -192,7 +299,7 @@ function Chat() {
                       <div className={classes.name_text}>
                         <p className={classes.name_title}>{user?.name}</p>
                         <p className={classes.text}>
-                          Lorem ipsum dolor sit amet
+                          (Bad)Available
                         </p>
                         <p className={classes.duration}>2H</p>
                       </div>
@@ -208,15 +315,15 @@ function Chat() {
             <div className={classes.left_panel}>
               <h2>Messages</h2>
               <div className={classes.list}>
-                {DUMMY_DATA?.map((user, index) => (
+                {users?.map((user_, index) => (
                   <>
                     <div
                       onClick={() => {
-                        handleSelectUser(user);
+                        handleSelectUser(user_);
                       }}
                       key={index}
                       className={
-                        selectedUserInbox?.id === user?.id
+                        selectedUserInbox?.id === user_?.id
                           ? classes.contact_tab_selected
                           : classes.contact_tab
                       }
@@ -226,9 +333,9 @@ function Chat() {
                         className={classes.user_img}
                       />
                       <div className={classes.name_text}>
-                        <p className={classes.name_title}>{user?.name}</p>
+                        <p className={classes.name_title}>{user_?.name}</p>
                         <p className={classes.text}>
-                          Lorem ipsum dolor sit amet
+                          Available
                         </p>
                         <p className={classes.duration}>2H</p>
                       </div>
@@ -244,8 +351,8 @@ function Chat() {
                 <p>{selectedUserInbox?.name}</p>
               </div>
               <div className={classes.chat_panel}>
-                {messaages?.map((msg, index) =>
-                  msg?.messageLeft === true ? (
+                {chatroom?.Messages.items?.map((msg, index) =>
+                  msg?.userID === user ? (
                     <div key={index} className={classes.msg_container_left}>
                       <div className={classes.left_msg}>
                         <p className={classes.msg_text}> {msg?.text}</p>
@@ -266,11 +373,16 @@ function Chat() {
                     placeholder="Message"
                     className={classes.text_input}
                     onChange={(e) => {
-                      setMessage(e.target.value);
+                      // setMessage(e.target.value);
+                      setText(e.target.value);
                     }}
-                    value={message}
+                    value={text}
                   />
-                  <img onClick={handleSendMessage} src={send_btn.src} />
+                  <img 
+                  // onClick={handleSendMessage} 
+                  onClick={onSend} 
+                  
+                  src={send_btn.src} />
                 </div>
               </div>
             </div>
