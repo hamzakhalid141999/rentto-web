@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }) {
     // if there is no users in db, create one
     const newUser = {
       id: authUser.attributes.sub,
-      name: 'Fname',
+      name: authUser.attributes.email,
       status: "Hey, I am using WhatsApp",
     };
 
@@ -69,7 +69,8 @@ function MyApp({ Component, pageProps }) {
 
 
   useEffect(() => {
-    syncUser();
+    // important
+    // syncUser();
   }, []);
 
 

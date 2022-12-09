@@ -1,4 +1,25 @@
 {
+  "madelene": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-renttoweb-madelene-210502-authRole",
+      "UnauthRoleArn": "arn:aws:iam::270852168249:role/amplify-renttoweb-madelene-210502-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::270852168249:role/amplify-renttoweb-madelene-210502-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-renttoweb-madelene-210502-deployment",
+      "UnauthRoleName": "amplify-renttoweb-madelene-210502-unauthRole",
+      "StackName": "amplify-renttoweb-madelene-210502",
+      "StackId": "arn:aws:cloudformation:us-east-1:270852168249:stack/amplify-renttoweb-madelene-210502/2ad55c10-69e0-11ed-bb39-0a3226a3ac21",
+      "AmplifyAppId": "d26vcntasqbi7a"
+    },
+    "categories": {
+      "auth": {
+        "renttodev": {}
+      },
+      "storage": {
+        "s3renttodevstorage1743bdbc": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-renttodev-staging-94933-authRole",

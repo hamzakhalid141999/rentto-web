@@ -6,6 +6,8 @@ import { useWindowSize } from "../../utils";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import { useRouter } from "next/router";
 
+import toast, { Toaster } from "react-hot-toast";
+
 
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import { listUsers, getChatRoom } from "../../graphql/queries";
@@ -26,6 +28,8 @@ function Chat() {
 
   useEffect(() => {
     API.graphql(graphqlOperation(listUsers)).then((result) => {
+
+      console.log('RESULTS', result)
 
       var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null)
 
@@ -190,6 +194,11 @@ function Chat() {
 
   const onSend = async () => {
     console.log('chatroom', chatroom)
+    if (!text.length) {
+      error('No text')
+      return false
+    }
+    
     const authUser = await Auth.currentAuthenticatedUser();
 
     const newMessage = {
@@ -216,8 +225,20 @@ function Chat() {
     );
   };
 
+  const error = (msg) => {
+    toast.error(msg, {
+      style: {
+        background: "white",
+        color: "red",
+        border: "1px solid #ff9000",
+      },
+      position: "bottom-right",
+    });
+  };
+
   return (
     <div className={classes.chat_screen_section}>
+      <Toaster />
       <div className={classes.chat_screen_content_section}>
         {width < 786 ? (
           showInbox ? (
@@ -352,7 +373,7 @@ function Chat() {
               </div>
               <div className={classes.chat_panel}>
                 {chatroom?.Messages.items?.map((msg, index) =>
-                  msg?.userID === user ? (
+                  msg?.userID !== user ? (
                     <div key={index} className={classes.msg_container_left}>
                       <div className={classes.left_msg}>
                         <p className={classes.msg_text}> {msg?.text}</p>

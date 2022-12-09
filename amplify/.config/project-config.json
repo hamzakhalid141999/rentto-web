@@ -8,7 +8,7 @@
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": "src",
+      "SourceDir": "./",
       "DistributionDir": ".next",
       "BuildCommand": "yarn build",
       "StartCommand": "yarn start"

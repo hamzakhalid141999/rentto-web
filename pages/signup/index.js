@@ -22,7 +22,9 @@ import list_property from "../../public/assets/login_screen_assets/list_property
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 import {Auth} from "aws-amplify";
-
+import { useAuth } from "../../contextApi";
+import { getUser, listUsers } from "../../graphql/queries";
+import { createUser, deleteUser } from "../../graphql/mutations";
 
 function SignUp() {
   const router = useRouter();
@@ -170,6 +172,50 @@ function SignUp() {
 
 
         console.log(user);
+
+        // upload user to graphQL
+        // get Auth user
+        const authUser = await Auth.currentAuthenticatedUser({
+          bypassCache: true,
+        });
+
+        console.log('OOser', authUser)
+
+        // query the database using Auth user id (sub)
+        const userData = await API.graphql(
+          graphqlOperation(getUser, { id: authUser.attributes.sub })
+        );
+
+        // query the database using Auth user id (sub)
+        const listData = await API.graphql(
+          graphqlOperation(listUsers)
+        );
+
+        console.log('UD', userData.data.getUser);
+
+        if (userData.data.getUser && !userData.data.getUser._deleted) {
+          console.log("User already exists in DB");
+          return;
+        }
+        // if there is no users in db, create one
+        const newUser = {
+          id: authUser.attributes.sub,
+          name: authUser.attributes.email,
+          status: "Hey, I am using WhatsApp",
+        };
+
+        // import { API } from "aws-amplify";
+        // import * as mutations from './graphql/mutations';
+
+        // const todoDetails = {
+        //   id: authUser.attributes.sub,
+        // };
+
+        // const deletedTodo = await API.graphql({ query: deleteUser, variables: {input: todoDetails}});
+
+        await API.graphql(
+          graphqlOperation(createUser, { input: newUser })
+        );
 
         handleSendOpt();
       } catch (error_) {
