@@ -1,0 +1,254 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.first_section {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 120px;
+}
+.first_section h2 {
+  font-family: "ClashGrotesk-Semibold";
+  font-size: 40px;
+  color: var(--orangeText) !important;
+  z-index: 10;
+  font-weight: 900;
+  width: 60%;
+  text-align: center;
+  line-height: 55px;
+  font-stretch: extra-expanded;
+  margin-bottom: 20px;
+}
+.black_text {
+  color: var(--foreground) !important;
+}
+.orange_text {
+  color: var(--orangeText) !important;
+}
+.description {
+  font-family: "DMSans-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  width: 70%;
+  text-align: center;
+}
+.cards_container {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  row-gap: 40px;
+}
+
+.card_body {
+  width: 366px;
+  height: 474px;
+  background: var(--background);
+  box-shadow: 0px 22.684px 62.6526px rgba(185, 185, 185, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+  transition: ease-in-out 200ms;
+}
+.card_body:hover {
+  transform: translateY(-10px);
+}
+.card_heading {
+  font-family: "ClashGrotesk-Semibold";
+  font-size: 16px;
+  width: 100%;
+  color: var(--foreground) !important;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  /* font-stretch: extra-expanded;
+  margin-bottom: 20px; */
+}
+.card_body img {
+  width: 200px;
+  max-height: 150px;
+}
+.card_text {
+  font-family: "DMSans-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  /* or 188% */
+
+  text-align: center;
+}
+.learn_more {
+  position: absolute;
+  bottom: 40px;
+  font-family: "DMSans-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: var(--orangeText) !important;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.properties_section {
+  width: 100%;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  position: relative;
+}
+.properties_content {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+.properties_content h2 {
+  font-family: "ClashGrotesk-Semibold";
+  font-size: 40px;
+  color: black;
+  z-index: 10;
+  font-weight: 900;
+  width: 60%;
+  text-align: center;
+  line-height: 55px;
+  font-stretch: extra-expanded;
+  margin-bottom: 150px;
+  margin-top: 150px;
+}
+.orange_text {
+  color: #ff9000;
+}
+.content_section {
+  width: 90%;
+  height: 80%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.map_img {
+  width: 100%;
+  position: absolute;
+}
+.orbit {
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  animation-timing-function: ease-out;
+  animation-name: orbit;
+  animation-duration: 15s;
+  margin-bottom: 170px;
+  transform: rotate(120deg);
+}
+.orbit2 {
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  animation-timing-function: ease-out;
+  animation-name: orbit2;
+  animation-duration: 16s;
+  margin-bottom: 170px;
+  transform: rotate(60deg);
+}
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+}
+.user2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+.user3 {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+}
+.user4 {
+  position: absolute;
+  top: 50%;
+  right: 14%;
+  width: 70px;
+  height: 70px;
+}
+.mid_img {
+  width: 550px;
+  position: absolute;
+}
+
+@keyframes orbit2 {
+  from {
+    -webkit-transform: rotate(-50deg);
+  }
+  to {
+    -webkit-transform: rotate(60deg);
+  }
+}
+
+@keyframes orbit {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(120deg);
+  }
+}
+@media only screen and (max-width: 786px) {
+  .cards_container {
+    margin-top: 80px;
+  }
+  .properties_content h2 {
+    font-size: 30px;
+    width: 90%;
+    line-height: 35px;
+    margin-bottom: 0px;
+  }
+  .mid_img {
+    width: 130%;
+    position: absolute;
+  }
+  .properties_section {
+    padding-top: 60px;
+  }
+  .user2 {
+    display: none;
+  }
+  .user3 {
+    display: none;
+  }
+  .user4 {
+    display: none;
+  }
+  .dot {
+    display: none;
+  }
+}
