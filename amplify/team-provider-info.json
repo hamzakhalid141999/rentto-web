@@ -17,6 +17,9 @@
       },
       "storage": {
         "s3renttodevstorage1743bdbc": {}
+      },
+      "api": {
+        "renttodev": {}
       }
     }
   },

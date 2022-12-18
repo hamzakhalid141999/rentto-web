@@ -30,7 +30,11 @@ const awsmobile = {
         "PHONE_NUMBER"
     ],
     "aws_user_files_s3_bucket": "rentto-dev-storage-1743bdbc210502-madelene",
-    "aws_user_files_s3_bucket_region": "us-east-1"
+    "aws_user_files_s3_bucket_region": "us-east-1",
+    "aws_appsync_graphqlEndpoint": "https://ercwzrbpgbbohihpkmb2q5jsnu.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_region": "us-east-1",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "da2-kh3rqj3hobhwpdq2darvijvega"
 };
 
 

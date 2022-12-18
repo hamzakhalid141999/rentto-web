@@ -89,6 +89,6 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+// export default MyApp;
 
-// export default withAuthenticator(MyApp);
+export default withAuthenticator(MyApp);

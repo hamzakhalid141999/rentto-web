@@ -23,9 +23,6 @@ export const createListing = /* GraphQL */ `
       long
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -51,9 +48,6 @@ export const updateListing = /* GraphQL */ `
       long
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -79,9 +73,6 @@ export const deleteListing = /* GraphQL */ `
       long
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -100,26 +91,18 @@ export const createChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       users {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       LastMessage {
         id
@@ -128,15 +111,9 @@ export const createChatRoom = /* GraphQL */ `
         chatroomID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       chatRoomLastMessageId
     }
   }
@@ -156,26 +133,18 @@ export const updateChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       users {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       LastMessage {
         id
@@ -184,15 +153,9 @@ export const updateChatRoom = /* GraphQL */ `
         chatroomID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       chatRoomLastMessageId
     }
   }
@@ -212,26 +175,18 @@ export const deleteChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       users {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       LastMessage {
         id
@@ -240,15 +195,9 @@ export const deleteChatRoom = /* GraphQL */ `
         chatroomID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       chatRoomLastMessageId
     }
   }
@@ -265,9 +214,6 @@ export const createMessage = /* GraphQL */ `
       chatroomID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -283,9 +229,6 @@ export const updateMessage = /* GraphQL */ `
       chatroomID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -301,9 +244,6 @@ export const deleteMessage = /* GraphQL */ `
       chatroomID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -325,26 +265,18 @@ export const createUser = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       ChatRooms {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Listings {
         items {
@@ -364,19 +296,12 @@ export const createUser = /* GraphQL */ `
           long
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       likeListings
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -398,26 +323,18 @@ export const updateUser = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       ChatRooms {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Listings {
         items {
@@ -437,19 +354,12 @@ export const updateUser = /* GraphQL */ `
           long
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       likeListings
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -471,26 +381,18 @@ export const deleteUser = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       ChatRooms {
         items {
           id
-          chatRoomID
-          userID
+          chatRoomId
+          userId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Listings {
         items {
@@ -510,19 +412,12 @@ export const deleteUser = /* GraphQL */ `
           long
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       likeListings
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -533,17 +428,15 @@ export const createUserChatRoom = /* GraphQL */ `
   ) {
     createUserChatRoom(input: $input, condition: $condition) {
       id
-      chatRoomID
-      userID
+      chatRoomId
+      userId
       chatRoom {
         id
         Messages {
           nextToken
-          startedAt
         }
         users {
           nextToken
-          startedAt
         }
         LastMessage {
           id
@@ -552,15 +445,9 @@ export const createUserChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         chatRoomLastMessageId
       }
       user {
@@ -570,28 +457,19 @@ export const createUserChatRoom = /* GraphQL */ `
         status
         Messages {
           nextToken
-          startedAt
         }
         ChatRooms {
           nextToken
-          startedAt
         }
         Listings {
           nextToken
-          startedAt
         }
         likeListings
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -602,17 +480,15 @@ export const updateUserChatRoom = /* GraphQL */ `
   ) {
     updateUserChatRoom(input: $input, condition: $condition) {
       id
-      chatRoomID
-      userID
+      chatRoomId
+      userId
       chatRoom {
         id
         Messages {
           nextToken
-          startedAt
         }
         users {
           nextToken
-          startedAt
         }
         LastMessage {
           id
@@ -621,15 +497,9 @@ export const updateUserChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         chatRoomLastMessageId
       }
       user {
@@ -639,28 +509,19 @@ export const updateUserChatRoom = /* GraphQL */ `
         status
         Messages {
           nextToken
-          startedAt
         }
         ChatRooms {
           nextToken
-          startedAt
         }
         Listings {
           nextToken
-          startedAt
         }
         likeListings
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -671,17 +532,15 @@ export const deleteUserChatRoom = /* GraphQL */ `
   ) {
     deleteUserChatRoom(input: $input, condition: $condition) {
       id
-      chatRoomID
-      userID
+      chatRoomId
+      userId
       chatRoom {
         id
         Messages {
           nextToken
-          startedAt
         }
         users {
           nextToken
-          startedAt
         }
         LastMessage {
           id
@@ -690,15 +549,9 @@ export const deleteUserChatRoom = /* GraphQL */ `
           chatroomID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         chatRoomLastMessageId
       }
       user {
@@ -708,28 +561,19 @@ export const deleteUserChatRoom = /* GraphQL */ `
         status
         Messages {
           nextToken
-          startedAt
         }
         ChatRooms {
           nextToken
-          startedAt
         }
         Listings {
           nextToken
-          startedAt
         }
         likeListings
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

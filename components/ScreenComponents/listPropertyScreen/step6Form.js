@@ -32,7 +32,7 @@ function Step6Form({
   const [openPicModal, setOpenPicModal] = useState();
   const [picture, setPicture] = useState();
 
-  const [propMetaJSON, setPropMetaJSON] = useState();
+  const [propMetaJSON, setPropMetaJSON] = useState([]);
 
   const onClosePicModal = async () => {
     setOpenPicModal(false);
@@ -41,8 +41,9 @@ function Step6Form({
     setOpenPicModal(true);
   };
 
-  const handleDeletePicture = (index, section) => {
+  const handleDeletePicture = (index) => {
     var tempJson = propMetaJSON;
+    console.log('tempJson', tempJson);
     tempJson[section]?.map((file, i) => {
       if (i !== index) {
         tempJson[section].push(file);
@@ -53,13 +54,15 @@ function Step6Form({
     setPropMetaJSON(tempJson);
   };
 
-  const handleChange = (file, index) => {
+
+  const handleChange = (file) => {
     // for (var i = 0; i < file?.length; i++) {
     //   const fileObj = file[i];
     //   setFilesArr((arr) => [...arr, fileObj]);
     // }
 
     var tempJson = propMetaJSON;
+    console.log('tempJson', tempJson, section);
     for (var i = 0; i < file?.length; i++) {
       const fileObj = file[i];
       tempJson[section].push(fileObj)
@@ -75,14 +78,17 @@ function Step6Form({
     setPropMetaJSON(tempJson);
   };
 
-  const handleAddFile = (e, section) => {
+  const handleAddFile = (e) => {
     setFilesArr((arr) => [...arr, e]);
 
     var tempJson = propMetaJSON;
+
     for (var i = 0; i < file?.length; i++) {
       const fileObj = file[i];
       tempJson[section].push(fileObj)
     }
+
+    console.log(tempJson[section]);
   };
 
   // Dining Washroom pictures
@@ -148,8 +154,10 @@ function Step6Form({
 
   const toggleNextStep = async () => {
     // setActiveStep(7);
+    setPropertyMetaDetails(propMetaJSON);
     handleOpenModal();
   };
+
   const fileTypes = ["JPEG", "PNG", "JPG", "GIF"];
 
   const error = (msg) => {
@@ -222,7 +230,7 @@ function Step6Form({
               <div key={index} style={{ position: "relative" }}>
                 <div
                   onClick={() => {
-                    handleDeletePicture(index, section);
+                    handleDeletePicture(index);
                   }}
                   className={classes.del_icon}
                 >
@@ -245,7 +253,7 @@ function Step6Form({
                 <p style={{ marginBottom: "2px", fontSize: "18px" }}>+</p>
                 <input
                   onChange={(e) => {
-                    handleAddFile(e.target.files[0], section);
+                    handleAddFile(e.target.files[0]);
                   }}
                   type="file"
                 />
@@ -282,7 +290,7 @@ function Step6Form({
           null
         )}
 
-      {section === "Bedroom # 1" ? (
+      {/* {section === "Bedroom # 1" ? (
         <div className={classes.file_dropper_section}>
           <div className={classes.images_container}>
             {filesArr?.map((pic, index) => (
@@ -337,7 +345,7 @@ function Step6Form({
           ) : (
             <FileUploader
               multiple={true}
-              handleChange={handleChange}
+              handleChange={handleChangeFiles}
               name="file"
               types={fileTypes}
               onTypeError={() => {
@@ -476,7 +484,7 @@ function Step6Form({
         </div>
       ) : (
         <></>
-      )}
+      )} */}
 
       <p className={classes.terms_services_text}>
         By proceeding you agree to Rentto’s <span>Terms of Service</span> and{" "}

@@ -42,4 +42,4 @@ type User @model @auth(rules: [{allow: public}]) {
   ChatRooms: [ChatRoom] @manyToMany(relationName: "UserChatRoom")
   Listings: [Listing] @hasMany(indexName: "byUser", fields: ["id"])
   likeListings: [String]
-}
+} 

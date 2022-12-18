@@ -66,13 +66,14 @@ function ListProperty() {
   const [separateDining, setSeparateDining] = useState();
 
   const [propertyMeta, setPropertyMeta] = useState([]);
+  const [propertyMetaDetails, setPropertyMetaDetails] = useState([]);
 
 
   const [filesArr, setFilesArr] = useState([]);
   const [filesArrBathroom, setFilesArrBathroom] = useState([]);
   const [filesArrDining, setFilesArrDining] = useState([]);
 
-  const [section, setSection] = useState("bedroom");
+  const [section, setSection] = useState("Bedroom # 1");
   const [open, setOpen] = useState();
 
   const handleOpenModal = async () => {
@@ -129,6 +130,8 @@ function ListProperty() {
         city={city}
         open={open}
         onCloseModal={handleCloseModal}
+
+        propertyMetaDetails={propertyMetaDetails}
       />
       <div className={classes.left_panel}>
         <img src={top_left_pattern.src} className={classes.top_left} />
@@ -372,7 +375,8 @@ function ListProperty() {
               open={open}
               handleCloseModal={handleCloseModal}
 
-              propertyMeta={propertyMeta}
+              propertyMeta={propertyMetaDetails}
+              setPropertyMetaDetails={setPropertyMetaDetails}
             />
 
             {/* <div
