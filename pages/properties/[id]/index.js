@@ -4,6 +4,14 @@ import PropertyInfo from "../../../components/ScreenComponents/propertyScreen/Pr
 import classes from "./property.module.css";
 import { useEffect, useState } from "react";
 
+
+// import img1 from "../../../p";
+
+import img1 from "../../../public/assets/property_page/img1.jpeg";
+import img2 from "../../../public/assets/property_page/img2.jpg";
+import img3 from "../../../public/assets/property_page/img3.jpeg";
+import img4 from "../../../public/assets/property_page/img4.jpeg";
+
 import { useRouter } from 'next/router'
 
 // import { useAuth } from "../contextApi";
@@ -16,7 +24,7 @@ import { API, graphqlOperation, Storage } from "aws-amplify";
 function Property(props) {
 
   const router = useRouter()
-  console.log('App', router.query);
+  // console.log('App', router.query);
 
 
   const [listing, setListing] = useState(null);
@@ -26,20 +34,21 @@ function Property(props) {
   const [propertySpecification, setPropertySpecification] = useState(null);
 
   const getListingDetails = async () => {
+    // console.log('getListingDetails');
     // query the database using Auth user id (sub)
     const listingData = await API.graphql(
       graphqlOperation(getListing, { id: router.query.id })
     );
 
-    console.log('DATA', listingData.data.getListing);
+    // console.log('DATA', listingData.data.getListing);
 
     setListing(listingData.data.getListing);
 
     setPropertyDetails(JSON.parse(listingData.data.getListing.PropertyDetails));
     setPropertySpecification(JSON.parse(listingData.data.getListing.PropertySpecification));
 
-    console.log(JSON.parse(listingData.data.getListing.PropertyDetails))
-    console.log(JSON.parse(listingData.data.getListing.PropertySpecification))
+    // console.log(JSON.parse(listingData.data.getListing.PropertyDetails))
+    // console.log(JSON.parse(listingData.data.getListing.PropertySpecification))
 
 
 
@@ -52,7 +61,12 @@ function Property(props) {
       tmp.push(listingData.data.getListing.Images[i]);
     }
 
-    setImages(tmp)
+
+    if (tmp.length === 0){
+      setImages([img1, img2, img3, img4, img1, img1]);
+    } else {
+      setImages(tmp);
+    }
 
   }
 
@@ -61,11 +75,11 @@ function Property(props) {
     // const { data } = getQueryParams(window.location.search);
     // console.log('data', data);
 
-    console.log();
+    // console.log();
 
     getListingDetails();
     
-  }, []);
+  }, [listing]);
 
   return (
     <div className={classes.property_section}>
@@ -74,7 +88,9 @@ function Property(props) {
         images={images}
       />
       <PropertyInfo 
-        description={listing.PropertyDescription}
+        listing = {listing}
+        images={images}
+        // description={listing?.PropertyDescription}
       />
     </div>
   );

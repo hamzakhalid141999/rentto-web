@@ -9,6 +9,10 @@ import triangle from "../../../../public/assets/homescreen/triangle.png";
 import magnifying_glass from "../../../../public/assets/homescreen/magnifying_glass.png";
 import drop_down_icon from "../../../../public/assets/homescreen/drop_down_icon.png";
 import { Typewriter, useTypewriter, Cursor } from "react-simple-typewriter";
+
+import Image from 'next/image';
+
+
 import $ from "jquery";
 
 function FirstSection() {
@@ -63,9 +67,35 @@ function FirstSection() {
 
   return (
     <div className={classes.first_section}>
-      <img src={first_section_bg.src} className={classes.bg} />
-      <img src={orange_blob.src} className={classes.orange_blob} />
-      <img src={green_blob.src} className={classes.green_blob} />
+      {/* <img src={first_section_bg.src} className={classes.bg} /> */}
+      <div className={classes.bg}>
+        <Image 
+          src={first_section_bg.src}
+          layout='fill'
+        />
+
+      </div>
+      <div className={classes.orange_blob}>
+        <Image 
+          src={orange_blob.src}
+          layout='fill'
+        />
+
+      </div>
+
+      <div className={classes.green_blob}>
+        <Image 
+          src={green_blob.src}
+          layout='fill'
+        />
+
+      </div>
+
+      {/* <img src={orange_blob.src} className={classes.orange_blob} /> */}
+
+      {/* <img src={green_blob.src} className={classes.green_blob} /> */}
+
+
       <img
         src={triangle.src}
         className={

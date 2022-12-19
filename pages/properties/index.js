@@ -32,7 +32,7 @@ const MarkerComponent = ({ price, isFeatured, id, adlife, adlifetier, address, p
         adlife={adlife}
         adlifetier={adlifetier}
         address={address}
-        // price={listing.Price}
+        price={price}
         placeholderimage={placeholderimage}
       />
     </div>
@@ -54,15 +54,18 @@ const MarkerComponent = ({ price, isFeatured, id, adlife, adlifetier, address, p
 
 function Properties() {
   const router = useRouter();
-  const [mapView, setMapView] = useState(false);
+  // const [mapView, setMapView] = useState(false);
+  const [mapView, setMapView] = useState(true);
   const [isMapSearch, setIsMapSearch] = useState(false);
   const [open, setOpen] = useState();
 
   const [listings, setListings] = useState([]);
-  const [mapcenter, setMapcenter] = useState({
-    lat: 33.6755223,
-    lng: 72.9971537
-  });
+  // const [mapcenter, setMapcenter] = useState({
+  //   lat: 33.6755223,
+  //   lng: 72.9971537
+  // });
+
+  const [mapcenter, setMapcenter] = useState(null);
   
 
   var defaultProps = {
@@ -70,7 +73,7 @@ function Properties() {
       lat: 33.6755223,
       lng: 72.9971537
     },
-    zoom: 16
+    zoom: 12
   };
 
   const handleOpenModal = async () => {
@@ -133,7 +136,7 @@ function Properties() {
 
     setListings(data_filter)
 
-    console.log('fetched_listings', data_filter);
+    // console.log('fetched_listings', data_filter);
   }
 
   useEffect(() => {
@@ -142,12 +145,12 @@ function Properties() {
       defaultProps.center.lat = position.coords.latitude;
       defaultProps.center.lng = position.coords.longitude;
 
-      console.log(defaultProps);
+      // console.log(defaultProps);
 
       setMapcenter({lat: position.coords.latitude, lng : position.coords.longitude})
 
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
+      // console.log("Latitude is :", position.coords.latitude);
+      // console.log("Longitude is :", position.coords.longitude);
     });
 
     fetch_listings();    
@@ -167,7 +170,7 @@ function Properties() {
     //   // Anything in here is fired on component unmount.
     //   subscription.unsubscribe();
     // };
-  }, []);
+  }, [mapcenter]);
 
   return (
     <>
@@ -196,6 +199,7 @@ function Properties() {
             <p style={{ color: isMapSearch && "white" }}>Manual Search</p>
           </div>
 
+          {mapcenter ? (
           <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyAtLTTQK0DCmLqBqBeskqq2vnewAPaVKvo" }}
             defaultCenter={mapcenter}
@@ -218,7 +222,7 @@ function Properties() {
                   null
                 ) : (
                   listings.map(listing => {
-                    console.log(listing)
+                    // console.log('onMapListings', listing)
                     return (
                       <MarkerComponent
                         key={listing.id}
@@ -242,7 +246,7 @@ function Properties() {
                 )}
 
 
-          </GoogleMapReact>
+          </GoogleMapReact>) : (null)}
 
           {/* <iframe
             width="100%"

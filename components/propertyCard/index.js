@@ -9,6 +9,8 @@ import mail from "../../public/assets/property_card_assets/mail_icon_card.png";
 import heart from "../../public/assets/property_card_assets/heart_icon_card.png";
 import phone from "../../public/assets/property_card_assets/phone_icon_card.png";
 import placeholder from "../../public/assets/property_card_assets/placeholder.png";
+
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
@@ -39,7 +41,13 @@ function PropertyCard({
 
         // setSignedImage(signedUrl);
 
-        setSignedImage(placeholderimage);
+        // console.log('placeholderimage', placeholderimage);
+
+        if (placeholderimage){
+          setSignedImage(placeholderimage);
+        }
+
+        
   }
   useEffect(() => {
     fetchImage();    
@@ -80,12 +88,19 @@ function PropertyCard({
               </div>
             </div>
           </div>
-          <img
+
+          {signedImage ? (<img
             src={signedImage}
             // src={placeholderimage}
             // src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
             className={classes.image}
-          />
+          />) : (<img
+            src={placeholder.src}
+            // src={placeholderimage}
+            // src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+            className={classes.image}
+          />)}
+          
         </div>
 
         <div className={classes.description_container}>

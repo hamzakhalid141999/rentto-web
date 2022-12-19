@@ -27,7 +27,7 @@ const awsmobile = {
         ]
     },
     "aws_cognito_verification_mechanisms": [
-        "PHONE_NUMBER"
+        "EMAIL"
     ],
     "aws_user_files_s3_bucket": "rentto-dev-storage-1743bdbc210502-madelene",
     "aws_user_files_s3_bucket_region": "us-east-1",

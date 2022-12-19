@@ -3,6 +3,9 @@ import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import classes from "./pictureModal.module.css";
 
+
+import Image from 'next/image';
+
 function PictureModal({ setOpen, open, onCloseModal, pic, isImportedPicture }) {
   const closeIcon = (
     <svg
@@ -41,11 +44,29 @@ function PictureModal({ setOpen, open, onCloseModal, pic, isImportedPicture }) {
     >
       <div className={classes.main_container}>
         {pic ? (
-          <img
-            // src={isImportedPicture ? pic.src : URL?.createObjectURL(pic)}
-            src={isImportedPicture ? pic.src : pic}
-            className={classes.img}
-          />
+
+            <Image 
+            src={URL.createObjectURL(pic)} 
+            // src={isImportedPicture ? pic.src : pic}
+            onClick={() => {
+              onOpenPicModal();
+              setPicture(pic);
+            }}
+            // key={index}
+
+            // layout='fill'
+            // objectFit='contain'
+
+            layout='fill'
+            // height={'90%'}
+            // width={'90%'}
+            // alt={imageAltText}
+            />
+          // <img
+          //   // src={isImportedPicture ? pic.src : URL?.createObjectURL(pic)}
+          //   src={isImportedPicture ? pic.src : pic}
+          //   className={classes.img}
+          // />
         ) : (
           <></>
         )}

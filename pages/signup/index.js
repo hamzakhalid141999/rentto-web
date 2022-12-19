@@ -26,24 +26,28 @@ import { useAuth } from "../../contextApi";
 import { getUser, listUsers } from "../../graphql/queries";
 import { createUser, deleteUser } from "../../graphql/mutations";
 
+// import { useAuth } from "../../contextApi";
+
 function SignUp() {
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(1);
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("Muhammad");
+  const [lastName, setLastName] = useState("Nauman");
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const [email, setEmail] = useState("bijile9210@lubde.com");
+  const [password, setPassword] = useState("Rentto@123");
+  const [confirmPass, setConfirmPass] = useState("Rentto@123");
 
-  const [phoneNo, setPhoneNo] = useState("");
+  const [phoneNo, setPhoneNo] = useState("923315882990");
   const [otp, setOtp] = useState();
   const handleChange = (otp) => setOtp(otp);
   const [darkTheme, setDarkTheme] = useState(undefined);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const { user, signIn, removeUser } = useAuth();
 
   // useEffect(() => {
   //   document.documentElement.setAttribute("data-theme", "light");
@@ -134,46 +138,15 @@ function SignUp() {
   async function confirmSignUp() {
     try {
       await Auth.confirmSignUp(email, otp);
-    } catch (error) {
-        console.log('error confirming sign up', error);
-    }
-  }
 
-  const handleProceedStepThree = async () => {
-    if (!phoneNo) {
-      error("Enter phone number");
-      return;
-    }
+      const local_user = await Auth.signIn(email, password);
 
-    console.log(firstName, lastName, email, phoneNo);
-    var phone_number = '+'+phoneNo;
-    var username = email;
-    // var password = 'Rentto@123'
+        console.log('Post OTP User:', local_user);
 
-
-
-    if (!otpSent) {
-      setLoading(true);
-      await delay(1000);
-
-      try {
-        const { user } = await Auth.signUp({
-            username,
-            password,
-            attributes: {
-                email,          // optional
-                phone_number,   // optional - E.164 number convention
-                // other custom attributes 
-            },
-            autoSignIn: { // optional - enables auto sign in after user is confirmed
-                enabled: true,
-            }
-        });
-
-
-        console.log(user);
-
-        // upload user to graphQL
+        signIn(local_user);
+        router.push("/");
+      /*
+              // upload user to graphQL
         // get Auth user
         const authUser = await Auth.currentAuthenticatedUser({
           bypassCache: true,
@@ -216,6 +189,56 @@ function SignUp() {
         await API.graphql(
           graphqlOperation(createUser, { input: newUser })
         );
+
+        const local_user = await Auth.signIn(email, password);
+
+        console.log('Post OTP User:', local_user);
+
+        */
+    
+    } catch (error) {
+        console.log('error confirming sign up', error);
+    }
+  }
+
+  const handleProceedStepThree = async () => {
+    if (!phoneNo) {
+      error("Enter phone number");
+      return;
+    }
+
+    console.log(firstName, lastName, email, phoneNo);
+    var phone_number = '+'+phoneNo;
+    var username = email;
+    // var password = 'Rentto@123'
+
+
+
+    if (!otpSent) {
+      setLoading(true);
+      await delay(1000);
+
+      try {
+
+        const { user } = await Auth.signUp({
+            username,
+            password,
+            attributes: {
+                email,          // optional
+                phone_number,   // optional - E.164 number convention
+                // other custom attributes 
+            },
+            autoSignIn: { // optional - enables auto sign in after user is confirmed
+                enabled: true,
+            }
+        });
+
+
+        console.log(user);
+
+
+
+        
 
         handleSendOpt();
       } catch (error_) {

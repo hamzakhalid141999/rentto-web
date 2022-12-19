@@ -17,7 +17,9 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     if (typeof window !== undefined) {
+      console.log('Context set user');
       setUser(JSON.parse(window.localStorage.getItem("user")));
+      setSignedIn(true);
     }
   }, []);
 

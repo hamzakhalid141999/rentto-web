@@ -4,10 +4,10 @@ import left_triangle_banner from "../../../../public/assets/property_page/left_t
 import heart_icon_disabled from "../../../../public/assets/property_page/heart_icon_disabled.svg";
 import mail_icon from "../../../../public/assets/property_page/mail_icon.svg";
 import heart_icon_active from "../../../../public/assets/property_page/heart_icon_active.svg";
-import img1 from "../../../../public/assets/property_page/img1.jpeg";
-import img2 from "../../../../public/assets/property_page/img2.jpg";
-import img3 from "../../../../public/assets/property_page/img3.jpeg";
-import img4 from "../../../../public/assets/property_page/img4.jpeg";
+// import img1 from "../../../../public/assets/property_page/img1.jpeg";
+// import img2 from "../../../../public/assets/property_page/img2.jpg";
+// import img3 from "../../../../public/assets/property_page/img3.jpeg";
+// import img4 from "../../../../public/assets/property_page/img4.jpeg";
 import PictureModal from "../../../modal/pictureModal";
 import { useRouter } from "next/router";
 
@@ -16,13 +16,36 @@ function PropertyBanner({ listing, images }) {
   const [picture, setPicture] = useState();
   const [openPicModal, setOpenPicModal] = useState();
 
+  const [pics, setPics] = useState();
+  
+
   const router = useRouter();
 
-  console.log("listing", listing);
+
 
   // if (!price) {
   //   price = "";
   // }
+
+  useEffect(() => {
+    // const { data } = getQueryParams(window.location.search);
+    // console.log('data', data);
+
+    // console.log();
+
+    // getListingDetails();
+    
+
+    // console.log("listing", listing);
+
+    // if (listing) {
+    //   if (listing.Images.length === 0){
+    //     setPics([img1, img2, img3, img4, img1, img1]);
+    
+    //   }
+    // }
+
+  }, []);
 
   const onClosePicModal = async () => {
     setOpenPicModal(false);
@@ -100,7 +123,7 @@ function PropertyBanner({ listing, images }) {
                   null
                 ) : (
                   images.map(image => {
-                    console.log(image)
+                    // console.log(image)
                     return (
                       <img
                         onClick={() => {
@@ -108,7 +131,7 @@ function PropertyBanner({ listing, images }) {
                           setPicture(image);
                         }}
                         className={classes.property_img}
-                        src={image}
+                        src={image.src}
                       />
                     );
                   })

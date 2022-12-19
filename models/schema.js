@@ -174,7 +174,9 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "chatroomID"
+                        "associatedWith": [
+                            "chatRoomID"
+                        ]
                     }
                 },
                 "users": {
@@ -188,21 +190,9 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "chatRoom"
-                    }
-                },
-                "LastMessage": {
-                    "name": "LastMessage",
-                    "isArray": false,
-                    "type": {
-                        "model": "Message"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "chatRoomLastMessageId"
+                        "associatedWith": [
+                            "chatRoom"
+                        ]
                     }
                 },
                 "createdAt": {
@@ -220,13 +210,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "chatRoomLastMessageId": {
-                    "name": "chatRoomLastMessageId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -278,8 +261,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "chatroomID": {
-                    "name": "chatroomID",
+                "chatRoomID": {
+                    "name": "chatRoomID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -323,7 +306,7 @@ export const schema = {
                     "properties": {
                         "name": "byChatRoom",
                         "fields": [
-                            "chatroomID"
+                            "chatRoomID"
                         ]
                     }
                 },
@@ -387,7 +370,9 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
+                        "associatedWith": [
+                            "userID"
+                        ]
                     }
                 },
                 "ChatRooms": {
@@ -401,7 +386,9 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "user"
+                        "associatedWith": [
+                            "user"
+                        ]
                     }
                 },
                 "Listings": {
@@ -415,7 +402,9 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
+                        "associatedWith": [
+                            "userID"
+                        ]
                     }
                 },
                 "likeListings": {
@@ -478,6 +467,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "chatRoomId": {
+                    "name": "chatRoomId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "chatRoom": {
                     "name": "chatRoom",
                     "isArray": false,
@@ -488,7 +491,9 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "chatRoomID"
+                        "targetNames": [
+                            "chatRoomId"
+                        ]
                     }
                 },
                 "user": {
@@ -501,7 +506,9 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "userID"
+                        "targetNames": [
+                            "userId"
+                        ]
                     }
                 },
                 "createdAt": {
@@ -533,7 +540,7 @@ export const schema = {
                     "properties": {
                         "name": "byChatRoom",
                         "fields": [
-                            "chatRoomID"
+                            "chatRoomId"
                         ]
                     }
                 },
@@ -542,7 +549,7 @@ export const schema = {
                     "properties": {
                         "name": "byUser",
                         "fields": [
-                            "userID"
+                            "userId"
                         ]
                     }
                 }
@@ -552,5 +559,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "31df2ed36e5d354c5842999d378c7b04"
+    "version": "59b8c7f0cba7aacce1486d5425e610a3"
 };

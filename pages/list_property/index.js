@@ -40,30 +40,62 @@ function ListProperty() {
     "Cable/Dish",
     "Music System",
   ]);
-  const [featuresSelected, setFeaturesSelected] = useState([]);
+
+
+  const [featuresSelected, setFeaturesSelected] = useState(['Laundry']);
   const [furnishingFeaturesSelected, setFurnishingFeaturesSelected] = useState(
-    []
+    ["Dryer",
+    "Washing Machine",
+    "Microwave",]
   );
-  const [city, setCity] = useState();
-  const [address, setAddress] = useState();
-  const [propertyType, setPropertyType] = useState("residential");
-  const [propertyTypeText, setPropertyTypeText] = useState();
-  const [propertySize, setPropertySize] = useState();
-  const [expectedRent, setExpectedRent] = useState();
-  const [bedrooms, setBedrooms] = useState();
-  const [bathrooms, setBathrooms] = useState();
-  const [lounge, setLounge] = useState();
-  const [kitchen, setKitchen] = useState();
-  const [drawingRoom, setDrawingRoom] = useState();
-  const [parking, setParking] = useState();
-  const [builtIn, setBuiltIn] = useState();
+
+  const [city, setCity] = useState("Islamabad");
+  const [address, setAddress] = useState('House # 1147, Street # 27, G-11/1');
+  const [propertyType, setPropertyType] = useState('residential');
+  const [propertyTypeText, setPropertyTypeText] = useState('fullhouse');
+  const [propertySize, setPropertySize] = useState(2000);
+  const [expectedRent, setExpectedRent] = useState('127000');
+  const [bedrooms, setBedrooms] = useState(2);
+  const [bathrooms, setBathrooms] = useState(2);
+  const [lounge, setLounge] = useState(1);
+  const [kitchen, setKitchen] = useState(1);
+  const [drawingRoom, setDrawingRoom] = useState(1);
+  const [parking, setParking] = useState(1);
+  const [builtIn, setBuiltIn] = useState('Before 2018');
   const [propertyFinish, setPropertyFinish] = useState(true);
-  const [flooring, setFlooring] = useState();
-  const [locality, setLocality] = useState();
-  const [view, setView] = useState();
+  const [flooring, setFlooring] = useState('Marble');
+  const [locality, setLocality] = useState('Corner');
+  const [view, setView] = useState('North');
   const [servantView, setServantView] = useState();
-  const [storeRoom, setStoreRoom] = useState();
-  const [separateDining, setSeparateDining] = useState();
+  const [storeRoom, setStoreRoom] = useState(1);
+  const [separateDining, setSeparateDining] = useState(1);
+
+
+  // const [featuresSelected, setFeaturesSelected] = useState([]);
+  // const [furnishingFeaturesSelected, setFurnishingFeaturesSelected] = useState(
+  //   []
+  // );
+
+  // const [city, setCity] = useState();
+  // const [address, setAddress] = useState();
+  // const [propertyType, setPropertyType] = useState("residential");
+  // const [propertyTypeText, setPropertyTypeText] = useState();
+  // const [propertySize, setPropertySize] = useState();
+  // const [expectedRent, setExpectedRent] = useState();
+  // const [bedrooms, setBedrooms] = useState();
+  // const [bathrooms, setBathrooms] = useState();
+  // const [lounge, setLounge] = useState();
+  // const [kitchen, setKitchen] = useState();
+  // const [drawingRoom, setDrawingRoom] = useState();
+  // const [parking, setParking] = useState();
+  // const [builtIn, setBuiltIn] = useState();
+  // const [propertyFinish, setPropertyFinish] = useState(true);
+  // const [flooring, setFlooring] = useState();
+  // const [locality, setLocality] = useState();
+  // const [view, setView] = useState();
+  // const [servantView, setServantView] = useState();
+  // const [storeRoom, setStoreRoom] = useState();
+  // const [separateDining, setSeparateDining] = useState();
 
   const [propertyMeta, setPropertyMeta] = useState([]);
   const [propertyMetaDetails, setPropertyMetaDetails] = useState([]);
@@ -102,6 +134,7 @@ function ListProperty() {
     <div className={classes.list_property_section}>
       <ReviewProperty
         features={features}
+        // price={price}
         featuresSelected={featuresSelected}
         furnishingFeaturesSelected={furnishingFeaturesSelected}
         furnishingFeatures={furnishingFeatures}

@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 import ReviewProperty from "../../modal/reviewProperty/index";
 import PictureModal from "../../modal/pictureModal";
 
+import Image from 'next/image';
+
 function Step6Form({
   setActiveStep,
   filesArr,
@@ -20,7 +22,8 @@ function Step6Form({
   filesArrDining,
   section,
 
-  propertyMeta
+  propertyMeta,
+  setPropertyMetaDetails
 }) {
 
   propertyMeta = ['Bedroom # 1', 'Bathroom # 1', 'Kitchen # 1', 'Drawing Room # 1', 'Parking # 1', 'Lounge # 1', 'Store Room # 1', 'Separate Dining # 1']
@@ -33,6 +36,7 @@ function Step6Form({
   const [picture, setPicture] = useState();
 
   const [propMetaJSON, setPropMetaJSON] = useState([]);
+  const [numOfImages, setNumOfImages] = useState([]);
 
   const onClosePicModal = async () => {
     setOpenPicModal(false);
@@ -43,15 +47,23 @@ function Step6Form({
 
   const handleDeletePicture = (index) => {
     var tempJson = propMetaJSON;
+
+    var tempArr = [];
+    
     console.log('tempJson', tempJson);
     tempJson[section]?.map((file, i) => {
       if (i !== index) {
-        tempJson[section].push(file);
+        tempArr.push(file);
       }
     });
     // setFilesArr(tempArr)
 
+    tempJson[section] = tempArr;
+
     setPropMetaJSON(tempJson);
+
+    setNumOfImages((arr) => [...arr, -1]);
+
   };
 
 
@@ -62,11 +74,20 @@ function Step6Form({
     // }
 
     var tempJson = propMetaJSON;
+    console.log('Before', tempJson);
+
     console.log('tempJson', tempJson, section);
     for (var i = 0; i < file?.length; i++) {
       const fileObj = file[i];
+
+      
+
       tempJson[section].push(fileObj)
+
+      
     }
+
+    // console.log(tempJson);
 
     // tempJson[section]?.map((file, i) => {
     //   if (i !== index) {
@@ -74,21 +95,37 @@ function Step6Form({
     //   }
     // });
     // setFilesArr(tempArr)
-
+    
     setPropMetaJSON(tempJson);
+
+    setNumOfImages((arr) => [...arr, 1]);
+
+    // setPropMetaJSON(tempJson);
+  };
+
+  const handleChangeFiles = (file) => {
+    for (var i = 0; i < file?.length; i++) {
+      const fileObj = file[i];
+      setFilesArr((arr) => [...arr, fileObj]);
+    }
   };
 
   const handleAddFile = (e) => {
-    setFilesArr((arr) => [...arr, e]);
+    // setFilesArr((arr) => [...arr, e]);
 
     var tempJson = propMetaJSON;
+    tempJson[section].push(e)
 
-    for (var i = 0; i < file?.length; i++) {
-      const fileObj = file[i];
-      tempJson[section].push(fileObj)
-    }
+    // for (var i = 0; i < file?.length; i++) {
+    //   const fileObj = file[i];
+    //   tempJson[section].push(e)
+    // }
 
-    console.log(tempJson[section]);
+    // console.log(tempJson[section]);
+
+    setPropMetaJSON(tempJson);
+    setNumOfImages((arr) => [...arr, 1]);
+
   };
 
   // Dining Washroom pictures
@@ -154,6 +191,7 @@ function Step6Form({
 
   const toggleNextStep = async () => {
     // setActiveStep(7);
+    console.log('Final step', propMetaJSON);
     setPropertyMetaDetails(propMetaJSON);
     handleOpenModal();
   };
@@ -233,19 +271,46 @@ function Step6Form({
                     handleDeletePicture(index);
                   }}
                   className={classes.del_icon}
+                  numOfImages={numOfImages}
                 >
                   <p>-</p>
                 </div>
 
-                <img
+                <div 
+                    className={classes.property_pictures}>
+                  {/* 2. Use the `Image` component as you would any other component  */}
+                  {/* <Image src={imageSrc} alt={imageAltText}/> */}
+              
+                  <Image 
+                    src={URL.createObjectURL(pic)} 
+                    onClick={() => {
+                      onOpenPicModal();
+                      setPicture(pic);
+                    }}
+                    key={index}
+
+                    // layout='fill'
+                    // objectFit='contain'
+
+                    // layout='fill'
+                    height={'90%'}
+                    width={'90%'}
+                    // alt={imageAltText}
+                    />
+
+                </div>
+
+                {/* <img
                   className={classes.property_pictures}
                   onClick={() => {
                     onOpenPicModal();
                     setPicture(pic);
                   }}
                   key={index}
-                  src={URL.createObjectURL(pic)}
-                />
+                  // src={URL.createObjectURL(pic)}
+                  src={URL.createObjectURL(new Blob([pic]))}
+                  
+                /> */}
               </div>
             ))}
             {propMetaJSON[section]?.length !== 0 && (

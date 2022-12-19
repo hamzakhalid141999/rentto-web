@@ -14,6 +14,8 @@ import electricity from "../../../public/assets/property_page/electricity.svg";
 import gas from "../../../public/assets/property_page/gas.svg";
 import dining from "../../../public/assets/property_page/dining.svg";
 import success_icon from "../../../public/assets/property_page/success_icon.svg";
+import HouseTemplate from '../../../public/assets/house.jpeg';
+
 import { ClipLoader } from "react-spinners";
 import PictureModal from "../pictureModal";
 import { useRouter } from "next/router";
@@ -51,13 +53,15 @@ function ReviewProperty({
   servantView,
   storeRoom,
   separateDining,
-  filesArr,
+  // filesArr,
   city,
   filesArrBathroom,
   filesArrDining,
   furnishingFeatures,
   featuresSelected,
   furnishingFeaturesSelected,
+
+  propertyMetaDetails
 }) {
   const label = { inputProps: { "aria-label": "Color switch demo" } };
   const [rent, setRent] = useState();
@@ -67,9 +71,15 @@ function ReviewProperty({
   const [picture, setPicture] = useState();
   const [openPicModal, setOpenPicModal] = useState();
 
+  const [filesArr, setFilesArr] = useState([]);
+
+
   const { user } = useAuth();
 
   const router = useRouter();
+
+  console.log('propertyMetaDetails', propertyMetaDetails);
+
 
   const onClosePicModal = async () => {
     setOpenPicModal(false);
@@ -89,6 +99,63 @@ function ReviewProperty({
   }, [open]);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  // Final Code Here
+  function generateLocation(latitude, longitude, max, min = 0) {
+    if (min > max) {
+      throw new Error(`min(${min}) cannot be greater than max(${max})`);
+    }
+
+    // earth radius in km
+    const EARTH_RADIUS = 6371;
+
+    // 1° latitude in meters
+    const DEGREE = EARTH_RADIUS * 2 * Math.PI / 360 * 1000;
+
+    // random distance within [min-max] in km in a non-uniform way
+    const maxKm = max * 1000;
+    const minKm = min * 1000;
+    const r = ((maxKm - minKm + 1) * Math.random() ** 0.5) + minKm;
+
+    // random angle
+    const theta = Math.random() * 2 * Math.PI;
+
+    const dy = r * Math.sin(theta);
+    const dx = r * Math.cos(theta);
+
+    let newLatitude = latitude + dy / DEGREE;
+    let newLongitude = longitude + dx / (DEGREE * Math.cos(deg2rad(latitude)));
+
+    const distance = getDistanceFromLatLonInKm(latitude, longitude, newLatitude, newLongitude);
+
+    return {
+      newLatitude,
+      newLongitude,
+      distance: Math.round(distance)
+    };
+  }
+
+  // See https://stackoverflow.com/a/27943/10975709
+  function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+
+    return d;
+  }
+
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
+
+  
 
   const uploadListing = async () => {
     console.log(filesArr);
@@ -119,7 +186,13 @@ function ReviewProperty({
       }
     }
 
-    console.log(signedArr)
+    // console.log(signedArr)
+
+    
+
+    // getRandomInRange(-180, 180, 3)
+
+    const ranfomLatLng = generateLocation(33.6844, 73.0479, 5, 5);
 
     const propertyFeatures = {
       Name: address,
@@ -127,7 +200,7 @@ function ReviewProperty({
       Address: address,
       AdLife: 22,
       AdLifeTier: 60,
-      Price: "30000",
+      Price: expectedRent,
       userID: user.attributes.sub,
       PropertyDetails: JSON.stringify({
         propertyType: propertyType,
@@ -149,6 +222,9 @@ function ReviewProperty({
         propertyFeatures: features,
         propertyFeatures2: features,
       }),
+
+      lat: ranfomLatLng.newLatitude,
+      long: ranfomLatLng.newLongitude,
       Images: signedArr,
       // Images: [
       //   'https://th.bing.com/th/id/OIP.Si21-XFZaoVcG8-ve9uw-gHaF6?w=259&h=207&c=7&r=0&o=5&dpr=1.5&pid=1.7',
@@ -178,11 +254,43 @@ function ReviewProperty({
   };
 
   useEffect(() => {
+
+    // filesArr
+
+    for (var key in propertyMetaDetails) {
+        if (propertyMetaDetails.hasOwnProperty(key)) {
+            // console.log(key + " -> " + propertyMetaDetails[key]);
+            
+            for (var i = 0; i < propertyMetaDetails[key].length; i++) {
+                // console.log(propertyMetaDetails[key][i]);
+
+                // setFilesArr((arr) => [...arr, propertyMetaDetails[key][i]]);
+                //Do something
+            }
+
+        }
+    }
+
+    console.log('useEffect filesArr', filesArr);
+
+    if (filesArr.length === 0) {
+
+      console.log('HouseTemplate', HouseTemplate);
+
+      // setFilesArr((arr) => [...arr, propertyMetaDetails[key][i]]);
+                
+    }
+
+    // for (var i = 0; i < file?.length; i++) {
+    //   const fileObj = file[i];
+    //   setFilesArr((arr) => [...arr, fileObj]);
+    // }
+
     // 👇️ scroll to top on page load
     if (open) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
-  }, [open]);
+  }, [open, filesArr]);
 
   return (
     <Modal
@@ -210,8 +318,9 @@ function ReviewProperty({
           <div className={classes.message_container}>
             <h2>Listing Overview</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Please review your listing and also provide a brief description of the property.
+              Incase you want to edit something close this modal and make your changes in the steps defined.
+
             </p>
           </div>
 
@@ -221,8 +330,8 @@ function ReviewProperty({
           >
             <div
               onClick={() => {
-                // handlePostList();
-                uploadListing();
+                handlePostList();
+                // uploadListing();
               }}
               className={classes.btn_filled}
             >
@@ -248,7 +357,7 @@ function ReviewProperty({
                     <span>per month</span>
                   </h2>
 
-                  <div className={classes.icons_container}>
+                  {/* <div className={classes.icons_container}>
                     <img
                       onClick={handleLike}
                       src={
@@ -259,7 +368,7 @@ function ReviewProperty({
                       style={{ width: "16px" }}
                     />
                     <img src={mail_icon.src} style={{ width: "16px" }} />
-                  </div>
+                  </div> */}
                 </div>
 
                 <p className={classes.rooms_info}>
@@ -279,39 +388,20 @@ function ReviewProperty({
           </div>
 
           <div className={classes.photo_grid}>
-            {filesArr?.map((pic, index) => (
-              <img
+            {filesArr?.map((pic, index) => {
+              console.log(pic)
+              return (<img
                 onClick={() => {
                   onOpenPicModal();
                   setPicture(pic);
                 }}
                 key={index}
                 className={classes.property_img}
-                src={URL.createObjectURL(pic)}
+                // src={URL.createObjectURL(pic)}
+                src={URL.createObjectURL(new Blob([pic], {type: pic?.type}))}
               />
-            ))}
-            {filesArrDining?.map((pic, index) => (
-              <img
-                onClick={() => {
-                  onOpenPicModal();
-                  setPicture(pic);
-                }}
-                key={index}
-                className={classes.property_img}
-                src={URL.createObjectURL(pic)}
-              />
-            ))}
-            {filesArrBathroom?.map((pic, index) => (
-              <img
-                onClick={() => {
-                  onOpenPicModal();
-                  setPicture(pic);
-                }}
-                key={index}
-                className={classes.property_img}
-                src={URL.createObjectURL(pic)}
-              />
-            ))}
+            )})}
+
           </div>
           <div className={classes.property_info_section}>
             <div className={classes.content_section}>

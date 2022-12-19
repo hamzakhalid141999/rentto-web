@@ -11,6 +11,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import { listUsers, getChatRoom } from "../../graphql/queries";
+
+import * as subscriptions from "../../graphql/subscriptions";
 import { createChatRoom, createUserChatRoom, createMessage, updateChatRoom } from "../../graphql/mutations";
 import { getCommonChatRoomWithUser } from "../../services/chatRoomService";
 
@@ -24,18 +26,28 @@ function Chat() {
   const [users, setUsers] = useState([]);
 
   // get user data
-  const { user } = useAuth();
+  const { user, signedIn } = useAuth();
+
+  
+
+  // console.log('MainUser', user, signedIn);
 
   useEffect(() => {
-    API.graphql(graphqlOperation(listUsers)).then((result) => {
 
-      console.log('RESULTS', result)
+    if (user){
+      API.graphql(graphqlOperation(listUsers)).then((result) => {
 
-      var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null)
+        // console.log('RESULTS', result, user);
+        // var data_filter = result.data?.listUsers?.items.filter( element => element.id !== user?.attributes?.sub)
 
-      setUsers(data_filter);
-    });
-  }, []);
+        var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null && element.id !== user?.attributes?.sub)
+
+        setUsers(data_filter);
+      });
+    }
+
+    
+  }, [user]);
 
   useEffect(() => {
     console.log(showInbox);
@@ -143,10 +155,28 @@ function Chat() {
     console.log('existingChatRoom', existingChatRoom)
     if (existingChatRoom) {
       API.graphql(graphqlOperation(getChatRoom, { id: existingChatRoom?.chatRoom.id })).then(
-        (result) => setChatroom(result.data?.getChatRoom)
+        (result) => {
+
+          // console.log('Result Before', result.data?.getChatRoom.Messages.items);
+
+          result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
+            return a._lastChangedAt - b._lastChangedAt;
+          });
+
+          // result.data?.getChatRoom.Messages.items = temp;          
+
+          // console.log('Result After', result.data?.getChatRoom.Messages.items);
+
+          setChatroom(result.data?.getChatRoom);
+
+          subscribeChatroom(result.data?.getChatRoom);
+
+        }
         // (result) => console.log(result)
       );
+
       // navigation.navigate("Chat", { id: existingChatRoom.id });
+      
       return;
     }
 
@@ -154,34 +184,87 @@ function Chat() {
     const newChatRoomData = await API.graphql(
       graphqlOperation(createChatRoom, { input: {} })
     );
-    console.log(newChatRoomData);
+    
+    console.log('newChatRoomData', newChatRoomData);
+
     if (!newChatRoomData.data?.createChatRoom) {
       console.log("Error creating the chat error");
     }
     const newChatRoom = newChatRoomData.data?.createChatRoom;
 
+    console.log(newChatRoom);
+
     // Add the clicked user to the ChatRoom
     await API.graphql(
       graphqlOperation(createUserChatRoom, {
-        input: { chatRoomID: newChatRoom.id, userID: user.id },
+        input: { chatRoomId: newChatRoom.id, userId: user.id },
       })
     );
 
-    // Add the auth user to the ChatRoom
+    // // Add the auth user to the ChatRoom
     const authUser = await Auth.currentAuthenticatedUser();
     await API.graphql(
       graphqlOperation(createUserChatRoom, {
-        input: { chatRoomID: newChatRoom.id, userID: authUser.attributes.sub },
+        input: { chatRoomId: newChatRoom.id, userId: authUser.attributes.sub },
       })
     );
 
     API.graphql(graphqlOperation(getChatRoom, { id: newChatRoom.id })).then(
-      (result) => setChatroom(result.data?.getChatRoom)
+      (result) => {
+
+
+        // chatroom?.Messages.items?
+
+        // console.log('Result Before', result.data?.getChatRoom.Messages.items);
+
+        
+        result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
+          return a._lastChangedAt - b._lastChangedAt;
+        });
+
+        // console.log('Result After', result.data?.getChatRoom.Messages.items);
+        
+
+        setChatroom(result.data?.getChatRoom);
+        subscribeChatroom(result.data?.getChatRoom);
+      }
     );
 
     // navigate to the newly created ChatRoom
     // navigation.navigate("Chat", { id: newChatRoom.id });
   };
+
+  const updateMessages = async () => {
+    // chatroom?.Messages.items?.push(message);
+
+    API.graphql(graphqlOperation(getChatRoom, { id: chatroom.id })).then(
+      (result) => {
+
+        result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
+          return a._lastChangedAt - b._lastChangedAt;
+        });
+
+        setChatroom(result.data?.getChatRoom);
+
+      }
+      // (result) => console.log(result)
+    );
+  }
+
+  const subscribeChatroom = async (cr) => {
+    console.log('CHATROOM', cr);
+    // // Subscribe to creation of Todo
+    const subscription = API.graphql(
+      graphqlOperation(subscriptions.onCreateMessage, {
+        filter: {
+          chatRoomID: { eq: cr.id }
+        }
+      })
+    ).subscribe({
+      next: ({ provider, value }) => updateMessages(),
+      error: (error) => console.warn(error)
+    });
+  }
 
   const handleSelectUser = async (user) => {
     // Engage chat room
@@ -189,7 +272,9 @@ function Chat() {
 
     chatRoomFetch(user);
 
-    console.log(chatroom?.Messages)
+    // subscribeChatroom(chatroom);
+
+    console.log('All Messages', chatroom?.Messages)
   };
 
   const onSend = async () => {
@@ -202,7 +287,7 @@ function Chat() {
     const authUser = await Auth.currentAuthenticatedUser();
 
     const newMessage = {
-      chatroomID: chatroom.id,
+      chatRoomID: chatroom.id,
       text,
       userID: authUser.attributes.sub,
     };
@@ -211,18 +296,21 @@ function Chat() {
       graphqlOperation(createMessage, { input: newMessage })
     );
 
+    console.log('NewMessageData', newMessageData);
+
     setText("");
 
-    // set the new message as LastMessage of the ChatRoom
-    await API.graphql(
-      graphqlOperation(updateChatRoom, {
-        input: {
-          _version: chatroom._version,
-          chatRoomLastMessageId: newMessageData.data.createMessage.id,
-          id: chatroom.id,
-        },
-      })
-    );
+    // // set the new message as LastMessage of the ChatRoom
+    // await API.graphql(
+    //   graphqlOperation(updateChatRoom, {
+    //     input: {
+    //       _version: chatroom._version,
+    //       chatRoomLastMessageId: newMessageData.data.createMessage.id,
+    //       id: chatroom.id,
+    //     },
+    //   })
+    // );
+
   };
 
   const error = (msg) => {
@@ -373,7 +461,7 @@ function Chat() {
               </div>
               <div className={classes.chat_panel}>
                 {chatroom?.Messages.items?.map((msg, index) =>
-                  msg?.userID !== user ? (
+                  msg?.userID !== user?.attributes?.sub ? (
                     <div key={index} className={classes.msg_container_left}>
                       <div className={classes.left_msg}>
                         <p className={classes.msg_text}> {msg?.text}</p>

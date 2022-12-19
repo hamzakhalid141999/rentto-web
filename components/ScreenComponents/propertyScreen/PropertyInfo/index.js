@@ -10,7 +10,7 @@ import PropertyCard from "../../../propertyCard";
 import { useRouter } from "next/router";
 
 function PropertyInfo({
-  description
+  listing
 }) {
   const router = useRouter();
 
@@ -52,7 +52,7 @@ function PropertyInfo({
             <h2>Description</h2>
             <p>
               {" "}
-              {description}
+              {listing?.PropertyDescription}
             </p>
 
             <div className={classes.facilities_container}>
@@ -114,45 +114,16 @@ function PropertyInfo({
             </p>
 
             <div className={classes.tags_container}>
-              <div className={classes.tag}>
-                <p>Full House</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Microwave</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Upper Portion</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Basement</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Two Portion</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Apartments</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Farmhouse</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Elevators</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Two Portion</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Apartments</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Farmhouse</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Elevators</p>
-              </div>
-              <div className={classes.tag}>
-                <p>Gymnasium / Yoga Area</p>
-              </div>
+                  {/* {featuresSelected?.map((feature, index) => (
+                      <div key={index} className={classes.tag}>
+                        <p>{feature}</p>
+                      </div>
+                    ))}
+                  {furnishingFeaturesSelected?.map((feature, index) => (
+                    <div key={index} className={classes.tag}>
+                      <p>{feature}</p>
+                    </div>
+                  ))} */}
             </div>
           </div>
 

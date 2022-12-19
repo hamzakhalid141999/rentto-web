@@ -26,7 +26,7 @@ function Navbar() {
   const [noBackdrop, setNoBackdrop] = useState(false);
 
   const { user, removeUser } = useAuth();
-  console.log("User:", user);
+  //console.log("User:", user);
 
   let listener = null;
 

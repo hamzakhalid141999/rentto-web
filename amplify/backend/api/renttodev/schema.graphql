@@ -1,7 +1,3 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
 type Listing @model @auth(rules: [{allow: public}]) {
   id: ID!
   Name: String
@@ -23,14 +19,13 @@ type ChatRoom @model @auth(rules: [{allow: public}]) {
   id: ID!
   Messages: [Message] @hasMany(indexName: "byChatRoom", fields: ["id"])
   users: [User] @manyToMany(relationName: "UserChatRoom")
-  LastMessage: Message @hasOne
 }
 
 type Message @model @auth(rules: [{allow: public}]) {
   id: ID!
   text: String
   userID: ID! @index(name: "byUser")
-  chatroomID: ID! @index(name: "byChatRoom")
+  chatRoomID: ID! @index(name: "byChatRoom")
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -42,4 +37,5 @@ type User @model @auth(rules: [{allow: public}]) {
   ChatRooms: [ChatRoom] @manyToMany(relationName: "UserChatRoom")
   Listings: [Listing] @hasMany(indexName: "byUser", fields: ["id"])
   likeListings: [String]
-} 
+}
+  

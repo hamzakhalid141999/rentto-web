@@ -43,3 +43,220 @@
   
       // onConfirm();
 >>>>>>> Stashed changes
+
+
+
+
+
+## 3dView/dump.js
+
+// import './App.css';
+import React, { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+
+// import { MarkersPlugin, ReactPhotoSphereViewer } from "react-photo-sphere-viewer";
+
+// import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
+const ReactPhotoSphereViewer = dynamic(
+  () =>
+    import('react-photo-sphere-viewer').then(
+      (mod) => mod.ReactPhotoSphereViewer
+    ),
+  {
+    ssr: false,
+  }
+);
+
+// const MarkersPlugin = dynamic(
+//     () =>
+//       import('react-photo-sphere-viewer').then(
+//         (mod) => mod.MarkersPlugin
+//       ),
+//     {
+//       ssr: false,
+//     }
+//   );
+
+export default function Home() {
+//   const photoSphereRef = useRef();
+
+//   const handleClick = () => {
+//     photoSphereRef.current.animate({
+//       latitude: 0,
+//       longitude: 0,
+//       zoom: 55,
+//       speed: '10rpm',
+//     });
+//   }
+
+  const [markersManager, setMarkerManager] = React.useState();
+  const pSRef = React.useCallback((node) => {
+    const markersPlugs = node?.getPlugin(MarkersPlugin);
+    setMarkerManager(markersPlugs);
+  }, []);
+
+  
+
+  useEffect(() => {
+    if (markersManager) {
+      console.log(markersManager);
+      markersManager.on("select-marker", (e, marker, data) => {
+        console.log("asd");
+      });
+      markersManager.on("over-marker", (e, marker) => {
+        console.log(`Cursor is over marker ${marker.id}`);
+      });
+    }
+  }, [markersManager]);
+
+
+  const plugins = [
+    [
+      MarkersPlugin,
+      {
+        // list of markers
+        markers: [
+          {
+            // image marker that opens the panel when clicked
+            id: "image",
+            longitude: 0.33,
+            latitude: 0.1,
+            image: "pin-blue.png",
+            width: 32,
+            height: 32,
+            anchor: "bottom center",
+            tooltip: "Mountain peak. <b>Click me!</b>"
+          }
+        ]
+      }
+    ]
+  ];
+
+  const handleClick = (data) => {
+    console.log(data);
+  };
+  
+  return (
+    <div 
+    // className="App"
+    >
+      {/* <ReactPhotoSphereViewer ref={photoSphereRef} src="test_pano.jpg" height={'100vh'} width={"100%"} onClick={handleClick}></ReactPhotoSphereViewer> */}
+      <ReactPhotoSphereViewer
+        ref={pSRef}
+        src="Test_Pano.jpg"
+        height={"100vh"}
+        width={"100%"}
+        littlePlanet={false}
+        onClick={handleClick}
+        plugins={plugins}
+      ></ReactPhotoSphereViewer>
+    </div>
+  );
+}
+
+## 3dView/orig.js
+
+// import './App.css';
+import React, { useEffect, useRef } from 'react';
+import Head from "next/head";
+
+import { Viewer } from "photo-sphere-viewer";
+import { MarkersPlugin } from "photo-sphere-viewer/dist/plugins/markers";
+import "photo-sphere-viewer/dist/plugins/markers.css";
+
+import { GyroscopePlugin } from "photo-sphere-viewer/dist/plugins/gyroscope";
+
+import { VisibleRangePlugin } from "photo-sphere-viewer/dist/plugins/visible-range";
+import StereoPlugin from "photo-sphere-viewer/dist/plugins/stereo";
+
+export default function Home() {
+  const sphereElementRef = React.createRef();
+
+  useEffect(() => {
+    const shperePlayerInstance = new Viewer({
+      container: sphereElementRef.current,
+      panorama: "test_pano.jpg",
+      plugins: [
+        [
+          VisibleRangePlugin,
+          {
+            longitudeRange: [null],
+            latitudeRange: [-Math.PI / 2, Math.PI / 4], //Restrict range so you can't see the top of the pano
+          },
+        ],
+        [GyroscopePlugin, StereoPlugin],
+        [
+          MarkersPlugin,
+          {
+            markers: [
+              {
+                id: "image",
+                longitude: 0.32,
+                latitude: 0.11,
+                image: "assests/homescreen/featured_bg.jpg",
+                width: 50,
+                height: 50,
+                anchor: "bottom center",
+                tooltip: "A image marker.",
+              },
+            ],
+          },
+        ],
+      ],
+    });
+
+    const gyroPlugin = shperePlayerInstance.getPlugin(GyroscopePlugin);
+    const markersPlugin = shperePlayerInstance.getPlugin(MarkersPlugin);
+
+    markersPlugin.on("select-marker", (e, marker) => {
+      markersPlugin.updateMarker({
+        id: marker.id,
+      });
+    });
+
+    if (gyroPlugin && typeof gyroPlugin.isEnabled !== "function") {
+      console.log("plugin issue");
+    }
+
+    if (gyroPlugin.isEnabled()) {
+      gyroPlugin.stop();
+    } else {
+      gyroPlugin
+        .start()
+        .then(() => {
+          const { latitude } = shperePlayerInstance.getPosition();
+          const { heading } = getCompassHeadingExtra();
+
+          shperePlayerInstance.rotate({
+            longitude: heading * (Math.PI / 180),
+            latitude,
+          });
+        })
+        // .catch(handleGyroEnableError);
+    }
+
+    // unmount component instructions
+    return () => {
+      shperePlayerInstance.destroy();
+    };
+  }, []); // will only be called when the src prop gets updated
+
+  return (
+    <div>
+      <Head>
+        <title>Create Next App</title>
+        <meta name="description" content="Generated by create next app" />
+        <link rel="icon" href="/favicon.ico" />
+
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.css"
+        />
+      </Head>
+
+      <main>
+        <div ref={sphereElementRef}></div>
+      </main>
+    </div>
+  );
+}
