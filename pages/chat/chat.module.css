@@ -195,7 +195,7 @@
   padding: 20px;
   font-family: "DMSans-Regular";
   background-color: var(--background);
-  color: var(--chat_bg) !important;
+  color: var(--foreground) !important;
 }
 .text_input:focus {
   outline: none !important;
