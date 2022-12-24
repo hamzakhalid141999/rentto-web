@@ -47,9 +47,16 @@ function PropertyBanner({ listing, images }) {
 
   }, []);
 
+  const startChat = async () => {
+    // setOpenPicModal(false);
+
+    console.log('LISTING', listing);
+  };
+
   const onClosePicModal = async () => {
     setOpenPicModal(false);
   };
+
   const onOpenPicModal = async () => {
     console.log('Opened', picture)
     setOpenPicModal(true);
@@ -107,7 +114,12 @@ function PropertyBanner({ listing, images }) {
             </div>
             <div
               onClick={() => {
-                router.push("/chat");
+                router.push({
+                  pathname: "/chat",
+                  query: { userID: listing.userID }
+                });
+
+                // startChat();
               }}
               className={classes.btn_empty}
             >

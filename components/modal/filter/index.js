@@ -8,7 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 
-function Filter({ setOpen, open, onCloseModal }) {
+function Filter({ setOpen, open, onCloseModal, setFilterConfig }) {
   const [propertySize, setPropertySize] = useState();
   const [isFurnished, setIsFurnished] = useState();
   const [beds, setBeds] = useState();

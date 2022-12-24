@@ -24,7 +24,7 @@ import { API, graphqlOperation, Storage } from "aws-amplify";
 function Property(props) {
 
   const router = useRouter()
-  // console.log('App', router.query);
+  console.log('App', router.query);
 
 
   const [listing, setListing] = useState(null);
@@ -34,14 +34,15 @@ function Property(props) {
   const [propertySpecification, setPropertySpecification] = useState(null);
 
   const getListingDetails = async () => {
-    // console.log('getListingDetails');
+    console.log('getListingDetails', router.query);
+    console.log('App2', router.query);
+
     // query the database using Auth user id (sub)
     const listingData = await API.graphql(
       graphqlOperation(getListing, { id: router.query.id })
     );
 
-    // console.log('DATA', listingData.data.getListing);
-
+    console.log('DATA', listingData.data.getListing);
     setListing(listingData.data.getListing);
 
     setPropertyDetails(JSON.parse(listingData.data.getListing.PropertyDetails));
@@ -68,18 +69,33 @@ function Property(props) {
       setImages(tmp);
     }
 
+
+    return listingData.data.getListing;
   }
 
   
-  useEffect(() => {
+  useEffect( () => {
     // const { data } = getQueryParams(window.location.search);
-    // console.log('data', data);
+    console.log('data', listing);
 
-    // console.log();
+    // const lTemp = getListingDetails();
+    // setListing(lTemp);
 
-    getListingDetails();
-    
-  }, [listing]);
+    if(!listing){
+      // const { media } = router.query;
+      // console.log(router.query)
+
+
+      console.log('Getting listing details');
+      getListingDetails();
+      // console.log(temp)
+      // if (!mediaId) return null;
+      // getPostImage();
+      // ...
+    }
+
+
+  }, [listing, router.query]);
 
   return (
     <div className={classes.property_section}>

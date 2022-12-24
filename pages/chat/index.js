@@ -28,6 +28,9 @@ function Chat() {
   // get user data
   const { user, signedIn } = useAuth();
 
+  // const router = useRouter()
+  console.log('App', router.query.userID);
+
   
 
   // console.log('MainUser', user, signedIn);
@@ -43,11 +46,37 @@ function Chat() {
         var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null && element.id !== user?.attributes?.sub)
 
         setUsers(data_filter);
+
+        // setChatroom()
+
+        
       });
     }
 
     
   }, [user]);
+
+  useEffect(() => {
+
+
+
+    if (user) {
+      console.log('router.query.userID', router.query.userID)
+      if (user.id !== router.query.userID) {
+
+        var data_filter = users.filter( element => element.id !== router.query.userID)
+
+        console.log('Updating chatroom', data_filter);
+
+        if (data_filter.length > 0) {
+          chatRoomFetch(data_filter[0]);
+          
+        // updateMessages();
+        }
+      }
+    }
+    
+  }, [user, users, router.query]);
 
   useEffect(() => {
     console.log(showInbox);
@@ -268,7 +297,7 @@ function Chat() {
 
   const handleSelectUser = async (user) => {
     // Engage chat room
-    setSelectedUserInbox(user);
+    // setSelectedUserInbox(user);
 
     chatRoomFetch(user);
 

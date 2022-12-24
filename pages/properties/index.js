@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
+// import * as React from 'react';
 import classes from "./properties.module.css";
 import magnifying_glass from "../../public/assets/homescreen/magnifying_glass.png";
 import dropdown from "../../public/assets/properties_screen_assets/dropdown.svg";
@@ -13,6 +14,9 @@ import heart from "../../public/assets/property_card_assets/heart_icon_card.png"
 import { useRouter } from "next/router";
 
 import GoogleMapReact from 'google-map-react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
 
 import {DataStore} from '@aws-amplify/datastore';
 import {Listing} from '../../models';
@@ -60,6 +64,17 @@ function Properties() {
   const [open, setOpen] = useState();
 
   const [listings, setListings] = useState([]);
+
+  const [filterConfig, setFilterConfig] = useState({});
+
+  const [value, setValue] = React.useState(30);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    console.log('newValue', newValue);
+  };
+
+
   // const [mapcenter, setMapcenter] = useState({
   //   lat: 33.6755223,
   //   lng: 72.9971537
@@ -97,6 +112,13 @@ function Properties() {
   const handleToggleNormalView = async () => {
     setMapView(false);
   };
+
+  // function preventHorizontalKeyboardNavigation(event: React.KeyboardEvent) {
+  //   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+  //     event.preventDefault();
+  //   }
+  // }
+
 
   const fetch_listings = async () => {
     // console.log(user)
@@ -172,9 +194,39 @@ function Properties() {
     // };
   }, [mapcenter]);
 
+  const [googleApiObj, setIsGoogleApiLoadedObj] = useState(null);
+
+  useEffect(() => {
+    if (googleApiObj) {
+      const {
+        map,
+        maps
+      } = googleApiObj;
+      // or else call that isApiLoaded function and pass-on these arguments  
+      renderGeoFences(map, maps)
+    }
+  }, [googleApiObj])
+
+  function renderGeoFences(map, maps) {
+    _.map(geoFencesSites, (site) => {
+      let circle = new maps.Circle({
+        // strokeColor: tag.id === 'all-jobs' ? "orange" : '#1aba8b26',
+        strokeOpacity: 1,
+        strokeWeight: 4,
+        fillColor: '#1aba8b1f',
+        fillOpacity: 1,
+        map,
+        center: {
+          lat: Number(site.location.latitude),
+          lng: Number(site.location.longitude)
+        },
+        radius: site.fenceSize,
+      });
+    });
+  }
   return (
     <>
-      <Filter onCloseModal={onCloseModal} open={open} />
+      <Filter onCloseModal={onCloseModal} open={open} setFilterConfig={setFilterConfig}/>
 
       {mapView ? (
         <div className={classes.container_map}>
@@ -204,6 +256,33 @@ function Properties() {
             bootstrapURLKeys={{ key: "AIzaSyAtLTTQK0DCmLqBqBeskqq2vnewAPaVKvo" }}
             defaultCenter={mapcenter}
             defaultZoom={defaultProps.zoom}
+            // dummy={value}
+            // yesIWantToUseGoogleMapApiInternals onGoogleApiLoaded = {
+            //   ({
+            //     map,
+            //     maps
+            //   }) => setIsGoogleApiLoaded({
+            //     map,
+            //     maps
+            //   })
+            // }
+            onGoogleApiLoaded={({map, maps}) => {
+              console.log('Heeloo')
+              // setMapReference(map);
+              // setMapsReference(maps);
+              new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.3,
+                map,
+                center: {lat: mapcenter.lat, lng: mapcenter.lng},
+                radius: value,
+              })
+            }
+            }
+          // yesIWantToUseGoogleMapApiInternals={true}
           >
             {/* <AnyReactComponent
               lat={defaultProps.center.lat}
@@ -217,6 +296,8 @@ function Properties() {
               text="You current location"
               isFeatured={true}
             />
+
+            
 
               {listings == null ? (
                   null
@@ -248,6 +329,8 @@ function Properties() {
 
           </GoogleMapReact>) : (null)}
 
+          
+
           {/* <iframe
             width="100%"
             height="100%"
@@ -260,6 +343,7 @@ function Properties() {
 
 
           <div className={classes.filter_section_map_view_container}>
+          
             <div className={classes.filter_section_map_view}>
               <div className={classes.search_bar}>
                 <img
@@ -329,12 +413,36 @@ function Properties() {
                 </div>
               </div>
             </div>
+
+            <div>
+              
+              <Box sx={{ height: 300 }}>
+                <Slider
+                  sx={{
+                    '& input[type="range"]': {
+                      WebkitAppearance: 'slider-vertical',
+                    },
+                  }}
+                  orientation="vertical"
+                  defaultValue={10}
+                  value={value} 
+                  onChange={handleChange} 
+                  aria-label="Temperature"
+                  valueLabelDisplay="auto"
+                  // onKeyDown={preventHorizontalKeyboardNavigation}
+                />
+              </Box>
+            </div>
+
             <div className={classes.right_panel}></div>
+
+            
           </div>
 
           <div className={classes.properties_container_map_view}>
             {/* <PropertyCard />
             <PropertyCard /> <PropertyCard /> <PropertyCard /> <PropertyCard /> */}
+
 
             {listings == null ? (
                   null
