@@ -21,7 +21,7 @@ import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
-import {Auth} from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { useAuth } from "../../contextApi";
 import { getUser, listUsers } from "../../graphql/queries";
 import { createUser, deleteUser } from "../../graphql/mutations";
@@ -30,8 +30,8 @@ import { createUser, deleteUser } from "../../graphql/mutations";
 
 function SignUp() {
   const router = useRouter();
-  const [activeStep, setActiveStep] = useState(1);
-  const [otpSent, setOtpSent] = useState(false);
+  const [activeStep, setActiveStep] = useState(3);
+  const [otpSent, setOtpSent] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState("Muhammad");
@@ -84,10 +84,10 @@ function SignUp() {
 
   async function resendConfirmationCode() {
     try {
-        await Auth.resendSignUp(email);
-        console.log('code resent successfully');
+      await Auth.resendSignUp(email);
+      console.log("code resent successfully");
     } catch (err) {
-        console.log('error resending code: ', err);
+      console.log("error resending code: ", err);
     }
   }
 
@@ -125,7 +125,7 @@ function SignUp() {
       error("Enter a valid email address");
       return false;
     } else if (password !== confirmPass) {
-      error("Passwords don't match")
+      error("Passwords don't match");
       return false;
     }
 
@@ -141,10 +141,10 @@ function SignUp() {
 
       const local_user = await Auth.signIn(email, password);
 
-        console.log('Post OTP User:', local_user);
+      console.log("Post OTP User:", local_user);
 
-        signIn(local_user);
-        router.push("/");
+      signIn(local_user);
+      router.push("/");
       /*
               // upload user to graphQL
         // get Auth user
@@ -195,9 +195,8 @@ function SignUp() {
         console.log('Post OTP User:', local_user);
 
         */
-    
     } catch (error) {
-        console.log('error confirming sign up', error);
+      console.log("error confirming sign up", error);
     }
   }
 
@@ -208,47 +207,38 @@ function SignUp() {
     }
 
     console.log(firstName, lastName, email, phoneNo);
-    var phone_number = '+'+phoneNo;
+    var phone_number = "+" + phoneNo;
     var username = email;
     // var password = 'Rentto@123'
-
-
 
     if (!otpSent) {
       setLoading(true);
       await delay(1000);
 
       try {
-
         const { user } = await Auth.signUp({
-            username,
-            password,
-            attributes: {
-                email,          // optional
-                phone_number,   // optional - E.164 number convention
-                // other custom attributes 
-            },
-            autoSignIn: { // optional - enables auto sign in after user is confirmed
-                enabled: true,
-            }
+          username,
+          password,
+          attributes: {
+            email, // optional
+            phone_number, // optional - E.164 number convention
+            // other custom attributes
+          },
+          autoSignIn: {
+            // optional - enables auto sign in after user is confirmed
+            enabled: true,
+          },
         });
-
 
         console.log(user);
 
-
-
-        
-
         handleSendOpt();
       } catch (error_) {
-          error(error_.toString())
-          console.log('error signing up:', error_.toString());
-          setLoading(false);
-          return false
+        error(error_.toString());
+        console.log("error signing up:", error_.toString());
+        setLoading(false);
+        return false;
       }
-      
-      
     } else {
       if (otp?.length === 6) {
         setLoading(true);
@@ -261,9 +251,8 @@ function SignUp() {
         success("Account created successfully");
         await delay(1200);
 
-
         // router.push("/login");
-        
+
         setOtpSent(false);
       } else {
         error("Enter valid OTP");
@@ -308,8 +297,6 @@ function SignUp() {
   const handleSignup = async () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
-
-
     if (!email) {
       error("Enter Email");
       return;
@@ -340,9 +327,6 @@ function SignUp() {
       setLoading(false);
     }
   };
-
-
-
 
   return (
     <div className={classes.login_screen_section}>
@@ -498,10 +482,11 @@ function SignUp() {
                 />
               </div>
 
-              <div 
-              onClick={handleProceedStepOne} 
-              // onClick={handleSignup} 
-              className="orange_btn">
+              <div
+                onClick={handleProceedStepOne}
+                // onClick={handleSignup}
+                className="orange_btn"
+              >
                 <p>PROCEED</p>
                 <ClipLoader color={"white"} loading={loading} size={17} />
               </div>

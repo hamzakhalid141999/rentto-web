@@ -335,9 +335,11 @@
   box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.25);
   border-radius: 5px;
   font-size: 20px;
+  transition: ease-in-out 200ms;
 }
 .otp_input_single:focus {
   outline: none !important;
+  transition: ease-in-out 200ms;
 }
 .opt_input_focused {
   width: 63px !important;
@@ -348,8 +350,19 @@
   box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.25);
   border-radius: 5px;
   font-size: 20px;
+  transition: ease-in-out 200ms;
 }
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width: 1157px) {
+  .otp_input_single {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  .opt_input_focused {
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
+@media only screen and (max-width: 950px) {
   .carousel_section {
     display: none;
   }
@@ -373,5 +386,15 @@
     display: flex;
     left: 20px;
     top: 20px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .otp_input_single {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .opt_input_focused {
+    width: 38px !important;
+    height: 38px !important;
   }
 }
