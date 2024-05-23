@@ -5,10 +5,7 @@ import send_btn from "../../public/assets/chat_assets/send_btn.svg";
 import { useWindowSize } from "../../utils";
 import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import { useRouter } from "next/router";
-
 import toast, { Toaster } from "react-hot-toast";
-import { getCommonChatRoomWithUser } from "../../services/chatRoomService";
-
 import { useAuth } from "../../contextApi";
 
 function Chat() {
