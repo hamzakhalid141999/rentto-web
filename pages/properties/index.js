@@ -48,7 +48,7 @@ const MarkerComponent = ({ price, isFeatured, id, adlife, adlifetier, address, p
 //   </div>
 // </div>;
 
-
+let circle;
 function Properties() {
   const router = useRouter();
   // const [mapView, setMapView] = useState(false);
@@ -60,11 +60,17 @@ function Properties() {
 
   const [filterConfig, setFilterConfig] = useState({});
 
-  const [value, setValue] = React.useState(30);
+  const [radiusValue, setRadiusValue] = React.useState(null);
+
+  const [circleMarker, setCircleMarker] = React.useState(null);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log('newValue', newValue);
+    setRadiusValue(newValue);
+    
+    if (circle !== undefined) {
+      console.log('newValue', newValue);
+      circle.setRadius(Number(newValue));
+    }
   };
 
 
@@ -74,6 +80,8 @@ function Properties() {
   // });
 
   const [mapcenter, setMapcenter] = useState(null);
+
+  
   
 
   var defaultProps = {
@@ -81,7 +89,8 @@ function Properties() {
       lat: 33.6755223,
       lng: 72.9971537
     },
-    zoom: 12
+    zoom: 16
+    // zoom: 12
   };
 
   const handleOpenModal = async () => {
@@ -162,6 +171,34 @@ function Properties() {
       });
     });
   }
+
+  const apiIsLoaded = (map, maps) => {
+    circle = new maps.Circle({
+      strokeColor: "#FF00FF",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.3,
+      map,
+      center: {lat: mapcenter.lat, lng: mapcenter.lng},
+      radius: radiusValue*100
+    });
+  };
+
+  const onClick = (t, map, coord) => {
+    // console.log('HI!', t)
+    // const { latLng } = coord;
+    const lat = t['lat'];
+    const lng = t['lng'];
+
+    setCircleMarker(t);
+
+    // console.log('latLng', lat, lng);
+
+    
+  };
+
+
   return (
     <>
       <Filter onCloseModal={onCloseModal} open={open} setFilterConfig={setFilterConfig}/>
@@ -194,32 +231,11 @@ function Properties() {
             bootstrapURLKeys={{ key: "AIzaSyAtLTTQK0DCmLqBqBeskqq2vnewAPaVKvo" }}
             defaultCenter={mapcenter}
             defaultZoom={defaultProps.zoom}
-            // dummy={value}
-            // yesIWantToUseGoogleMapApiInternals onGoogleApiLoaded = {
-            //   ({
-            //     map,
-            //     maps
-            //   }) => setIsGoogleApiLoaded({
-            //     map,
-            //     maps
-            //   })
-            // }
-            onGoogleApiLoaded={({map, maps}) => {
-              console.log('Heeloo')
-              // setMapReference(map);
-              // setMapsReference(maps);
-              new google.maps.Circle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.3,
-                map,
-                center: {lat: mapcenter.lat, lng: mapcenter.lng},
-                radius: value,
-              })
-            }
-            }
+           
+            // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
+            onClick={onClick}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
           // yesIWantToUseGoogleMapApiInternals={true}
           >
             {/* <AnyReactComponent
@@ -363,7 +379,7 @@ function Properties() {
                   }}
                   orientation="vertical"
                   defaultValue={10}
-                  value={value} 
+                  value={radiusValue} 
                   onChange={handleChange} 
                   aria-label="Temperature"
                   valueLabelDisplay="auto"
