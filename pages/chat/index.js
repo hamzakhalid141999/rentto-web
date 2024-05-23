@@ -7,13 +7,6 @@ import back_arrow from "../../public/assets/login_screen_assets/back_arrow.svg";
 import { useRouter } from "next/router";
 
 import toast, { Toaster } from "react-hot-toast";
-
-
-import { API, graphqlOperation, Auth } from "aws-amplify";
-import { listUsers, getChatRoom } from "../../graphql/queries";
-
-import * as subscriptions from "../../graphql/subscriptions";
-import { createChatRoom, createUserChatRoom, createMessage, updateChatRoom } from "../../graphql/mutations";
 import { getCommonChatRoomWithUser } from "../../services/chatRoomService";
 
 import { useAuth } from "../../contextApi";
@@ -31,56 +24,7 @@ function Chat() {
   // const router = useRouter()
   console.log('App', router.query.userID);
 
-  
-
   // console.log('MainUser', user, signedIn);
-
-  useEffect(() => {
-
-    if (user){
-      API.graphql(graphqlOperation(listUsers)).then((result) => {
-
-        // console.log('RESULTS', result, user);
-        // var data_filter = result.data?.listUsers?.items.filter( element => element.id !== user?.attributes?.sub)
-
-        var data_filter = result.data?.listUsers?.items.filter( element => element._deleted == null && element.id !== user?.attributes?.sub)
-
-        setUsers(data_filter);
-
-        // setChatroom()
-
-        
-      });
-    }
-
-    
-  }, [user]);
-
-  useEffect(() => {
-
-
-
-    if (user) {
-      console.log('router.query.userID', router.query.userID)
-      if (user.id !== router.query.userID) {
-
-        var data_filter = users.filter( element => element.id !== router.query.userID)
-
-        console.log('Updating chatroom', data_filter);
-
-        if (data_filter.length > 0) {
-          chatRoomFetch(data_filter[0]);
-          
-        // updateMessages();
-        }
-      }
-    }
-    
-  }, [user, users, router.query]);
-
-  useEffect(() => {
-    console.log(showInbox);
-  }, [showInbox]);
 
   // const handleToggleShowInboxScreen = async (value) => {
   //   setShowInbox(value);
@@ -176,124 +120,6 @@ function Chat() {
     ]);
   };
 
-  const chatRoomFetch = async (user) => {
-    // TODO: catch create chat room fails
-    // Check if we already have a ChatRoom with user
-    const existingChatRoom = await getCommonChatRoomWithUser(user.id);
-
-    console.log('existingChatRoom', existingChatRoom)
-    if (existingChatRoom) {
-      API.graphql(graphqlOperation(getChatRoom, { id: existingChatRoom?.chatRoom.id })).then(
-        (result) => {
-
-          // console.log('Result Before', result.data?.getChatRoom.Messages.items);
-
-          result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
-            return a._lastChangedAt - b._lastChangedAt;
-          });
-
-          // result.data?.getChatRoom.Messages.items = temp;          
-
-          // console.log('Result After', result.data?.getChatRoom.Messages.items);
-
-          setChatroom(result.data?.getChatRoom);
-
-          subscribeChatroom(result.data?.getChatRoom);
-
-        }
-        // (result) => console.log(result)
-      );
-
-      // navigation.navigate("Chat", { id: existingChatRoom.id });
-      
-      return;
-    }
-
-    // Create a new Chatroom
-    const newChatRoomData = await API.graphql(
-      graphqlOperation(createChatRoom, { input: {} })
-    );
-    
-    console.log('newChatRoomData', newChatRoomData);
-
-    if (!newChatRoomData.data?.createChatRoom) {
-      console.log("Error creating the chat error");
-    }
-    const newChatRoom = newChatRoomData.data?.createChatRoom;
-
-    console.log(newChatRoom);
-
-    // Add the clicked user to the ChatRoom
-    await API.graphql(
-      graphqlOperation(createUserChatRoom, {
-        input: { chatRoomId: newChatRoom.id, userId: user.id },
-      })
-    );
-
-    // // Add the auth user to the ChatRoom
-    const authUser = await Auth.currentAuthenticatedUser();
-    await API.graphql(
-      graphqlOperation(createUserChatRoom, {
-        input: { chatRoomId: newChatRoom.id, userId: authUser.attributes.sub },
-      })
-    );
-
-    API.graphql(graphqlOperation(getChatRoom, { id: newChatRoom.id })).then(
-      (result) => {
-
-
-        // chatroom?.Messages.items?
-
-        // console.log('Result Before', result.data?.getChatRoom.Messages.items);
-
-        
-        result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
-          return a._lastChangedAt - b._lastChangedAt;
-        });
-
-        // console.log('Result After', result.data?.getChatRoom.Messages.items);
-        
-
-        setChatroom(result.data?.getChatRoom);
-        subscribeChatroom(result.data?.getChatRoom);
-      }
-    );
-
-    // navigate to the newly created ChatRoom
-    // navigation.navigate("Chat", { id: newChatRoom.id });
-  };
-
-  const updateMessages = async () => {
-    // chatroom?.Messages.items?.push(message);
-
-    API.graphql(graphqlOperation(getChatRoom, { id: chatroom.id })).then(
-      (result) => {
-
-        result.data?.getChatRoom.Messages.items?.sort(function(a, b) {
-          return a._lastChangedAt - b._lastChangedAt;
-        });
-
-        setChatroom(result.data?.getChatRoom);
-
-      }
-      // (result) => console.log(result)
-    );
-  }
-
-  const subscribeChatroom = async (cr) => {
-    console.log('CHATROOM', cr);
-    // // Subscribe to creation of Todo
-    const subscription = API.graphql(
-      graphqlOperation(subscriptions.onCreateMessage, {
-        filter: {
-          chatRoomID: { eq: cr.id }
-        }
-      })
-    ).subscribe({
-      next: ({ provider, value }) => updateMessages(),
-      error: (error) => console.warn(error)
-    });
-  }
 
   const handleSelectUser = async (user) => {
     // Engage chat room
@@ -307,27 +133,6 @@ function Chat() {
   };
 
   const onSend = async () => {
-    console.log('chatroom', chatroom)
-    if (!text.length) {
-      error('No text')
-      return false
-    }
-    
-    const authUser = await Auth.currentAuthenticatedUser();
-
-    const newMessage = {
-      chatRoomID: chatroom.id,
-      text,
-      userID: authUser.attributes.sub,
-    };
-
-    const newMessageData = await API.graphql(
-      graphqlOperation(createMessage, { input: newMessage })
-    );
-
-    console.log('NewMessageData', newMessageData);
-
-    setText("");
 
     // // set the new message as LastMessage of the ChatRoom
     // await API.graphql(

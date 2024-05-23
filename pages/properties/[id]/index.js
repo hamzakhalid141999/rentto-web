@@ -15,10 +15,6 @@ import img4 from "../../../public/assets/property_page/img4.jpeg";
 import { useRouter } from 'next/router'
 
 // import { useAuth } from "../contextApi";
-import { getListing } from "../../../graphql/queries";
-
-import { API, graphqlOperation, Storage } from "aws-amplify";
-// import { createUser, deleteUser } from "../graphql/mutations";
 
 
 function Property(props) {

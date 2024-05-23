@@ -20,11 +20,7 @@ import video_tutorials from "../../public/assets/login_screen_assets/video_tutor
 import helpline from "../../public/assets/login_screen_assets/helpline.png";
 import list_property from "../../public/assets/login_screen_assets/list_property.png";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-
-import { Auth } from "aws-amplify";
 import { useAuth } from "../../contextApi";
-import { getUser, listUsers } from "../../graphql/queries";
-import { createUser, deleteUser } from "../../graphql/mutations";
 
 // import { useAuth } from "../../contextApi";
 
