@@ -273,7 +273,7 @@
 }
 .more_images_adder input[type="file"] {
   position: absolute;
-  width: 50px;
+  width: 100%;
   left: 0;
   top: 0;
   opacity: 0;

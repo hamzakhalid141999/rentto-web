@@ -17,13 +17,6 @@ import GoogleMapReact from 'google-map-react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-
-import {DataStore} from '@aws-amplify/datastore';
-import {Listing} from '../../models';
-
-import * as queries from '../../graphql/queries';
-import { API, graphqlOperation } from 'aws-amplify';
-
 const AnyReactComponent = ({ text }) => <img
         src={location_pin.src}
         className={classes.location_pin_map}
@@ -95,8 +88,6 @@ function Properties() {
     setOpen(true);
   };
 
-  // graphql/**/*.js
-
   const onCloseModal = async () => {
     setOpen(false);
   };
@@ -113,54 +104,6 @@ function Properties() {
     setMapView(false);
   };
 
-  // function preventHorizontalKeyboardNavigation(event: React.KeyboardEvent) {
-  //   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-  //     event.preventDefault();
-  //   }
-  // }
-
-
-  const fetch_listings = async () => {
-    // console.log(user)
-    // await API.graphql({
-    //   query: mutations.createListing,
-    //   variables: { input: propertyFeatures },
-    // });
-
-
-
-    // let filter = {
-    //     _deleted: {
-    //         eq: null // filter priority = 1
-    //     }
-    // };
-    // Query using a parameter
-    const fetched_listings = await API.graphql({
-      query: queries.listListings
-      // variables: { filter: filter }
-
-      // variables: { Name: 'Shhs' }
-
-      // House # 1029D, Street # 46
-    });
-
-    // const fetched_listings = await API.graphql(graphqlOperation(queries.listListings, {
-    //     filter: {
-    //         _deleted: {
-    //             eq: "completed"
-    //         }
-    //     }
-    // }));
-
-    // fetched_listings.data.listListings.items
-
-    var data_filter = fetched_listings.data.listListings.items.filter( element => element._deleted == null)
-
-    setListings(data_filter)
-
-    // console.log('fetched_listings', data_filter);
-  }
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -174,11 +117,6 @@ function Properties() {
       // console.log("Latitude is :", position.coords.latitude);
       // console.log("Longitude is :", position.coords.longitude);
     });
-
-    fetch_listings();    
-
-    
-
 
     // const subscription = DataStore.observeQuery(Listing).subscribe(snapshot => {
     //   const {items, isSynced} = snapshot;

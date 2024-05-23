@@ -185,6 +185,11 @@ function Navbar() {
               <Link href={"/properties"}>
                 <p>Explore</p>
               </Link>
+
+              <Link href={"/assistance"}>
+                <p>Assistance</p>
+              </Link>
+
               {/* <p>FAQ</p>
               <Link href={"/chat"}>
                 <p>Chat</p>

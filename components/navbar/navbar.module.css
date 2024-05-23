@@ -87,11 +87,11 @@
   font-family: "DMSans-Regular";
   font-size: 15px;
 }
-.left_panel_btns p:nth-child(1) {
+.left_panel_btns p {
   color: var(--orangeText) !important;
   font-family: "DMSans-Regular";
   font-size: 18px;
-  min-width: 123px;
+  min-width: 83px;
 }
 .left_panel_btns {
   height: 100%;
@@ -101,7 +101,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  column-gap: 30px;
+  column-gap: 0px;
 }
 .get_started_btn {
   background-color: #ff9000;

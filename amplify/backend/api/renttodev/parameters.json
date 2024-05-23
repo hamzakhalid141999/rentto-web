@@ -1,6 +1,0 @@
-{
-  "AppSyncApiName": "renttodev",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-12-09T16:03:46.606Z"
-}
